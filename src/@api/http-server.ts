@@ -4,7 +4,7 @@ import { Solver } from "../@nlp/solver";
 export class HttpServer {
 
   private initialized = false;
-  private port = 3001;
+  private defaultPort = 443;
 
   constructor() {
   }
@@ -14,6 +14,7 @@ export class HttpServer {
       return;
     }
     this.initialized = true;
+    const port = process.env.NLP20_PORT || this.defaultPort;
 
     const app = express();
 
@@ -51,8 +52,8 @@ export class HttpServer {
       });
     });
 
-    app.listen(this.port, () => {
-      console.log(`REST API server is running on port ${this.port}...`);
+    app.listen(port, () => {
+      console.log(`REST API server is running on port ${this.defaultPort}...`);
     });
   }
 
