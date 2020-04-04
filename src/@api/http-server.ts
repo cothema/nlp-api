@@ -4,7 +4,7 @@ import { Solver } from "../@nlp/solver";
 export class HttpServer {
 
   private initialized = false;
-  private defaultPort = 443;
+  private defaultPort = 3001;
 
   constructor() {
   }
@@ -14,7 +14,7 @@ export class HttpServer {
       return;
     }
     this.initialized = true;
-    const port = process.env.NLP20_PORT || this.defaultPort;
+    const port = process.env.PORT || this.defaultPort;
 
     const app = express();
 
