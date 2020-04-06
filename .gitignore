@@ -1,5 +1,6 @@
 dist/
 node_modules/
+.env
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -119,3 +120,7 @@ fabric.properties
 
 # UNIX
 **/.directory
+
+# Unneccessary large files
+/src/@nlp/languages/cs/dictionaries/words_cs.txt
+/src/@nlp/languages/cs/dictionaries/words_cs.txt

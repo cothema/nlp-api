@@ -6,14 +6,14 @@ import { Word } from "./model/word";
 export class Tokenizer {
   static readonly interpunction = [".", ",", "?", "!", ":"];
 
-  static getWords(input: Text | Sentence): Word[] {
+  static getWords(input: Text | Sentence) {
     const text = Tokenizer.removeInterpunction(input.text);
     return text.split(" ")
       .filter(el => el.trim().length)
       .map(el => new Word(el));
   }
 
-  static removeInterpunction(input: string): string {
+  static removeInterpunction(input: string) {
     for (const interpunctionElement of Tokenizer.interpunction) {
       input = input.replace(interpunctionElement, "");
     }
@@ -21,7 +21,7 @@ export class Tokenizer {
     return input;
   }
 
-  static getSentences(text: Text): Sentence[] {
+  static getSentences(text: Text) {
     const parts = text.text.split(/(\.|\?|\!)/g);
 
     const out = [];
@@ -33,7 +33,7 @@ export class Tokenizer {
     }
 
     return out.filter(el => {
-      return el.length
+      return el.length;
     }).map(el => {
       return new Sentence(el);
     });

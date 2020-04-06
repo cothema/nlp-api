@@ -11,6 +11,11 @@ export class TagsDetermination {
     await TagsDetermination.determineOther(word, lang);
   }
 
+  static async matchWordInDictionary(language: string, dictionary: string, word: string): Promise<boolean> {
+    const dictionaryItems = await DictionaryLoader.load(language, dictionary, true);
+    return dictionaryItems.includes(word.toLowerCase());
+  }
+
   private static async determineVerbalTypes(word: Word, lang: string) {
     const dictionaries = [
       "verbal-types/adjectives",
@@ -71,10 +76,5 @@ export class TagsDetermination {
         });
       }
     }
-  }
-
-  static async matchWordInDictionary(language: string, dictionary: string, word: string): Promise<boolean> {
-    const dictionaryItems = await DictionaryLoader.load(language, dictionary, true);
-    return dictionaryItems.includes(word.toLowerCase());
   }
 }

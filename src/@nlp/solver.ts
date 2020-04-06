@@ -6,9 +6,7 @@ import { Tokenizer } from "./tokenizer";
 
 export class Solver {
 
-  static async solve(input: string): Promise<Text> {
-    const text = new Text(input);
-
+  static async solveText(text: Text) {
     text.sentences = Tokenizer.getSentences(text);
     text.words = Tokenizer.getWords(text);
 
@@ -29,7 +27,46 @@ export class Solver {
   }
 
   static async solveWord(word: Word) {
-    return TagsDetermination.determine(word);
+    await TagsDetermination.determine(word);
+    await Solver.solveWordIPAPronunciation(word);
+    return word;
+  }
+
+  private static solveWordIPAPronunciation(word: Word) {
+    let pronunciation = word.text.toLowerCase();
+
+    const dictionary = Solver.getIPAPronunciationPairs();
+    for (let key in dictionary) {
+      pronunciation = pronunciation.replace(key, dictionary[key]);
+    }
+
+    word.pronunciation = pronunciation;
+  }
+
+  private static getIPAPronunciationPairs() {
+    return {
+      "ě": "je",
+      "ň": "ɲ",
+      "š": "ʃ",
+      "ť": "c",
+      "ď": "ɟ",
+      "h": "ɦ",
+      "ch": "x",
+      "c": "t͡s",
+      "č": "t͡ʃ",
+      "ř": "r̝",
+      "ž": "ʒ",
+      "í": "iː",
+      "ý": "iː",
+      "ú": "uː",
+      "ů": "uː",
+      "é": "ɛː",
+      "á": "aː",
+      "ó": "oː",
+      "i": "ɪ",
+      "y": "ɪ",
+      "u": "ʊ",
+    };
   }
 
 }

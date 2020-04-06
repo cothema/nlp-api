@@ -6,7 +6,7 @@ export class DictionaryLoader {
     content: string[]
   }[] = [];
 
-  static async load(lang: string, dictionaryName: string, inLowerCase: boolean = false): Promise<string[]> {
+  static async load(lang: string, dictionaryName: string, inLowerCase = false): Promise<string[]> {
     const fs = require("fs");
 
     lang = DictionaryLoader.secureDirName(lang);
@@ -23,7 +23,7 @@ export class DictionaryLoader {
       return new Promise<string[]>((resolve, reject) => {
         fs.readFile("src/@nlp/languages/" + lang + "/dictionaries/" + dictionaryName + ".txt", "utf-8",
           (err, data) => {
-            if(err) {
+            if (err) {
               console.error(err);
               reject();
             } else {
@@ -45,7 +45,7 @@ export class DictionaryLoader {
     }
   }
 
-  private static secureDirName(dirName: string) {
+  private static secureDirName(dirName: string): string {
     dirName = dirName.replace("../", "");
     dirName = dirName.replace("..\\", "");
     return dirName;

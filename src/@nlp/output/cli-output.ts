@@ -4,25 +4,25 @@ import { Text } from "../model/text";
 
 export class CliOutput {
 
-  static echoAll(text: Text): void {
+  static echoAll(text: Text) {
     this.echoOverview(text);
     this.echoSentences(text);
   }
 
-  static echoOverview(text: Text): void {
+  static echoOverview(text: Text) {
     console.log("| Text:", text.text);
     console.log("Počet vět:", text.sentences.length);
     console.log("Počet slov:", text.words.length);
   }
 
-  static echoSentences(text: Text): void {
+  static echoSentences(text: Text) {
     for (const sentence of text.sentences) {
       console.log("-----");
       CliOutput.echoSentence(sentence);
     }
   }
 
-  static echoSentence(sentence: Sentence): void {
+  static echoSentence(sentence: Sentence) {
     console.log("| Věta:", sentence.text);
 
     console.log("Typ věty:", CliOutput.translateSentenceType(sentence.sentenceType));
@@ -30,7 +30,7 @@ export class CliOutput {
     console.log("Slova:", sentence.words.map(word => `${word.text} ${JSON.stringify(word.tags)}`));
   }
 
-  static translateSentenceType(sentenceType: SentenceType): string {
+  static translateSentenceType(sentenceType: SentenceType) {
     switch (sentenceType) {
       case SentenceType.SAYING:
         return "Oznamovací";
@@ -41,7 +41,7 @@ export class CliOutput {
       case SentenceType.QUESTION:
         return "Tázací";
     }
-    return "(?) Neznámý"
+    return "(?) Neznámý";
   }
 
 }

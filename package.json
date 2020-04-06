@@ -16,8 +16,11 @@
   "author": "Miloš Havlíček",
   "license": "MIT",
   "dependencies": {
+    "@types/pg": "^7.14.3",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "inversify": "^5.0.1",
+    "pg": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "winston": "^3.2.1"
   },

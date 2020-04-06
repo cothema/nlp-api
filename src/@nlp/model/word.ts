@@ -4,6 +4,7 @@ export class Word {
     tagType: string,
     probability: number,
   }[];
+  pronunciation: string;
 
   constructor(public text: string) {
   }
