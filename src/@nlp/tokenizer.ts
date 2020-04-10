@@ -1,7 +1,7 @@
 import { SentenceType } from "./enums/sentence-types";
-import { Sentence } from "./model/sentence";
-import { Text } from "./model/text";
-import { Word } from "./model/word";
+import { Sentence } from "./languages/universal/orthography/model/sentence";
+import { Text } from "./languages/universal/orthography/model/text";
+import { Word } from "./languages/universal/orthography/model/word";
 
 export class Tokenizer {
   static readonly interpunction = [".", ",", "?", "!", ":"];
@@ -22,7 +22,7 @@ export class Tokenizer {
   }
 
   static getSentences(text: Text) {
-    const parts = text.text.split(/(\.|\?|\!)/g);
+    const parts = text.string.split(/(\.|\?|\!)/g);
 
     const out = [];
     for (let i = 0; parts[i] !== undefined; i = i + 2) {
@@ -40,7 +40,7 @@ export class Tokenizer {
   }
 
   static getSentenceType(sentence: Sentence): SentenceType | null {
-    const end = sentence.text.substr(sentence.text.length - 1);
+    const end = sentence.string.substr(sentence.string.length - 1);
     switch (end) {
       case ".":
         return SentenceType.SAYING;

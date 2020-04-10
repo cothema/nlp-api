@@ -1,4 +1,4 @@
-import { Sentence } from "../../model/sentence";
+import { Sentence } from "../universal/orthography/model/sentence";
 
 export class SyntaxSolver {
   static solve(sentence: Sentence) {

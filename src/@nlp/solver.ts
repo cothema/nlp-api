@@ -1,7 +1,7 @@
-import { SyntaxSolver } from "./languages/cs/syntaxSolver";
-import { TagsDetermination } from "./languages/cs/tagsDetermination";
-import { Text } from "./model/text";
-import { Word } from "./model/word";
+import { SyntaxSolver } from "./languages/cs/syntax-solver";
+import { TagsDetermination } from "./languages/cs/tags-determination";
+import { Text } from "./languages/universal/orthography/model/text";
+import { Word } from "./languages/universal/orthography/model/word";
 import { Tokenizer } from "./tokenizer";
 
 export class Solver {
@@ -33,7 +33,7 @@ export class Solver {
   }
 
   private static solveWordIPAPronunciation(word: Word) {
-    let pronunciation = word.text.toLowerCase();
+    let pronunciation = word.string.toLowerCase();
 
     const dictionary = Solver.getIPAPronunciationPairs();
     for (let key in dictionary) {

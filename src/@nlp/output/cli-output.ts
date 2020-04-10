@@ -1,6 +1,6 @@
 import { SentenceType } from "../enums/sentence-types";
-import { Sentence } from "../model/sentence";
-import { Text } from "../model/text";
+import { Sentence } from "../languages/universal/orthography/model/sentence";
+import { Text } from "../languages/universal/orthography/model/text";
 
 export class CliOutput {
 
@@ -10,7 +10,7 @@ export class CliOutput {
   }
 
   static echoOverview(text: Text) {
-    console.log("| Text:", text.text);
+    console.log("| Text:", text.string);
     console.log("Počet vět:", text.sentences.length);
     console.log("Počet slov:", text.words.length);
   }
@@ -23,11 +23,11 @@ export class CliOutput {
   }
 
   static echoSentence(sentence: Sentence) {
-    console.log("| Věta:", sentence.text);
+    console.log("| Věta:", sentence.string);
 
     console.log("Typ věty:", CliOutput.translateSentenceType(sentence.sentenceType));
     console.log("Počet slov:", sentence.words.length);
-    console.log("Slova:", sentence.words.map(word => `${word.text} ${JSON.stringify(word.tags)}`));
+    console.log("Slova:", sentence.words.map(word => `${word.string} ${JSON.stringify(word.tags)}`));
   }
 
   static translateSentenceType(sentenceType: SentenceType) {

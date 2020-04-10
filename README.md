@@ -12,3 +12,8 @@ Simple javascript natual language processing tool.
 
 ## Supported languages
 - Czech
+
+## Terminology
+|Term|Meaning|
+|---|---|
+|Tokenization|Tokenization is the process of **chopping** character streams into tokens" (Manning, Raghavan and Schutze, 2008).|
