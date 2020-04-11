@@ -1,6 +1,6 @@
-import { SentenceType } from "../enums/sentence-types";
-import { Sentence } from "../languages/universal/orthography/model/sentence";
-import { Text } from "../languages/universal/orthography/model/text";
+import { SentenceModality } from "../lang/universal/semantics/enums/sentence-modality";
+import { Sentence } from "../lang/universal/orthography/model/sentence";
+import { Text } from "../lang/universal/orthography/model/text";
 
 export class CliOutput {
 
@@ -30,15 +30,15 @@ export class CliOutput {
     console.log("Slova:", sentence.words.map(word => `${word.string} ${JSON.stringify(word.tags)}`));
   }
 
-  static translateSentenceType(sentenceType: SentenceType) {
+  static translateSentenceType(sentenceType: SentenceModality) {
     switch (sentenceType) {
-      case SentenceType.SAYING:
+      case SentenceModality.Statement:
         return "Oznamovací";
-      case SentenceType.COMMAND:
+      case SentenceModality.Command:
         return "Rozkazovací";
-      case SentenceType.WISH:
+      case SentenceModality.Wish:
         return "Přací";
-      case SentenceType.QUESTION:
+      case SentenceModality.Question:
         return "Tázací";
     }
     return "(?) Neznámý";

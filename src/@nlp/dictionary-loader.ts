@@ -21,7 +21,7 @@ export class DictionaryLoader {
       return inCache.content;
     } else {
       return new Promise<string[]>((resolve, reject) => {
-        fs.readFile("src/@nlp/languages/" + lang + "/dictionaries/" + dictionaryName + ".txt", "utf-8",
+        fs.readFile("src/@nlp/lang/" + lang + "/dictionaries/" + dictionaryName + ".txt", "utf-8",
           (err, data) => {
             if (err) {
               console.error(err);

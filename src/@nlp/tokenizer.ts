@@ -1,7 +1,7 @@
-import { SentenceType } from "./enums/sentence-types";
-import { Sentence } from "./languages/universal/orthography/model/sentence";
-import { Text } from "./languages/universal/orthography/model/text";
-import { Word } from "./languages/universal/orthography/model/word";
+import { SentenceModality } from "./lang/universal/semantics/enums/sentence-modality";
+import { Sentence } from "./lang/universal/orthography/model/sentence";
+import { Text } from "./lang/universal/orthography/model/text";
+import { Word } from "./lang/universal/orthography/model/word";
 
 export class Tokenizer {
   static readonly interpunction = [".", ",", "?", "!", ":"];
@@ -39,15 +39,15 @@ export class Tokenizer {
     });
   }
 
-  static getSentenceType(sentence: Sentence): SentenceType | null {
+  static getSentenceType(sentence: Sentence): SentenceModality | null {
     const end = sentence.string.substr(sentence.string.length - 1);
     switch (end) {
       case ".":
-        return SentenceType.SAYING;
+        return SentenceModality.Statement;
       case "?":
-        return SentenceType.QUESTION;
+        return SentenceModality.Question;
       case "!":
-        return SentenceType.COMMAND;
+        return SentenceModality.Command;
     }
     return null;
   }

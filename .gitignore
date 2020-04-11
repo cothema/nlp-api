@@ -122,5 +122,5 @@ fabric.properties
 **/.directory
 
 # Unneccessary large files
-/src/@nlp/languages/cs/dictionaries/words_cs.txt
-/src/@nlp/languages/cs/dictionaries/words_cs.txt
+/src/@nlp/lang/cs/dictionaries/words_cs.txt
+/src/@nlp/lang/cs/dictionaries/words_cs.txt

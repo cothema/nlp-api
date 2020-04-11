@@ -1,6 +1,6 @@
 import express, { Express } from "express";
-import { Text } from "../@nlp/languages/universal/orthography/model/text";
-import { Word } from "../@nlp/languages/universal/orthography/model/word";
+import { Text } from "../@nlp/lang/universal/orthography/model/text";
+import { Word } from "../@nlp/lang/universal/orthography/model/word";
 import { Solver } from "../@nlp/solver";
 
 export class HttpServer {

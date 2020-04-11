@@ -1,4 +1,4 @@
-import { Sentence } from "./languages/universal/orthography/model/sentence";
+import { Sentence } from "./lang/universal/orthography/model/sentence";
 import { Tokenizer } from "./tokenizer";
 
 describe("Tokenizer", () => {
