@@ -1,4 +1,4 @@
-import { RegExpValidator } from "../../../../shared/tokenizers/reg-exp-validator";
+import { RegExpValidator } from "../../../../shared/tokenizers/RegExpValidator";
 
 export class UrlValidator extends RegExpValidator {
   // https://stackoverflow.com/a/3809435/1044198

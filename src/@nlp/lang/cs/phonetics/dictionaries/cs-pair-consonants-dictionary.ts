@@ -1,4 +1,4 @@
-import { Dictionary } from "../../../../shared/tools/dictionary";
+import { Dictionary } from "../../../../shared/tools/Dictionary";
 
 export class CsPairConsonantsDictionary extends Dictionary {
   constructor() {

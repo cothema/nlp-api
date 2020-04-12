@@ -1,9 +1,10 @@
+import { IStringableEditableToken } from "../../../../shared/interfaces/IStringableEditableToken";
 import { SentenceModality } from "../../semantics/enums/sentence-modality";
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 import { Word } from "./word";
 
-export class Sentence extends StringableToken implements ITypeMarked {
+export class Sentence extends TokenizableStringEntity implements ITypeMarked, IStringableEditableToken {
   type = 'sentence';
   string: string;
   sentenceType: SentenceModality;

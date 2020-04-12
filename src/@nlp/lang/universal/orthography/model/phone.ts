@@ -1,13 +1,12 @@
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
 /**
  * See: https://en.wikipedia.org/wiki/Phone_(phonetics)
  * Can be only lowercase
  */
-export class Phone extends StringableToken implements ITypeMarked {
+export class Phone extends StringableEntity implements ITypeMarked {
   type = 'phone';
-  string?: string;
 
   constructor(init?: Partial<Phone>) {
     super();

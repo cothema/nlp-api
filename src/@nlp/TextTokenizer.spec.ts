@@ -1,7 +1,7 @@
 import { Sentence } from "./lang/universal/orthography/model/sentence";
-import { Tokenizer } from "./tokenizer";
+import { TextTokenizer } from "./TextTokenizer";
 
-describe("Tokenizer", () => {
+describe("TextTokenizer", () => {
   test("Get words", () => {
     const exampleInputs = [
       "This is my sentence.",
@@ -17,7 +17,7 @@ describe("Tokenizer", () => {
     ];
 
     for (let i = 0; exampleInputs[i]; i++) {
-      expect(Tokenizer.getWords(new Sentence(exampleInputs[i])).length).toBe(expectedWordCounts[i]);
+      expect(TextTokenizer.getWords(new Sentence({ string: exampleInputs[i] })).length).toBe(expectedWordCounts[i]);
     }
   });
 });

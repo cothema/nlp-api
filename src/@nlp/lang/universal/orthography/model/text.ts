@@ -1,11 +1,10 @@
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
 import { Sentence } from "./sentence";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 import { Word } from "./word";
 
-export class Text extends StringableToken implements ITypeMarked {
+export class Text extends StringableEntity implements ITypeMarked {
   type = 'text';
-  string?: string;
   sentences?: Sentence[];
   words?: Word[];
 

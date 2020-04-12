@@ -1,18 +1,15 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
-import { ITokenizer } from "../../../../shared/interfaces/i-tokenizer";
-import { RegExpTokenizer } from "../../../../shared/tokenizers/reg-exp-tokenizer";
-import { EmailAddress } from "../model/email-address";
+import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
+import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
 import { Url } from "../model/url";
 import { EmailAddressValidator } from "../validators/email-address-validator";
 import { UrlValidator } from "../validators/url-validator";
 
-export class UrlTokenizer extends RegExpTokenizer implements ITokenizer<EmailAddress> {
+export class UrlTokenizer
+  extends RegExpTokenizer<Url>
+  implements IStringableTokenizer<Url> {
 
   validator = new UrlValidator();
+  entityFactory = a => new Url(a);
+  filter = x => !(new EmailAddressValidator().validate(x.entity.toString())); // Filter out email addresses
 
-  tokenize(input: IStringable): Array<Url> {
-    return super.tokenize(input)
-      .map(x => new Url(x))
-      .filter(x => !(new EmailAddressValidator().validate(x.toString()))); // Filter out email addresses
-  }
 }

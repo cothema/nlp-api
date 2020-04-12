@@ -1,4 +1,4 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
+import { IStringable } from "../../../../shared/interfaces/IStringable";
 import { Phone } from "../../../universal/orthography/model/phone";
 import { Syllable } from "../../../universal/phonetics/model/syllable";
 import { CsDiphthongList } from "../lists/cs-diphthong-list";

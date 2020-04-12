@@ -1,12 +1,11 @@
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
 /**
  * Single character from alphabet. Can be uppercase or lowercase.
  */
-export class Char extends StringableToken implements ITypeMarked {
+export class Char extends StringableEntity implements ITypeMarked {
   type = 'char';
-  string?: string;
 
   constructor(init?: Partial<Char>) {
     super();

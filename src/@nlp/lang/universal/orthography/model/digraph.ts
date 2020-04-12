@@ -1,13 +1,12 @@
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
 /**
  * See: https://en.wikipedia.org/wiki/Digraph_(orthography)
  * E.g. CZ: ch, SK: dz / dž / ch
  */
-export class Digraph extends StringableToken implements ITypeMarked {
+export class Digraph extends StringableEntity implements ITypeMarked {
   type = 'digraph';
-  string?: string;
 
   constructor(init?: Partial<Digraph>) {
     super();

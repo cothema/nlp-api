@@ -1,20 +1,20 @@
-import { SentenceModality } from "./lang/universal/semantics/enums/sentence-modality";
 import { Sentence } from "./lang/universal/orthography/model/sentence";
 import { Text } from "./lang/universal/orthography/model/text";
 import { Word } from "./lang/universal/orthography/model/word";
+import { SentenceModality } from "./lang/universal/semantics/enums/sentence-modality";
 
-export class Tokenizer {
+export class TextTokenizer {
   static readonly interpunction = [".", ",", "?", "!", ":"];
 
   static getWords(input: Text | Sentence) {
-    const text = Tokenizer.removeInterpunction(input.text);
-    return text.split(" ")
+    const str = TextTokenizer.removeInterpunction(input.toString());
+    return str.split(" ")
       .filter(el => el.trim().length)
       .map(el => new Word(el));
   }
 
   static removeInterpunction(input: string) {
-    for (const interpunctionElement of Tokenizer.interpunction) {
+    for (const interpunctionElement of TextTokenizer.interpunction) {
       input = input.replace(interpunctionElement, "");
     }
 

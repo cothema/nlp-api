@@ -1,7 +1,7 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
+import { IStringable } from "../../../../shared/interfaces/IStringable";
 import { Digraph } from "../../../universal/orthography/model/digraph";
 import { Phone } from "../../../universal/orthography/model/phone";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 import { CsLetterTokenizer } from "../../orthography/tokenizers/cs-letter-tokenizer";
 import { CsPairConsonantsDictionary } from "../dictionaries/cs-pair-consonants-dictionary";
 import { CsDiphthongList } from "../lists/cs-diphthong-list";
@@ -22,7 +22,7 @@ export class CsSimplePhoneTokenizer {
   tokenize(input: IStringable): Phone[] {
     // TODO: split word to parts (prefix, root...) first
 
-    const inputModifiable = new StringableToken({
+    const inputModifiable = new StringableEntity({
       string: input.toString().replace("ě", "je"),
     });
 

@@ -1,7 +1,7 @@
-import { IConverter } from "../../../../shared/interfaces/i-converter";
+import { IConverter } from "../../../../shared/interfaces/IConverter";
 import { Char } from "../../../universal/orthography/model/char";
 import { Phone } from "../../../universal/orthography/model/phone";
-import { Dictionary } from "../../../../shared/tools/dictionary";
+import { Dictionary } from "../../../../shared/tools/Dictionary";
 
 /**
  * See: https://www.pravopisne.cz/2012/01/pravidla-samohlasky-a-souhlasky/#jak-je-to-s-u,-e,-y/y?

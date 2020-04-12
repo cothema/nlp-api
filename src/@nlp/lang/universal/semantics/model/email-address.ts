@@ -1,12 +1,8 @@
-import { IToken } from "../../../../shared/interfaces/i-token";
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { TokenInfo } from "../../../../shared/model/token-info";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
-export class EmailAddress extends StringableToken implements ITypeMarked, IToken {
+export class EmailAddress extends StringableEntity implements ITypeMarked {
   type = "email-address";
-  string?: string;
-  tokenInfo?: TokenInfo;
 
   constructor(init?: Partial<EmailAddress>) {
     super();

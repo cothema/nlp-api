@@ -1,4 +1,4 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
+import { IStringable } from "../../../../shared/interfaces/IStringable";
 import { LetterList } from "../lists/letter-list";
 
 export class LetterValidator {

@@ -1,7 +1,9 @@
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
-export class Syllable extends StringableToken {
-  string?: string;
+export class Syllable extends StringableEntity implements ITypeMarked {
+  type = "syllable";
+  accent?: boolean;
 
   constructor(init?: Partial<Syllable>) {
     super();

@@ -1,4 +1,4 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
+import { IStringable } from "../../../../shared/interfaces/IStringable";
 
 export class CsSimplePhoneValidator {
   validate(input: IStringable): boolean {

@@ -1,16 +1,13 @@
-import { IStringable } from "../../../../shared/interfaces/i-stringable";
-import { ITokenizer } from "../../../../shared/interfaces/i-tokenizer";
-import { RegExpTokenizer } from "../../../../shared/tokenizers/reg-exp-tokenizer";
-import { EmailAddress } from "../model/email-address";
+import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
+import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
 import { PhoneNumber } from "../model/phone-number";
 import { PhoneNumberValidator } from "../validators/phone-number-validator";
 
-export class PhoneNumberTokenizer extends RegExpTokenizer implements ITokenizer<EmailAddress> {
+export class PhoneNumberTokenizer
+  extends RegExpTokenizer<PhoneNumber>
+  implements IStringableTokenizer<PhoneNumber> {
 
   validator = new PhoneNumberValidator();
+  entityFactory = a => new PhoneNumber(a);
 
-  tokenize(input: IStringable): Array<PhoneNumber> {
-    return super.tokenize(input)
-      .map(x => new PhoneNumber(x));
-  }
 }

@@ -2,25 +2,25 @@ import { SyntaxSolver } from "./lang/cs/syntax-solver";
 import { TagsDetermination } from "./lang/cs/tags-determination";
 import { Text } from "./lang/universal/orthography/model/text";
 import { Word } from "./lang/universal/orthography/model/word";
-import { Tokenizer } from "./tokenizer";
+import { TextTokenizer } from "./TextTokenizer";
 
 export class Solver {
 
   static async solveText(text: Text) {
-    text.sentences = Tokenizer.getSentences(text);
-    text.words = Tokenizer.getWords(text);
+    text.sentences = TextTokenizer.getSentences(text);
+    text.words = TextTokenizer.getWords(text);
 
     for (const word of text.words) {
       await Solver.solveWord(word);
     }
 
     for (const sentence of text.sentences) {
-      sentence.words = Tokenizer.getWords(sentence);
+      sentence.words = TextTokenizer.getWords(sentence);
       for (const word of sentence.words) {
         await Solver.solveWord(word);
       }
       SyntaxSolver.solve(sentence);
-      sentence.sentenceType = Tokenizer.getSentenceType(sentence);
+      sentence.sentenceType = TextTokenizer.getSentenceType(sentence);
     }
 
     return text;

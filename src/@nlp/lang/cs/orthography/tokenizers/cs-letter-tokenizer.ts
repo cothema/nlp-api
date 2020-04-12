@@ -1,10 +1,11 @@
 import { Digraph } from "../../../universal/orthography/model/digraph";
-import { LetterTokenizer } from "../../../universal/orthography/tokenizers/letter-tokenizer";
+import { LetterTokenizer } from "../../../universal/orthography/tokenizers/LetterTokenizer";
 
 /**
  * Includes only letters from alphabet (no spaces, special chars, punctuation etc.)
  */
-export class CsLetterTokenizer extends LetterTokenizer {
+export class CsLetterTokenizer
+  extends LetterTokenizer {
 
   constructor() {
     super();

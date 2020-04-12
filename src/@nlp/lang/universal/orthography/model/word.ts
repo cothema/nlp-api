@@ -1,9 +1,8 @@
-import { ITypeMarked } from "../../../../shared/interfaces/i-type-marked";
-import { StringableToken } from "../../../../shared/model/stringableToken";
+import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
+import { StringableEntity } from "../../../../shared/model/StringableEntity";
 
-export class Word extends StringableToken implements ITypeMarked {
+export class Word extends StringableEntity implements ITypeMarked {
   type = 'word';
-  string?: string;
   tags?: {
     type: string,
     tagType: string,

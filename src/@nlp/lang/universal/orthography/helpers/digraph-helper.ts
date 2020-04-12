@@ -3,7 +3,11 @@ import { Digraph } from "../model/digraph";
 
 export class DigraphHelper {
 
-  static identifyDigraph(digraphs: Digraph[], chars: Char[], i: number): Digraph | undefined {
+  static identifyDigraph(
+    digraphs: Digraph[],
+    chars: Char[],
+    i: number
+  ): Digraph | undefined {
     let digraphStr: string;
 
     for (const digraph of digraphs) {
@@ -21,7 +25,11 @@ export class DigraphHelper {
     return undefined;
   }
 
-  static compareStringableWithDigraph(chars: Char[], i: number, digraph: Digraph): boolean {
+  static compareStringableWithDigraph(
+    chars: Char[],
+    i: number,
+    digraph: Digraph
+  ): boolean {
     for (let j = 0; digraph.toString()[j] && chars[i + j]; j++) {
       // Check each char in concrete digraph
       if (digraph.toString()[j] !== chars[i + j].toString().toLowerCase()) {

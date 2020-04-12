@@ -1,4 +1,4 @@
-import { RegExpValidator } from "../../../../shared/tokenizers/reg-exp-validator";
+import { RegExpValidator } from "../../../../shared/tokenizers/RegExpValidator";
 
 export class EmailAddressValidator extends RegExpValidator {
   // https://stackoverflow.com/questions/15140955/use-javascript-to-find-email-address-in-a-string

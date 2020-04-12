@@ -1,4 +1,4 @@
-import { IDictionary } from "../interfaces/i-dictionary";
+import { IDictionary } from "../interfaces/IDictionary";
 
 export class Dictionary<Output = string> {
 
