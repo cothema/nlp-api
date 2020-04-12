@@ -1,5 +1,5 @@
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
-import { LexicologyErrorType } from "../enums/lexicology-error-type";
+import { LexicologyErrorType } from "../enums/LexicologyErrorType";
 
 export class LexicologyError {
   tokenInfo?: ModifiableToken;

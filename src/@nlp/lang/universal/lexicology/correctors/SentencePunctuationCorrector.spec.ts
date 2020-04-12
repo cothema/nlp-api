@@ -1,5 +1,5 @@
 import { Sentence } from "../../orthography/model/Sentence";
-import { SentencePunctuationCorrector } from "./sentence-punctuation-corrector";
+import { SentencePunctuationCorrector } from "./SentencePunctuationCorrector";
 
 describe("SentencePunctuationCorrector", () => {
   test("Fix", () => {

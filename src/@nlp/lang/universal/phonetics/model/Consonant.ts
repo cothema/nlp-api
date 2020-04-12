@@ -1,7 +1,9 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
-export class Consonant extends StringableEntity implements ITypeMarked {
+export class Consonant
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
   type = "consonant";
 
   constructor(init?: Partial<Consonant>) {

@@ -1,7 +1,9 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
-export class Syllable extends StringableEntity implements ITypeMarked {
+export class Syllable
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
   type = "syllable";
   accent?: boolean;
 

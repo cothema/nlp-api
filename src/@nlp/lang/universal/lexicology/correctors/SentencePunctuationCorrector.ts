@@ -1,7 +1,7 @@
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
 import { Sentence } from "../../orthography/model/Sentence";
-import { LexicologyErrorType } from "../enums/lexicology-error-type";
-import { AbstractLexicologyCorrector } from "./abstract-lexicology-corrector";
+import { LexicologyErrorType } from "../enums/LexicologyErrorType";
+import { AbstractLexicologyCorrector } from "./AbstractLexicologyCorrector";
 
 export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Sentence> {
 

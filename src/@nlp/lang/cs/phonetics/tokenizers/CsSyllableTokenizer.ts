@@ -1,6 +1,6 @@
 import { IStringable } from "../../../../shared/interfaces/IStringable";
 import { Phone } from "../../../universal/orthography/model/Phone";
-import { Syllable } from "../../../universal/phonetics/model/syllable";
+import { Syllable } from "../../../universal/phonetics/model/Syllable";
 import { CsDiphthongList } from "../lists/CsDiphthongList";
 import { CsVowelList } from "../lists/CsVowelList";
 import { CsSimplePhoneTokenizer } from "./CsSimplePhoneTokenizer";

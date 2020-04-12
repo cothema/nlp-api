@@ -2,10 +2,10 @@ import { IStringable } from "../../../../shared/interfaces/IStringable";
 import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
 import { Token } from "../../../../shared/model/Token";
 import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
-import { DigraphHelper } from "../helpers/digraph-helper";
+import { DigraphHelper } from "../helpers/DigraphHelper";
 import { Digraph } from "../model/Digraph";
 import { Letter } from "../model/Letter";
-import { LetterValidator } from "../validators/letter-validator";
+import { LetterValidator } from "../validators/LetterValidator";
 import { CharTokenizer } from "./CharTokenizer";
 
 /**

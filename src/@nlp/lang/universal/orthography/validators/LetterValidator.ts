@@ -1,5 +1,5 @@
 import { IStringable } from "../../../../shared/interfaces/IStringable";
-import { LetterList } from "../lists/letter-list";
+import { LetterList } from "../lists/LetterList";
 
 export class LetterValidator {
   validate(letterCandidate: IStringable): boolean {

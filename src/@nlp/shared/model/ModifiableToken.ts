@@ -29,8 +29,21 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
       this.originalLength = this.length;
     }
 
-    this.length = str.length;
+    this.index = index;
+    this.length = newEntities.length;
+
+    this.shiftExistingTokens();
+    this.
 
     return this;
+  }
+
+  private shiftExistingTokens() {
+    const existingTokens = this.entity.tokenInfoList;
+    for (const existingToken of existingTokens) {
+      if() {
+
+      }
+    }
   }
 }

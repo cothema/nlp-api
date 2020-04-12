@@ -1,7 +1,9 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
-export class Diphthong extends StringableEntity implements ITypeMarked {
+export class Diphthong
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
   type = "diphthong";
 
   constructor(init?: Partial<Diphthong>) {
@@ -9,5 +11,4 @@ export class Diphthong extends StringableEntity implements ITypeMarked {
     Object.assign(this, init);
   }
 
-,
 }

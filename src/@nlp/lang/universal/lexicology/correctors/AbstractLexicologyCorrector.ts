@@ -1,7 +1,7 @@
 import { IStringableEditableToken } from "../../../../shared/interfaces/IStringableEditableToken";
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
-import { LexicologyErrorType } from "../enums/lexicology-error-type";
-import { LexicologyError } from "../model/lexicology-error";
+import { LexicologyErrorType } from "../enums/LexicologyErrorType";
+import { LexicologyError } from "../model/LexicologyError";
 
 export abstract class AbstractLexicologyCorrector<T extends IStringableEditableToken = IStringableEditableToken> {
   errors: LexicologyError[] = [];
