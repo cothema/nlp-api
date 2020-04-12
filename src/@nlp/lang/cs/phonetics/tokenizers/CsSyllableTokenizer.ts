@@ -1,9 +1,9 @@
 import { IStringable } from "../../../../shared/interfaces/IStringable";
-import { Phone } from "../../../universal/orthography/model/phone";
+import { Phone } from "../../../universal/orthography/model/Phone";
 import { Syllable } from "../../../universal/phonetics/model/syllable";
-import { CsDiphthongList } from "../lists/cs-diphthong-list";
-import { CsVowelList } from "../lists/cs-vowel-list";
-import { CsSimplePhoneTokenizer } from "./cs-simple-phone-tokenizer";
+import { CsDiphthongList } from "../lists/CsDiphthongList";
+import { CsVowelList } from "../lists/CsVowelList";
+import { CsSimplePhoneTokenizer } from "./CsSimplePhoneTokenizer";
 
 export class CsSyllableTokenizer {
 

@@ -1,4 +1,4 @@
-import { CsSyllableTokenizer } from "./cs-syllable-tokenizer";
+import { CsSyllableTokenizer } from "./CsSyllableTokenizer";
 
 describe("CsSyllableTokenizer", () => {
   test("Tokenize", () => {

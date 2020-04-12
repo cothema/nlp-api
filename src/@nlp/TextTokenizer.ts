@@ -1,6 +1,6 @@
-import { Sentence } from "./lang/universal/orthography/model/sentence";
-import { Text } from "./lang/universal/orthography/model/text";
-import { Word } from "./lang/universal/orthography/model/word";
+import { Sentence } from "./lang/universal/orthography/model/Sentence";
+import { Text } from "./lang/universal/orthography/model/Text";
+import { Word } from "./lang/universal/orthography/model/Word";
 import { SentenceModality } from "./lang/universal/semantics/enums/sentence-modality";
 
 export class TextTokenizer {

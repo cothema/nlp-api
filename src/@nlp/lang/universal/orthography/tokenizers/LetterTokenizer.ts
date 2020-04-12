@@ -3,8 +3,8 @@ import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableT
 import { Token } from "../../../../shared/model/Token";
 import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
 import { DigraphHelper } from "../helpers/digraph-helper";
-import { Digraph } from "../model/digraph";
-import { Letter } from "../model/letter";
+import { Digraph } from "../model/Digraph";
+import { Letter } from "../model/Letter";
 import { LetterValidator } from "../validators/letter-validator";
 import { CharTokenizer } from "./CharTokenizer";
 

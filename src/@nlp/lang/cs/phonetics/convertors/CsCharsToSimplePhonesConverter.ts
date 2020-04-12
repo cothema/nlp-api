@@ -1,6 +1,6 @@
 import { IConverter } from "../../../../shared/interfaces/IConverter";
-import { Char } from "../../../universal/orthography/model/char";
-import { Phone } from "../../../universal/orthography/model/phone";
+import { Char } from "../../../universal/orthography/model/Char";
+import { Phone } from "../../../universal/orthography/model/Phone";
 import { Dictionary } from "../../../../shared/tools/Dictionary";
 
 /**

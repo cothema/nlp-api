@@ -1,4 +1,4 @@
-import { Sentence } from "../../orthography/model/sentence";
+import { Sentence } from "../../orthography/model/Sentence";
 import { SentencePunctuationCorrector } from "./sentence-punctuation-corrector";
 
 describe("SentencePunctuationCorrector", () => {

@@ -1,4 +1,4 @@
-import { HttpServer } from "./@api/http-server";
+import { HttpServer } from "./@api/HttpServer";
 
 const dotenv = require('dotenv');
 dotenv.config();

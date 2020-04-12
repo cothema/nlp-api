@@ -1,5 +1,5 @@
 import { DictionaryLoader } from "../../dictionary-loader";
-import { Word } from "../universal/orthography/model/word";
+import { Word } from "../universal/orthography/model/Word";
 
 export class TagsDetermination {
   static async determine(word: Word) {

@@ -1,4 +1,4 @@
-import { Digraph } from "../../../universal/orthography/model/digraph";
+import { Digraph } from "../../../universal/orthography/model/Digraph";
 import { LetterTokenizer } from "../../../universal/orthography/tokenizers/LetterTokenizer";
 
 /**

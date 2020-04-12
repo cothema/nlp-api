@@ -1,6 +1,6 @@
 import { SentenceModality } from "../lang/universal/semantics/enums/sentence-modality";
-import { Sentence } from "../lang/universal/orthography/model/sentence";
-import { Text } from "../lang/universal/orthography/model/text";
+import { Sentence } from "../lang/universal/orthography/model/Sentence";
+import { Text } from "../lang/universal/orthography/model/Text";
 
 export class CliOutput {
 

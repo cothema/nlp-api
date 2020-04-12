@@ -1,5 +1,5 @@
-import { Char } from "../../../universal/orthography/model/char";
-import { CsCharsToSimplePhonesConverter } from "./cs-chars-to-simple-phones-converter";
+import { Char } from "../../../universal/orthography/model/Char";
+import { CsCharsToSimplePhonesConverter } from "./CsCharsToSimplePhonesConverter";
 
 describe("CsCharsToSimplePhonesConverter", () => {
   test("convert", () => {

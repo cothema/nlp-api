@@ -1,4 +1,4 @@
-import { CsLetterTokenizer } from "./cs-letter-tokenizer";
+import { CsLetterTokenizer } from "./CsLetterTokenizer";
 
 describe("CsLetterTokenizer", () => {
   test("Tokenize", () => {

@@ -1,5 +1,5 @@
-import { Char } from "../model/char";
-import { Digraph } from "../model/digraph";
+import { Char } from "../model/Char";
+import { Digraph } from "../model/Digraph";
 
 export class DigraphHelper {
 

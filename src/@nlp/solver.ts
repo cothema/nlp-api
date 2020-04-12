@@ -1,7 +1,7 @@
 import { SyntaxSolver } from "./lang/cs/syntax-solver";
 import { TagsDetermination } from "./lang/cs/tags-determination";
-import { Text } from "./lang/universal/orthography/model/text";
-import { Word } from "./lang/universal/orthography/model/word";
+import { Text } from "./lang/universal/orthography/model/Text";
+import { Word } from "./lang/universal/orthography/model/Word";
 import { TextTokenizer } from "./TextTokenizer";
 
 export class Solver {

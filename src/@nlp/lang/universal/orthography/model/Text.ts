@@ -1,7 +1,7 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { Sentence } from "./sentence";
+import { Sentence } from "./Sentence";
 import { StringableEntity } from "../../../../shared/model/StringableEntity";
-import { Word } from "./word";
+import { Word } from "./Word";
 
 export class Text extends StringableEntity implements ITypeMarked {
   type = 'text';

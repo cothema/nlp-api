@@ -3,7 +3,7 @@ import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableT
 import { Token } from "../../../../shared/model/Token";
 import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
-import { Char } from "../model/char";
+import { Char } from "../model/Char";
 
 export class CharTokenizer
   extends RegExpTokenizer<Char>

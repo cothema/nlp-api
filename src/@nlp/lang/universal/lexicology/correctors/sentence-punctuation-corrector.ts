@@ -1,5 +1,5 @@
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
-import { Sentence } from "../../orthography/model/sentence";
+import { Sentence } from "../../orthography/model/Sentence";
 import { LexicologyErrorType } from "../enums/lexicology-error-type";
 import { AbstractLexicologyCorrector } from "./abstract-lexicology-corrector";
 
