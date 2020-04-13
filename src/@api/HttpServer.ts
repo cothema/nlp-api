@@ -1,24 +1,19 @@
 import express, { Express } from "express";
-import { ComplexEndpoint } from "./endpoints/ComplexEndpoint";
+import { ComplexEndpoint } from "./endpoints/v1/ComplexEndpoint";
 
 export class HttpServer {
 
+  app: Express;
   private initialized = {
     setup: false,
     endpoints: false,
     listen: false,
   };
   private defaultPort = 3001;
-  app: Express;
-
-  constructor() {
-  }
 
   init() {
     this.setup();
-
     this.setEndpoints();
-
     this.listen();
   }
 

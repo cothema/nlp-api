@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { IEndpoint } from "../shared/interfaces/IEndpoint";
+import { IEndpoint } from "../../shared/interfaces/IEndpoint";
 
 export abstract class AbstractEndpoint
   implements IEndpoint {

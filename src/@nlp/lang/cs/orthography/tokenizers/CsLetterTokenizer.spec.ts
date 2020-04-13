@@ -4,9 +4,9 @@ describe("CsLetterTokenizer", () => {
   test("Tokenize", () => {
     const tokenizer = new CsLetterTokenizer();
 
-    expect(tokenizer.tokenize("Lukáš")[3].toString()).toBe("á");
-    expect(tokenizer.tokenize("Chrpa")[0].toString()).toBe("Ch");
-    expect(tokenizer.tokenize("Chrpa")[1].toString()).toBe("r");
-    expect(tokenizer.tokenize("Já Tě 💖 lásko!")[5].toString()).toBe("á");
+    expect(tokenizer.tokenizeToValues("Lukáš")[3]).toBe("á");
+    expect(tokenizer.tokenizeToValues("Chrpa")[0]).toBe("Ch");
+    expect(tokenizer.tokenizeToValues("Chrpa")[1]).toBe("r");
+    expect(tokenizer.tokenizeToValues("Já Tě 💖 lásko!")[5]).toBe("á");
   });
 });

@@ -1,7 +1,6 @@
-
 export enum SentenceModality {
-  Statement,
-  Question,
-  Command,
-  Wish
+  Statement = "statement",
+  Question = "question",
+  Command = "command",
+  Wish = "wish"
 }

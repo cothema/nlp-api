@@ -1,7 +1,9 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
-export class EmailAddress extends StringableEntity implements ITypeMarked {
+export class EmailAddress
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
   type = "email-address";
 
   constructor(init?: Partial<EmailAddress>) {

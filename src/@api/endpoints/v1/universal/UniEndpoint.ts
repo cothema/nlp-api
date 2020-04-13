@@ -1,4 +1,4 @@
-import { IEndpoint } from "../../shared/interfaces/IEndpoint";
+import { IEndpoint } from "../../../shared/interfaces/IEndpoint";
 import { AbstractEndpoint } from "../AbstractEndpoint";
 import { UniOrthographyEndpoint } from "./orgthography/UniOrthographyEndpoint";
 

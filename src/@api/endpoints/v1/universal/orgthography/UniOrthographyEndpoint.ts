@@ -1,4 +1,4 @@
-import { IEndpoint } from "../../../shared/interfaces/IEndpoint";
+import { IEndpoint } from "../../../../shared/interfaces/IEndpoint";
 import { AbstractEndpoint } from "../../AbstractEndpoint";
 import { CharTokenizerEndpoint } from "./tokenizer/CharTokenizerEndpoint";
 import { LetterTokenizerEndpoint } from "./tokenizer/LetterTokenizerEndpoint";

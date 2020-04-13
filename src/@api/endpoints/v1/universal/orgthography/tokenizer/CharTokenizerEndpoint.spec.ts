@@ -1,5 +1,5 @@
-import { HttpServer } from "../../../../HttpServer";
-import { EndpointTestHelper } from "../../../../shared/helpers/tests/EndpointTestHelper";
+import { HttpServer } from "../../../../../HttpServer";
+import { EndpointTestHelper } from "../../../../../shared/helpers/tests/EndpointTestHelper";
 import { CharTokenizerEndpoint } from "./CharTokenizerEndpoint";
 
 describe("CharTokenizerEndpoint", () => {

@@ -2,7 +2,7 @@ import { Express } from "express";
 import { IStringableTokenizer } from "../../../@nlp/shared/interfaces/IStringableTokenizer";
 import { TokenizableStringableEntity } from "../../../@nlp/shared/model/TokenizableStringableEntity";
 import { IEndpoint } from "../interfaces/IEndpoint";
-import { AbstractEndpoint } from "../../endpoints/AbstractEndpoint";
+import { AbstractEndpoint } from "../../endpoints/v1/AbstractEndpoint";
 
 export abstract class AbstractTokenizerEndpoint
   extends AbstractEndpoint

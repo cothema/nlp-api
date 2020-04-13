@@ -18,7 +18,6 @@ export class LetterTokenizer
   digraphs: Digraph[] = [];
 
   tokenize(input: IStringable): Token<Letter | Digraph>[] {
-    this.digraphs = [];
     const letterTokens: Token<Letter>[] = [];
     const charTokens = new CharTokenizer().tokenize(input);
 

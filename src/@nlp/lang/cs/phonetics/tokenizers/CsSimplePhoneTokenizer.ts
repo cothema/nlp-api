@@ -1,6 +1,6 @@
 import { IStringable } from "../../../../shared/interfaces/IStringable";
+import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
 import { Token } from "../../../../shared/model/Token";
 import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
 import { Digraph } from "../../../universal/orthography/model/Digraph";
@@ -13,37 +13,44 @@ import { CsVoicedConsonantList } from "../lists/CsVoicedConsonantList";
 import { CsVoicelessConsonantList } from "../lists/CsVoicelessConsonantList";
 
 export class CsSimplePhoneTokenizer
-  extends StringableTokenizer {
+  extends StringableTokenizer
+  implements IStringableTokenizer<Phone> {
 
-  private tokenizer = new CsLetterTokenizer();
+  private letterTokenizer = new CsLetterTokenizer();
 
   constructor() {
     super();
-    this.tokenizer.digraphs = this.tokenizer.digraphs.concat(
+    this.letterTokenizer.digraphs = this.letterTokenizer.digraphs.concat(
       CsDiphthongList.list.map(x => new Digraph({ string: x })),
     );
   }
 
   tokenize(input: IStringable): Token<Phone>[] {
     // TODO: split word to parts (prefix, root...) first
-
     // TODO: modifiable token
-    const inputModifiable = new StringableEntity({
-      string: input.toString().replace("ě", "je"),
-    });
 
-    const letterTokens = this.tokenizer.tokenize(inputModifiable);
+    const letterTokens = this.letterTokenizer.tokenize(input);
     const phoneTokens = [];
 
-    for (let i = 0, tokenIndex = 0; letterTokens[i]; i++, tokenIndex++) {
-      phoneTokens.push(
-        new ModifiableToken({
-          index: tokenIndex,
-          length: letterTokens[i].entity.toString().length,
-          entity: new Phone({ string: letterTokens[i].entity.toString().toLowerCase() }),
-        }),
-      );
-      tokenIndex += letterTokens[i].entity.toString().length - 1;
+    for (let i = 0; letterTokens[i]; i++) {
+      let letterStr = letterTokens[i].entity.toString().toLowerCase();
+
+      let appendPhones: string[] = [];
+      if (letterStr === "ě") {
+        appendPhones.push("j", "e");
+      } else {
+        appendPhones.push(letterStr);
+      }
+
+      for (const appendPhone of appendPhones) {
+        phoneTokens.push(
+          new Token({
+            index: letterTokens[i].index,
+            length: letterTokens[i].length,
+            entity: new Phone({ string: appendPhone }),
+          }),
+        );
+      }
     }
 
     return this.solveVoice(phoneTokens);
@@ -70,9 +77,9 @@ export class CsSimplePhoneTokenizer
           && CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
         ) {
           // [voiceless][voiced] => [voiced][voiced]
-          phoneTokens[i].modify(i, dictionary.translateElement(
+          phoneTokens[i].entity.string = dictionary.translateElement(
             phoneTokens[i].entity.toString(),
-          ));
+          );
         }
         break;
       } else if (
@@ -87,7 +94,9 @@ export class CsSimplePhoneTokenizer
         && CsVoicelessConsonantList.list.includes(phoneTokens[i + 1].entity.toString())
       ) {
         // [voiced][voiceless] => [voiceless][voiceless]
-        phoneTokens[i].modify(i, dictionary.translateElement(phoneTokens[i].entity.toString()));
+        phoneTokens[i].entity.string = dictionary.translateElement(
+          phoneTokens[i].entity.toString(),
+        );
         i++; // skip next phone
       } else if (
         //["f", "s"].includes(phones[i].toString())
@@ -95,7 +104,9 @@ export class CsSimplePhoneTokenizer
         && CsVoicedConsonantList.list.includes(phoneTokens[i + 1].toString())
       ) {
         // [voiceless][voiced] => [voiced][voiced]
-        phoneTokens[i].modify(i, dictionary.translateElementReverse(phoneTokens[i].entity.toString()));
+        phoneTokens[i].entity.string = dictionary.translateElementReverse(
+          phoneTokens[i].entity.toString(),
+        );
         i++; // skip next phone
       }
     }
