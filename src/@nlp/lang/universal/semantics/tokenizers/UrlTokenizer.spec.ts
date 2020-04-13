@@ -1,4 +1,4 @@
-import { UrlTokenizer } from "./url-tokenizer";
+import { UrlTokenizer } from "./UrlTokenizer";
 
 describe("UrlTokenizer", () => {
   test("Tokenize", () => {

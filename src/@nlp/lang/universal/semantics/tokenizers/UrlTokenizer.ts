@@ -1,8 +1,8 @@
 import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
 import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
-import { Url } from "../model/url";
-import { EmailAddressValidator } from "../validators/email-address-validator";
-import { UrlValidator } from "../validators/url-validator";
+import { Url } from "../model/Url";
+import { EmailAddressValidator } from "../validators/EmailAddressValidator";
+import { UrlValidator } from "../validators/UrlValidator";
 
 export class UrlTokenizer
   extends RegExpTokenizer<Url>

@@ -28,6 +28,6 @@ describe("CsSyllableTokenizer", () => {
     expect(tokenizer.tokenize("cvrček")[1].toString()).toBe("ček");
 
     // TODO:
-    // expect(tokenizers.tokenize("poučka")[0].toString()).toBe("po");
+    // expect(tokenizer.tokenize("poučka")[0].toString()).toBe("po");
   });
 });

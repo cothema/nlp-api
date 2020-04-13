@@ -27,6 +27,7 @@ export class CsSimplePhoneTokenizer
   tokenize(input: IStringable): Token<Phone>[] {
     // TODO: split word to parts (prefix, root...) first
 
+    // TODO: modifiable token
     const inputModifiable = new StringableEntity({
       string: input.toString().replace("ě", "je"),
     });
@@ -40,9 +41,6 @@ export class CsSimplePhoneTokenizer
           index: tokenIndex,
           length: letterTokens[i].entity.toString().length,
           entity: new Phone({ string: letterTokens[i].entity.toString().toLowerCase() }),
-          originalEntity: letterTokens[i].entity.toString(),
-          originalIndex: tokenIndex,
-          originalLength: letterTokens[i].entity.toString().length,
         }),
       );
       tokenIndex += letterTokens[i].entity.toString().length - 1;
@@ -72,9 +70,9 @@ export class CsSimplePhoneTokenizer
           && CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
         ) {
           // [voiceless][voiced] => [voiced][voiced]
-          phoneTokens[i].entity.string = dictionary.translateElement(
+          phoneTokens[i].modify(i, dictionary.translateElement(
             phoneTokens[i].entity.toString(),
-          );
+          ));
         }
         break;
       } else if (
@@ -89,7 +87,7 @@ export class CsSimplePhoneTokenizer
         && CsVoicelessConsonantList.list.includes(phoneTokens[i + 1].entity.toString())
       ) {
         // [voiced][voiceless] => [voiceless][voiceless]
-        phoneTokens[i].entity.string = dictionary.translateElement(phoneTokens[i].entity.toString());
+        phoneTokens[i].modify(i, dictionary.translateElement(phoneTokens[i].entity.toString()));
         i++; // skip next phone
       } else if (
         //["f", "s"].includes(phones[i].toString())
@@ -97,7 +95,7 @@ export class CsSimplePhoneTokenizer
         && CsVoicedConsonantList.list.includes(phoneTokens[i + 1].toString())
       ) {
         // [voiceless][voiced] => [voiced][voiced]
-        phoneTokens[i].entity.string = dictionary.translateElementReverse(phoneTokens[i].entity.toString());
+        phoneTokens[i].modify(i, dictionary.translateElementReverse(phoneTokens[i].entity.toString()));
         i++; // skip next phone
       }
     }

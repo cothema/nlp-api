@@ -1,5 +1,5 @@
-import { SyntaxSolver } from "./lang/cs/syntax-solver";
-import { TagsDetermination } from "./lang/cs/tags-determination";
+import { SyntaxSolver } from "./lang/cs/SyntaxSolver";
+import { TagsDetermination } from "./lang/cs/TagsDetermination";
 import { Text } from "./lang/universal/orthography/model/Text";
 import { Word } from "./lang/universal/orthography/model/Word";
 import { TextTokenizer } from "./TextTokenizer";
@@ -15,12 +15,12 @@ export class Solver {
     }
 
     for (const sentence of text.sentences) {
-      sentence.words = TextTokenizer.getWords(sentence);
-      for (const word of sentence.words) {
-        await Solver.solveWord(word);
-      }
-      SyntaxSolver.solve(sentence);
-      sentence.sentenceType = TextTokenizer.getSentenceType(sentence);
+      // sentence.words = TextTokenizer.getWords(sentence);
+      // for (const word of sentence.words) {
+      //   await Solver.solveWord(word);
+      // }
+      // SyntaxSolver.solve(sentence);
+      // sentence.sentenceType = TextTokenizer.getSentenceType(sentence);
     }
 
     return text;

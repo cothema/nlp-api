@@ -1,12 +1,14 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
 /**
  * See: https://en.wikipedia.org/wiki/Phone_(phonetics)
  * Can be only lowercase
  */
-export class Phone extends StringableEntity implements ITypeMarked {
-  type = 'phone';
+export class Phone
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
+  type = "phone";
 
   constructor(init?: Partial<Phone>) {
     super();

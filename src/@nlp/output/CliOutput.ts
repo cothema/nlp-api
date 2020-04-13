@@ -1,4 +1,4 @@
-import { SentenceModality } from "../lang/universal/semantics/enums/sentence-modality";
+import { SentenceModality } from "../lang/universal/semantics/enums/SentenceModality";
 import { Sentence } from "../lang/universal/orthography/model/Sentence";
 import { Text } from "../lang/universal/orthography/model/Text";
 

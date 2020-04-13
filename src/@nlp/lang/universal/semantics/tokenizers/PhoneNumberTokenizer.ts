@@ -1,7 +1,7 @@
 import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
 import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
-import { PhoneNumber } from "../model/phone-number";
-import { PhoneNumberValidator } from "../validators/phone-number-validator";
+import { PhoneNumber } from "../model/PhoneNumber";
+import { PhoneNumberValidator } from "../validators/PhoneNumberValidator";
 
 export class PhoneNumberTokenizer
   extends RegExpTokenizer<PhoneNumber>

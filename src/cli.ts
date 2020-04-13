@@ -1,4 +1,4 @@
-import { DictionaryImporter } from "./@workers/dictionary-importer/dictionary-importer";
+import { DictionaryImporter } from "./@workers/dictionary-importer/DictionaryImporter";
 
 const dotenv = require('dotenv');
 dotenv.config();

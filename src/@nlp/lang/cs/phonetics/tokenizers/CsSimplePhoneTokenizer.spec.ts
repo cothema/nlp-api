@@ -36,6 +36,6 @@ describe("CsSimplePhoneTokenizer", () => {
     expect(tokenizer.tokenizeToValues("kázeň")[4]).toBe("ň");
 
     // TODO:
-    // expect(tokenizers.tokenize("poučka")[2]).toBe("u");
+    // expect(tokenizer.tokenize("poučka")[2]).toBe("u");
   });
 });

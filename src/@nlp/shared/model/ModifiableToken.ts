@@ -13,7 +13,7 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
   }
 
   /**
-   * It will remove entity on given index and append new entities instead of
+   * It will remove one entity on given index and append new entities instead of
    * it. All entities with higher indexes will be shifted right (including
    * token positions).
    * @param index
@@ -21,7 +21,7 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
    */
   modify(
     index: number,
-    newEntities: T[],
+    newStr: string,
   ): this {
     if (!this.originalEntity) {
       this.originalEntity = this.entity.clone();
@@ -30,20 +30,50 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
     }
 
     this.index = index;
-    this.length = newEntities.length;
+    this.length = newStr.length;
 
-    this.shiftExistingTokens();
-    this.
+    this.entity.string = this.strSplice(
+      this.entity.toString(),
+      index,
+      1,
+      newStr,
+    );
+    this.shiftExistingTokens(
+      index,
+      newStr.length,
+    );
 
     return this;
   }
 
-  private shiftExistingTokens() {
+  private shiftExistingTokens(
+    index: number,
+    newStrLength: number,
+  ) {
     const existingTokens = this.entity.tokenInfoList;
     for (const existingToken of existingTokens) {
-      if() {
-
+      if (existingToken.index === index) {
+        existingToken.length += newStrLength - 1;
+      } else if (existingToken.index > index) {
+        existingToken.index += newStrLength - 1;
       }
     }
+  }
+
+  private strSplice(
+    str: string,
+    index: number,
+    count: number,
+    add?: string,
+  ) {
+    // We cannot pass negative indexes directly to the 2nd slicing operation.
+    if (index < 0) {
+      index = str.length + index;
+      if (index < 0) {
+        index = 0;
+      }
+    }
+
+    return str.slice(0, index) + (add || "") + str.slice(index + count);
   }
 }

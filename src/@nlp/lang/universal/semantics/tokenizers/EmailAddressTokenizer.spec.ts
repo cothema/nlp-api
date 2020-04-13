@@ -1,4 +1,4 @@
-import { EmailAddressTokenizer } from "./email-address-tokenizer";
+import { EmailAddressTokenizer } from "./EmailAddressTokenizer";
 
 describe("EmailAddressTokenizer", () => {
   test("Tokenize", () => {

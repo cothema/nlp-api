@@ -1,11 +1,11 @@
 import { IRegExpValidator } from "../interfaces/IRegExpValidator";
 import { IStringable } from "../interfaces/IStringable";
 import { IStringableTokenizer } from "../interfaces/IStringableTokenizer";
-import { StringableEntity } from "../model/StringableEntity";
 import { Token } from "../model/Token";
+import { TokenizableStringableEntity } from "../model/TokenizableStringableEntity";
 import { StringableTokenizer } from "./StringableTokenizer";
 
-export class RegExpTokenizer<T extends StringableEntity = StringableEntity>
+export class RegExpTokenizer<T extends TokenizableStringableEntity = TokenizableStringableEntity>
   extends StringableTokenizer<T>
   implements IStringableTokenizer<T> {
 

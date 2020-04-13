@@ -1,4 +1,4 @@
-import { PhoneNumberTokenizer } from "./phone-number-tokenizer";
+import { PhoneNumberTokenizer } from "./PhoneNumberTokenizer";
 
 describe("PhoneNumberTokenizer", () => {
   test("Tokenize", () => {

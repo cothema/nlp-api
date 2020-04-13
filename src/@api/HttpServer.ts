@@ -1,22 +1,32 @@
 import express, { Express } from "express";
-import { Text } from "../@nlp/lang/universal/orthography/model/Text";
-import { Word } from "../@nlp/lang/universal/orthography/model/Word";
-import { Solver } from "../@nlp/solver";
+import { ComplexEndpoint } from "./endpoints/ComplexEndpoint";
 
 export class HttpServer {
 
-  private initialized = false;
+  private initialized = {
+    setup: false,
+    endpoints: false,
+    listen: false,
+  };
   private defaultPort = 3001;
-  private app: Express;
+  app: Express;
 
   constructor() {
   }
 
   init() {
-    if (this.initialized) {
-      return;
+    this.setup();
+
+    this.setEndpoints();
+
+    this.listen();
+  }
+
+  setup(): this {
+    if (this.initialized.setup) {
+      return this;
     }
-    this.initialized = true;
+    this.initialized.setup = true;
 
     const app = this.app = express();
 
@@ -38,48 +48,31 @@ export class HttpServer {
       // Pass to next layer of middleware
       next();
     });
-
-    this.setEndpoints();
-
-    this.listen();
+    return this;
   }
 
-  private setEndpoints() {
-    this.app.post("/analyze", async (req, res) => {
-      if (req.body && req.body["text"]) {
-        const solution = await Solver.solveText(
-          new Text(req.body["text"].toString())
-        );
+  setEndpoints(): this {
+    if (this.initialized.endpoints) {
+      return this;
+    }
+    this.initialized.endpoints = true;
 
-        return res.send(solution);
-      }
+    new ComplexEndpoint(this.app);
 
-      res.statusCode = 500;
-      return res.send({
-        error: "Internal error!",
-      });
-    });
-
-    this.app.post("/analyze/word", async (req, res) => {
-      if (req.body && req.body["word"]) {
-        const solution = await Solver.solveWord(
-          new Word(req.body["word"].toString())
-        );
-
-        return res.send(solution);
-      }
-
-      res.statusCode = 500;
-      return res.send({
-        error: "Internal error!",
-      });
-    });
+    return this;
   }
 
-  private listen() {
+  listen(): this {
+    if (this.initialized.listen) {
+      return this;
+    }
+    this.initialized.listen = true;
+
     const port = process.env.PORT || this.defaultPort;
     this.app.listen(port, () => {
       console.log(`REST API server is running on port ${this.defaultPort}...`);
     });
+
+    return this;
   }
 }

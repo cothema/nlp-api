@@ -4,12 +4,14 @@ import { IStringableTokenizer } from "../interfaces/IStringableTokenizer";
 import { IValidator } from "../interfaces/IValidator";
 import { StringableEntity } from "../model/StringableEntity";
 import { Token } from "../model/Token";
+import { TokenizableStringableEntity } from "../model/TokenizableStringableEntity";
 
-export abstract class StringableTokenizer<T extends StringableEntity = StringableEntity>
+export abstract class StringableTokenizer<T extends TokenizableStringableEntity = TokenizableStringableEntity>
   implements IStringableTokenizer<T> {
 
   validator: IValidator;
-  entityFactory: (a: Partial<StringableEntity>) => StringableEntity = a => new StringableEntity(a);
+  entityFactory: (a: Partial<TokenizableStringableEntity>) => TokenizableStringableEntity
+    = a => new TokenizableStringableEntity(a);
   filter: (e: Token<T>) => boolean;
 
   abstract tokenize(input: IStringable): Array<Token<T>>;

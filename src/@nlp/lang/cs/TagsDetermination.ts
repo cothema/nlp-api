@@ -1,4 +1,4 @@
-import { DictionaryLoader } from "../../dictionary-loader";
+import { DictionaryLoader } from "../../DictionaryLoader";
 import { Word } from "../universal/orthography/model/Word";
 
 export class TagsDetermination {

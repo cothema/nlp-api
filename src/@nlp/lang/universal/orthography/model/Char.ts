@@ -1,11 +1,13 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
 /**
  * Single character from alphabet. Can be uppercase or lowercase.
  */
-export class Char extends StringableEntity implements ITypeMarked {
-  type = 'char';
+export class Char
+  extends TokenizableStringableEntity
+  implements ITypeMarked {
+  type = "char";
 
   constructor(init?: Partial<Char>) {
     super();

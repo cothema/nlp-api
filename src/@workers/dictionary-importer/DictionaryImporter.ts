@@ -1,6 +1,6 @@
 import { Pool, QueryResult } from "pg";
 import { PostgresDb } from "../../@db/postgres/PostgresDb";
-import { DictionaryLoader } from "../../@nlp/dictionary-loader";
+import { DictionaryLoader } from "../../@nlp/DictionaryLoader";
 
 export class DictionaryImporter {
   private db: Pool;

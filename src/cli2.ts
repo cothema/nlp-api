@@ -1,4 +1,4 @@
-import { AntonymsDetermination } from "./@workers/antonyms-determination/antonyms-determination";
+import { AntonymsDetermination } from "./@workers/antonyms-determination/AntonymsDetermination";
 
 const dotenv = require("dotenv");
 dotenv.config();
