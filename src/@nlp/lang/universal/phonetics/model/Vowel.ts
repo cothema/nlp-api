@@ -1,12 +1,10 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
 import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 
-export class Vowel
-  extends TokenizableStringableEntity
-  implements ITypeMarked {
-  type = "vowel";
+export class Vowel extends TokenizableStringableEntity implements ITypeMarked {
+  public type = "vowel";
 
-  constructor(init?: Partial<Vowel>) {
+  public constructor(init?: Partial<Vowel>) {
     super();
     Object.assign(this, init);
   }

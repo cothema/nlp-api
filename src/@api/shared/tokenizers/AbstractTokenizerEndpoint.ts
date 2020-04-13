@@ -1,18 +1,16 @@
 import { Express } from "express";
 import { IStringableTokenizer } from "../../../@nlp/shared/interfaces/IStringableTokenizer";
 import { TokenizableStringableEntity } from "../../../@nlp/shared/model/TokenizableStringableEntity";
-import { IEndpoint } from "../interfaces/IEndpoint";
 import { AbstractEndpoint } from "../../endpoints/v1/AbstractEndpoint";
+import { IEndpoint } from "../interfaces/IEndpoint";
 
-export abstract class AbstractTokenizerEndpoint
-  extends AbstractEndpoint
+export abstract class AbstractTokenizerEndpoint extends AbstractEndpoint
   implements IEndpoint {
-
   protected abstract tokenizerFactory: () => IStringableTokenizer<any>;
 
-  constructor(
+  public constructor(
     app: Express,
-    pathPrefix: string = '',
+    pathPrefix: string = "",
     subPath: string = "/tokenizer/letter",
   ) {
     super(app, pathPrefix, subPath);
@@ -21,10 +19,10 @@ export abstract class AbstractTokenizerEndpoint
 
   protected onTokenize() {
     this.app.post(this.getPath("/tokenize"), async (req, res) => {
-      if (req.body && req.body["str"]) {
+      if (req.body && req.body.str) {
         const solution = await this.tokenizerFactory().tokenize(
           new TokenizableStringableEntity({
-            string: req.body["str"].toString(),
+            string: req.body.str.toString(),
           }),
         );
 

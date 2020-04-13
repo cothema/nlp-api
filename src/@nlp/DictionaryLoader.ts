@@ -1,27 +1,34 @@
 export class DictionaryLoader {
-
   private static cache: {
-    lang: string,
-    dictionaryName: string,
-    content: string[]
+    lang: string;
+    dictionaryName: string;
+    content: string[];
   }[] = [];
 
-  static async load(lang: string, dictionaryName: string, inLowerCase = false): Promise<string[]> {
+  public static async load(
+    lang: string,
+    dictionaryName: string,
+    inLowerCase = false,
+  ): Promise<string[]> {
     const fs = require("fs");
 
     lang = DictionaryLoader.secureDirName(lang);
     dictionaryName = DictionaryLoader.secureDirName(dictionaryName);
 
-    const inCache = DictionaryLoader.cache.find(el => el.lang === lang && el.dictionaryName === dictionaryName);
+    const inCache = DictionaryLoader.cache.find(
+      (el) => el.lang === lang && el.dictionaryName === dictionaryName,
+    );
     if (inCache) {
       // Use cache to lighten server filesystem
       if (inLowerCase) {
-        return inCache.content.map(el => el.toLowerCase());
+        return inCache.content.map((el) => el.toLowerCase());
       }
       return inCache.content;
     } else {
       return new Promise<string[]>((resolve, reject) => {
-        fs.readFile("src/@nlp/lang/" + lang + "/dictionaries/" + dictionaryName + ".txt", "utf-8",
+        fs.readFile(
+          "src/@nlp/lang/" + lang + "/dictionaries/" + dictionaryName + ".txt",
+          "utf-8",
           (err, data) => {
             if (err) {
               console.error(err);
@@ -34,9 +41,9 @@ export class DictionaryLoader {
                 content: out,
               });
               if (inLowerCase) {
-                out = out.map(el => el.toLowerCase());
+                out = out.map((el) => el.toLowerCase());
               }
-              out = out.filter(el => el.length);
+              out = out.filter((el) => el.length);
               resolve(out);
             }
           },
@@ -50,5 +57,4 @@ export class DictionaryLoader {
     dirName = dirName.replace("..\\", "");
     return dirName;
   }
-
 }

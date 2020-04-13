@@ -11,13 +11,12 @@ import { CharTokenizer } from "./CharTokenizer";
 /**
  * Includes only letters from alphabet (no spaces, special chars, punctuation etc.)
  */
-export class LetterTokenizer
-  extends StringableTokenizer<Letter>
+export class LetterTokenizer extends StringableTokenizer<Letter>
   implements IStringableTokenizer<Letter> {
-  validator = new LetterValidator();
-  digraphs: Digraph[] = [];
+  public validator = new LetterValidator();
+  public digraphs: Digraph[] = [];
 
-  tokenize(input: IStringable): Token<Letter | Digraph>[] {
+  public tokenize(input: IStringable): Token<Letter | Digraph>[] {
     const letterTokens: Token<Letter>[] = [];
     const charTokens = new CharTokenizer().tokenize(input);
 
@@ -29,28 +28,32 @@ export class LetterTokenizer
         continue;
       }
 
-      let digraph = DigraphHelper.identifyDigraph(
+      const digraph = DigraphHelper.identifyDigraph(
         this.digraphs,
-        charTokens.map(x => x.entity),
+        charTokens.map((x) => x.entity),
         i,
       );
 
       if (digraph) {
         // It is digraph
         i += digraph.toString().length - 1; // Skip digraph letters
-        letterTokens.push(new Token<Letter>({
-          index: tokenIndex,
-          length: digraph.toString().length,
-          entity: digraph,
-        }));
+        letterTokens.push(
+          new Token<Letter>({
+            index: tokenIndex,
+            length: digraph.toString().length,
+            entity: digraph,
+          }),
+        );
         tokenIndex += digraph.toString().length - 1;
       } else {
         // Add single letter (already validated)
-        letterTokens.push(new Token<Letter>({
-          index: tokenIndex,
-          length: 1,
-          entity: new Letter({ string: charTokens[i].entity.toString() }),
-        }));
+        letterTokens.push(
+          new Token<Letter>({
+            index: tokenIndex,
+            length: 1,
+            entity: new Letter({ string: charTokens[i].entity.toString() }),
+          }),
+        );
       }
     }
 

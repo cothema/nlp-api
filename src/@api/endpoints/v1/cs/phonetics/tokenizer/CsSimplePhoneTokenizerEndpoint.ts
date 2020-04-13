@@ -2,10 +2,9 @@ import { CsSimplePhoneTokenizer } from "../../../../../../@nlp/lang/cs/phonetics
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
 
-export class CsSimplePhoneTokenizerEndpoint
-  extends AbstractTokenizerEndpoint
+export class CsSimplePhoneTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  protected tokenizerFactory = () => new CsSimplePhoneTokenizer();
-  subPath = "/tokenizer/simple-phone";
+  public subPath = "/tokenizer/simple-phone";
 
+  protected tokenizerFactory = () => new CsSimplePhoneTokenizer();
 }

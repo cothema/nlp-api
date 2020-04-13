@@ -5,12 +5,10 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  * Similar to Char, but includes e.g. ch (ch is single letter that
  * consists of two chars).
  */
-export class Letter
-  extends TokenizableStringableEntity
-  implements ITypeMarked {
-  type = "letter";
+export class Letter extends TokenizableStringableEntity implements ITypeMarked {
+  public type = "letter";
 
-  constructor(init?: Partial<Letter>) {
+  public constructor(init?: Partial<Letter>) {
     super();
     Object.assign(this, init);
   }

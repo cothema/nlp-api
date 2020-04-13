@@ -4,12 +4,10 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 /**
  * Single character from alphabet. Can be uppercase or lowercase.
  */
-export class Char
-  extends TokenizableStringableEntity
-  implements ITypeMarked {
-  type = "char";
+export class Char extends TokenizableStringableEntity implements ITypeMarked {
+  public type = "char";
 
-  constructor(init?: Partial<Char>) {
+  public constructor(init?: Partial<Char>) {
     super();
     Object.assign(this, init);
   }

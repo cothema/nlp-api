@@ -1,12 +1,10 @@
-import { SyntaxSolver } from "./lang/cs/SyntaxSolver";
 import { TagsDetermination } from "./lang/cs/TagsDetermination";
 import { Text } from "./lang/universal/orthography/model/Text";
 import { Word } from "./lang/universal/orthography/model/Word";
 import { TextTokenizer } from "./TextTokenizer";
 
 export class Solver {
-
-  static async solveText(text: Text) {
+  public static async solveText(text: Text) {
     text.sentences = TextTokenizer.getSentences(text);
     text.words = TextTokenizer.getWords(text);
 
@@ -26,7 +24,7 @@ export class Solver {
     return text;
   }
 
-  static async solveWord(word: Word) {
+  public static async solveWord(word: Word) {
     await TagsDetermination.determine(word);
     await Solver.solveWordIPAPronunciation(word);
     return word;
@@ -36,7 +34,7 @@ export class Solver {
     let pronunciation = word.string.toLowerCase();
 
     const dictionary = Solver.getIPAPronunciationPairs();
-    for (let key in dictionary) {
+    for (const key in dictionary) {
       pronunciation = pronunciation.replace(key, dictionary[key]);
     }
 
@@ -45,28 +43,27 @@ export class Solver {
 
   private static getIPAPronunciationPairs() {
     return {
-      "ě": "je",
-      "ň": "ɲ",
-      "š": "ʃ",
-      "ť": "c",
-      "ď": "ɟ",
-      "h": "ɦ",
-      "ch": "x",
-      "c": "t͡s",
-      "č": "t͡ʃ",
-      "ř": "r̝",
-      "ž": "ʒ",
-      "í": "iː",
-      "ý": "iː",
-      "ú": "uː",
-      "ů": "uː",
-      "é": "ɛː",
-      "á": "aː",
-      "ó": "oː",
-      "i": "ɪ",
-      "y": "ɪ",
-      "u": "ʊ",
+      ě: "je",
+      ň: "ɲ",
+      š: "ʃ",
+      ť: "c",
+      ď: "ɟ",
+      h: "ɦ",
+      ch: "x",
+      c: "t͡s",
+      č: "t͡ʃ",
+      ř: "r̝",
+      ž: "ʒ",
+      í: "iː",
+      ý: "iː",
+      ú: "uː",
+      ů: "uː",
+      é: "ɛː",
+      á: "aː",
+      ó: "oː",
+      i: "ɪ",
+      y: "ɪ",
+      u: "ʊ",
     };
   }
-
 }

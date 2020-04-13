@@ -2,8 +2,7 @@ import express, { Express } from "express";
 import { ComplexEndpoint } from "./endpoints/v1/ComplexEndpoint";
 
 export class HttpServer {
-
-  app: Express;
+  public app: Express;
   private initialized = {
     setup: false,
     endpoints: false,
@@ -11,19 +10,19 @@ export class HttpServer {
   };
   private defaultPort = 3001;
 
-  init() {
+  public init() {
     this.setup();
     this.setEndpoints();
     this.listen();
   }
 
-  setup(): this {
+  public setup(): this {
     if (this.initialized.setup) {
       return this;
     }
     this.initialized.setup = true;
 
-    const app = this.app = express();
+    const app = (this.app = express());
 
     app.use(express.json());
     app.use((req, res, next) => {
@@ -31,10 +30,16 @@ export class HttpServer {
       res.setHeader("Access-Control-Allow-Origin", "*");
 
       // Request methods you wish to allow
-      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+      );
 
       // Request headers you wish to allow
-      res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+      res.setHeader(
+        "Access-Control-Allow-Headers",
+        "X-Requested-With,content-type",
+      );
 
       // Set to true if you need the website to include cookies in the requests sent
       // to the API (e.g. in case you use sessions)
@@ -46,7 +51,7 @@ export class HttpServer {
     return this;
   }
 
-  setEndpoints(): this {
+  public setEndpoints(): this {
     if (this.initialized.endpoints) {
       return this;
     }
@@ -57,7 +62,7 @@ export class HttpServer {
     return this;
   }
 
-  listen(): this {
+  public listen(): this {
     if (this.initialized.listen) {
       return this;
     }

@@ -2,10 +2,9 @@ import { CsLetterTokenizer } from "../../../../../../@nlp/lang/cs/orthography/to
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
 
-export class CsLetterTokenizerEndpoint
-  extends AbstractTokenizerEndpoint
+export class CsLetterTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  protected tokenizerFactory = () => new CsLetterTokenizer();
-  subPath = "/tokenizer/letter";
+  public subPath = "/tokenizer/letter";
 
+  protected tokenizerFactory = () => new CsLetterTokenizer();
 }

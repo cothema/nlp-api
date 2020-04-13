@@ -2,7 +2,7 @@ import { DictionaryLoader } from "../../DictionaryLoader";
 import { Word } from "../universal/orthography/model/Word";
 
 export class TagsDetermination {
-  static async determine(word: Word) {
+  public static async determine(word: Word) {
     const lang = "cs";
 
     word.tags = [];
@@ -11,8 +11,16 @@ export class TagsDetermination {
     await TagsDetermination.determineOther(word, lang);
   }
 
-  static async matchWordInDictionary(language: string, dictionary: string, word: string): Promise<boolean> {
-    const dictionaryItems = await DictionaryLoader.load(language, dictionary, true);
+  public static async matchWordInDictionary(
+    language: string,
+    dictionary: string,
+    word: string,
+  ): Promise<boolean> {
+    const dictionaryItems = await DictionaryLoader.load(
+      language,
+      dictionary,
+      true,
+    );
     return dictionaryItems.includes(word.toLowerCase());
   }
 
@@ -28,7 +36,13 @@ export class TagsDetermination {
     ];
 
     for (const dictionary of dictionaries) {
-      if (await TagsDetermination.matchWordInDictionary(lang, dictionary, word.string)) {
+      if (
+        await TagsDetermination.matchWordInDictionary(
+          lang,
+          dictionary,
+          word.string,
+        )
+      ) {
         word.tags.push({
           tagType: "verbal-types",
           type: dictionary.replace("verbal-types/", ""),
@@ -37,7 +51,10 @@ export class TagsDetermination {
       }
     }
 
-    if (parseInt(word.string) && parseInt(word.string).toString() === word.string) {
+    if (
+      parseInt(word.string) &&
+      parseInt(word.string).toString() === word.string
+    ) {
       word.tags.push({
         tagType: "verbal-types",
         type: "number:numeric",
@@ -47,12 +64,16 @@ export class TagsDetermination {
   }
 
   private static async determineEnumWords(word: Word, lang: string) {
-    const dictionaries = [
-      "enum-words/enum-words-b",
-    ];
+    const dictionaries = ["enum-words/enum-words-b"];
 
     for (const dictionary of dictionaries) {
-      if (await TagsDetermination.matchWordInDictionary(lang, dictionary, word.string)) {
+      if (
+        await TagsDetermination.matchWordInDictionary(
+          lang,
+          dictionary,
+          word.string,
+        )
+      ) {
         word.tags.push({
           tagType: "enum-words",
           type: dictionary.replace("enum-words/", ""),
@@ -63,12 +84,16 @@ export class TagsDetermination {
   }
 
   private static async determineOther(word: Word, lang: string) {
-    const dictionaries = [
-      "other/human-names",
-    ];
+    const dictionaries = ["other/human-names"];
 
     for (const dictionary of dictionaries) {
-      if (await TagsDetermination.matchWordInDictionary(lang, dictionary, word.string)) {
+      if (
+        await TagsDetermination.matchWordInDictionary(
+          lang,
+          dictionary,
+          word.string,
+        )
+      ) {
         word.tags.push({
           tagType: "other",
           type: dictionary.replace("other/", ""),

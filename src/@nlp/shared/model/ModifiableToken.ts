@@ -1,13 +1,14 @@
 import { Token } from "./Token";
 import { TokenizableStringableEntity } from "./TokenizableStringableEntity";
 
-export class ModifiableToken<T extends TokenizableStringableEntity>
-  extends Token<T> {
-  originalIndex?: number;
-  originalLength?: number;
-  originalEntity?: T;
+export class ModifiableToken<
+  T extends TokenizableStringableEntity
+> extends Token<T> {
+  public originalIndex?: number;
+  public originalLength?: number;
+  public originalEntity?: T;
 
-  constructor(init?: Partial<ModifiableToken<T>>) {
+  public constructor(init?: Partial<ModifiableToken<T>>) {
     super();
     Object.assign(this, init);
   }
@@ -19,10 +20,7 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
    * @param index
    * @param newEntities
    */
-  modify(
-    index: number,
-    newStr: string,
-  ): this {
+  public modify(index: number, newStr: string): this {
     if (!this.originalEntity) {
       this.originalEntity = this.entity.clone();
       this.originalIndex = this.index;
@@ -38,18 +36,12 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
       1,
       newStr,
     );
-    this.shiftExistingTokens(
-      index,
-      newStr.length,
-    );
+    this.shiftExistingTokens(index, newStr.length);
 
     return this;
   }
 
-  private shiftExistingTokens(
-    index: number,
-    newStrLength: number,
-  ) {
+  private shiftExistingTokens(index: number, newStrLength: number) {
     const existingTokens = this.entity.tokenInfoList;
     for (const existingToken of existingTokens) {
       if (existingToken.index === index) {
@@ -60,12 +52,7 @@ export class ModifiableToken<T extends TokenizableStringableEntity>
     }
   }
 
-  private strSplice(
-    str: string,
-    index: number,
-    count: number,
-    add?: string,
-  ) {
+  private strSplice(str: string, index: number, count: number, add?: string) {
     // We cannot pass negative indexes directly to the 2nd slicing operation.
     if (index < 0) {
       index = str.length + index;

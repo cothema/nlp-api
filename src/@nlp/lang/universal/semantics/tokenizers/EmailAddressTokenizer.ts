@@ -3,11 +3,8 @@ import { RegExpTokenizer } from "../../../../shared/tokenizers/RegExpTokenizer";
 import { EmailAddress } from "../model/EmailAddress";
 import { EmailAddressValidator } from "../validators/EmailAddressValidator";
 
-export class EmailAddressTokenizer
-  extends RegExpTokenizer<EmailAddress>
+export class EmailAddressTokenizer extends RegExpTokenizer<EmailAddress>
   implements IStringableTokenizer<EmailAddress> {
-
-  validator = new EmailAddressValidator();
-  entityFactory = a => new EmailAddress(a);
-
+  public validator = new EmailAddressValidator();
+  public entityFactory = (a) => new EmailAddress(a);
 }

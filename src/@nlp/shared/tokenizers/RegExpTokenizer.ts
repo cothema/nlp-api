@@ -5,26 +5,23 @@ import { Token } from "../model/Token";
 import { TokenizableStringableEntity } from "../model/TokenizableStringableEntity";
 import { StringableTokenizer } from "./StringableTokenizer";
 
-export class RegExpTokenizer<T extends TokenizableStringableEntity = TokenizableStringableEntity>
-  extends StringableTokenizer<T>
-  implements IStringableTokenizer<T> {
+export class RegExpTokenizer<
+  T extends TokenizableStringableEntity = TokenizableStringableEntity
+> extends StringableTokenizer<T> implements IStringableTokenizer<T> {
+  public validator: IRegExpValidator;
 
-  validator: IRegExpValidator;
-
-  tokenize(input: IStringable): Token<T>[] {
-    let outputs: Array<Token<T>> = [];
+  public tokenize(input: IStringable): Token<T>[] {
+    let outputs: Token<T>[] = [];
     let match: RegExpExecArray;
     while ((match = this.validator.regExp.exec(input.toString())) != null) {
       outputs.push(
-        new Token<T>(
-          {
-            index: match.index,
-            length: match[0].length,
-            entity: this.entityFactory({
-              string: match[0],
-            }) as T,
-          },
-        ),
+        new Token<T>({
+          index: match.index,
+          length: match[0].length,
+          entity: this.entityFactory({
+            string: match[0],
+          }) as T,
+        }),
       );
     }
 
@@ -34,5 +31,4 @@ export class RegExpTokenizer<T extends TokenizableStringableEntity = Tokenizable
 
     return outputs;
   }
-
 }

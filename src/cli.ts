@@ -1,6 +1,6 @@
 import { DictionaryImporter } from "./@workers/dictionary-importer/DictionaryImporter";
+import dotenv = require("dotenv");
 
-const dotenv = require('dotenv');
 dotenv.config();
 
-(new DictionaryImporter()).import();
+new DictionaryImporter().import();

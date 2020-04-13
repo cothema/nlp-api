@@ -2,14 +2,14 @@ import { IStringable } from "../interfaces/IStringable";
 import { ITypeMarked } from "../interfaces/ITypeMarked";
 
 export class StringableEntity implements IStringable, ITypeMarked {
-  type = "unknown";
-  string?: string;
+  public type = "unknown";
+  public string?: string;
 
-  constructor(init?: Partial<StringableEntity>) {
+  public constructor(init?: Partial<StringableEntity>) {
     Object.assign(this, init);
   }
 
-  toString(): string {
+  public toString(): string {
     return this.string;
   }
 
@@ -17,8 +17,7 @@ export class StringableEntity implements IStringable, ITypeMarked {
    * You should call e.g. new StringableEntity(entity.clone()) to be able
    * to class fully with methods.
    */
-  clone(): StringableEntity {
+  public clone(): StringableEntity {
     return new StringableEntity(this);
   }
-
 }

@@ -4,16 +4,16 @@ import { PostgresDb } from "../../@db/postgres/PostgresDb";
 export class AntonymsDetermination {
   private db: Pool;
 
-  constructor() {
+  public constructor() {
     this.db = PostgresDb.getPool();
   }
 
-  async browseAndDetermine() {
+  public async browseAndDetermine() {
     const lang = "cs";
 
     try {
-      let result = await this.db.query(
-          `SELECT  w0.stem AS stem, 'ne' || w0.stem AS match
+      const result = await this.db.query(
+        `SELECT  w0.stem AS stem, 'ne' || w0.stem AS match
            FROM (
                   SELECT right(word, -2) AS stem
                   FROM words
@@ -29,12 +29,10 @@ export class AntonymsDetermination {
 
       console.log(`Found ${result.rowCount} matching words.`);
       for (const resultRow of result.rows) {
-        console.log(`Found matching word:`, resultRow["match"]);
+        console.log(`Found matching word:`, resultRow.match);
       }
     } catch (e) {
       console.error(e);
     }
-
   }
-
 }

@@ -2,11 +2,10 @@ import { Char } from "../model/Char";
 import { Digraph } from "../model/Digraph";
 
 export class DigraphHelper {
-
-  static identifyDigraph(
+  public static identifyDigraph(
     digraphs: Digraph[],
     chars: Char[],
-    i: number
+    i: number,
   ): Digraph | undefined {
     let digraphStr: string;
 
@@ -25,10 +24,10 @@ export class DigraphHelper {
     return undefined;
   }
 
-  static compareStringableWithDigraph(
+  public static compareStringableWithDigraph(
     chars: Char[],
     i: number,
-    digraph: Digraph
+    digraph: Digraph,
   ): boolean {
     for (let j = 0; digraph.toString()[j] && chars[i + j]; j++) {
       // Check each char in concrete digraph
@@ -42,5 +41,4 @@ export class DigraphHelper {
 
     return false;
   }
-
 }

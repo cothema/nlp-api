@@ -12,20 +12,18 @@ import { CsPairConsonantList } from "../lists/CsPairConsonantList";
 import { CsVoicedConsonantList } from "../lists/CsVoicedConsonantList";
 import { CsVoicelessConsonantList } from "../lists/CsVoicelessConsonantList";
 
-export class CsSimplePhoneTokenizer
-  extends StringableTokenizer
+export class CsSimplePhoneTokenizer extends StringableTokenizer
   implements IStringableTokenizer<Phone> {
-
   private letterTokenizer = new CsLetterTokenizer();
 
-  constructor() {
+  public constructor() {
     super();
     this.letterTokenizer.digraphs = this.letterTokenizer.digraphs.concat(
-      CsDiphthongList.list.map(x => new Digraph({ string: x })),
+      CsDiphthongList.list.map((x) => new Digraph({ string: x })),
     );
   }
 
-  tokenize(input: IStringable): Token<Phone>[] {
+  public tokenize(input: IStringable): Token<Phone>[] {
     // TODO: split word to parts (prefix, root...) first
     // TODO: modifiable token
 
@@ -33,9 +31,9 @@ export class CsSimplePhoneTokenizer
     const phoneTokens = [];
 
     for (let i = 0; letterTokens[i]; i++) {
-      let letterStr = letterTokens[i].entity.toString().toLowerCase();
+      const letterStr = letterTokens[i].entity.toString().toLowerCase();
 
-      let appendPhones: string[] = [];
+      const appendPhones: string[] = [];
       if (letterStr === "ě") {
         appendPhones.push("j", "e");
       } else {
@@ -61,7 +59,9 @@ export class CsSimplePhoneTokenizer
    * See: https://prirucka.ujc.cas.cz/?id=909
    * See: https://www.diktatorek.cz/Scholasticus/Cesky-jazyk/Pravopis/Pravopis-skupin-souhlasek/Pravopis-souhlasek-uvnitr-slov-help.html
    */
-  private solveVoice(phoneTokens: ModifiableToken<Phone>[]): ModifiableToken<Phone>[] {
+  private solveVoice(
+    phoneTokens: ModifiableToken<Phone>[],
+  ): ModifiableToken<Phone>[] {
     // TODO: voiceless prepositions
 
     const dictionary = new CsPairConsonantsDictionary();
@@ -73,8 +73,8 @@ export class CsSimplePhoneTokenizer
          * Hotfix: My rule
          */
         if (
-          CsPairConsonantList.list.includes(phoneTokens[i].entity.toString())
-          && CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
+          CsPairConsonantList.list.includes(phoneTokens[i].entity.toString()) &&
+          CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
         ) {
           // [voiceless][voiced] => [voiced][voiced]
           phoneTokens[i].entity.string = dictionary.translateElement(
@@ -83,15 +83,20 @@ export class CsSimplePhoneTokenizer
         }
         break;
       } else if (
-        !CsPairConsonantList.list.includes(phoneTokens[i].entity.toString())
-        || ["p", "t", "ť", "ch", "f", "š"].includes(phoneTokens[i].entity.toString()) // Hotfix (c,č): My rule
-        || !CsPairConsonantList.list.concat(["c", "č"]).includes(phoneTokens[i + 1].entity.toString()) // Hotfix (c,č): My rule
+        !CsPairConsonantList.list.includes(phoneTokens[i].entity.toString()) ||
+        ["p", "t", "ť", "ch", "f", "š"].includes(
+          phoneTokens[i].entity.toString(),
+        ) || // Hotfix (c,č): My rule
+        !CsPairConsonantList.list
+          .concat(["c", "č"])
+          .includes(phoneTokens[i + 1].entity.toString()) // Hotfix (c,č): My rule
       ) {
-        continue;
       } else if (
         // ["v", "z"].includes(phones[i].toString())
-        CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
-        && CsVoicelessConsonantList.list.includes(phoneTokens[i + 1].entity.toString())
+        CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString()) &&
+        CsVoicelessConsonantList.list.includes(
+          phoneTokens[i + 1].entity.toString(),
+        )
       ) {
         // [voiced][voiceless] => [voiceless][voiceless]
         phoneTokens[i].entity.string = dictionary.translateElement(
@@ -99,9 +104,9 @@ export class CsSimplePhoneTokenizer
         );
         i++; // skip next phone
       } else if (
-        //["f", "s"].includes(phones[i].toString())
-        CsVoicelessConsonantList.list.includes(phoneTokens[i].toString())
-        && CsVoicedConsonantList.list.includes(phoneTokens[i + 1].toString())
+        // ["f", "s"].includes(phones[i].toString())
+        CsVoicelessConsonantList.list.includes(phoneTokens[i].toString()) &&
+        CsVoicedConsonantList.list.includes(phoneTokens[i + 1].toString())
       ) {
         // [voiceless][voiced] => [voiced][voiced]
         phoneTokens[i].entity.string = dictionary.translateElementReverse(
@@ -113,5 +118,4 @@ export class CsSimplePhoneTokenizer
 
     return phoneTokens;
   }
-
 }

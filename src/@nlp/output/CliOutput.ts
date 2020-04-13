@@ -1,36 +1,43 @@
-import { SentenceModality } from "../lang/universal/semantics/enums/SentenceModality";
 import { Sentence } from "../lang/universal/orthography/model/Sentence";
 import { Text } from "../lang/universal/orthography/model/Text";
+import { SentenceModality } from "../lang/universal/semantics/enums/SentenceModality";
 
 export class CliOutput {
-
-  static echoAll(text: Text) {
+  public static echoAll(text: Text) {
     this.echoOverview(text);
     this.echoSentences(text);
   }
 
-  static echoOverview(text: Text) {
+  public static echoOverview(text: Text) {
     console.log("| Text:", text.string);
     console.log("Počet vět:", text.sentences.length);
     console.log("Počet slov:", text.words.length);
   }
 
-  static echoSentences(text: Text) {
+  public static echoSentences(text: Text) {
     for (const sentence of text.sentences) {
       console.log("-----");
       CliOutput.echoSentence(sentence);
     }
   }
 
-  static echoSentence(sentence: Sentence) {
+  public static echoSentence(sentence: Sentence) {
     console.log("| Věta:", sentence.string);
 
-    console.log("Typ věty:", CliOutput.translateSentenceType(sentence.sentenceType));
+    console.log(
+      "Typ věty:",
+      CliOutput.translateSentenceType(sentence.sentenceType),
+    );
     console.log("Počet slov:", sentence.words.length);
-    console.log("Slova:", sentence.words.map(word => `${word.string} ${JSON.stringify(word.tags)}`));
+    console.log(
+      "Slova:",
+      sentence.words.map(
+        (word) => `${word.string} ${JSON.stringify(word.tags)}`,
+      ),
+    );
   }
 
-  static translateSentenceType(sentenceType: SentenceModality) {
+  public static translateSentenceType(sentenceType: SentenceModality) {
     switch (sentenceType) {
       case SentenceModality.Statement:
         return "Oznamovací";
@@ -43,5 +50,4 @@ export class CliOutput {
     }
     return "(?) Neznámý";
   }
-
 }

@@ -4,16 +4,17 @@ import { Word } from "./lang/universal/orthography/model/Word";
 import { SentenceModality } from "./lang/universal/semantics/enums/SentenceModality";
 
 export class TextTokenizer {
-  static readonly interpunction = [".", ",", "?", "!", ":"];
+  public static readonly interpunction = [".", ",", "?", "!", ":"];
 
-  static getWords(input: Text | Sentence) {
+  public static getWords(input: Text | Sentence) {
     const str = TextTokenizer.removeInterpunction(input.toString());
-    return str.split(" ")
-      .filter(el => el.trim().length)
-      .map(el => new Word(el));
+    return str
+      .split(" ")
+      .filter((el) => el.trim().length)
+      .map((el) => new Word(el));
   }
 
-  static removeInterpunction(input: string) {
+  public static removeInterpunction(input: string) {
     for (const interpunctionElement of TextTokenizer.interpunction) {
       input = input.replace(interpunctionElement, "");
     }
@@ -21,7 +22,7 @@ export class TextTokenizer {
     return input;
   }
 
-  static getSentences(text: Text) {
+  public static getSentences(text: Text) {
     const parts = text.string.split(/(\.|\?|\!)/g);
 
     const out = [];
@@ -32,14 +33,16 @@ export class TextTokenizer {
       out.push(parts[i] + parts[i + 1]);
     }
 
-    return out.filter(el => {
-      return el.length;
-    }).map(el => {
-      return new Sentence(el);
-    });
+    return out
+      .filter((el) => {
+        return el.length;
+      })
+      .map((el) => {
+        return new Sentence(el);
+      });
   }
 
-  static getSentenceType(sentence: Sentence): SentenceModality | null {
+  public static getSentenceType(sentence: Sentence): SentenceModality | null {
     const end = sentence.string.substr(sentence.string.length - 1);
     switch (end) {
       case ".":

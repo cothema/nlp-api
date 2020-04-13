@@ -2,10 +2,9 @@ import { LetterTokenizer } from "../../../../../../@nlp/lang/universal/orthograp
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
 
-export class LetterTokenizerEndpoint
-  extends AbstractTokenizerEndpoint
+export class LetterTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  protected tokenizerFactory = () => new LetterTokenizer();
-  subPath = "/tokenizer/letter";
+  public subPath = "/tokenizer/letter";
 
+  protected tokenizerFactory = () => new LetterTokenizer();
 }

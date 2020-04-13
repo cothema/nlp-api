@@ -1,6 +1,6 @@
 import { HttpServer } from "./@api/HttpServer";
+import dotenv = require("dotenv");
 
-const dotenv = require('dotenv');
 dotenv.config();
 
-(new HttpServer()).init();
+new HttpServer().init();

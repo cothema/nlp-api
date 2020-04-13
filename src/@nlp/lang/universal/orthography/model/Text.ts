@@ -1,14 +1,14 @@
 import { ITypeMarked } from "../../../../shared/interfaces/ITypeMarked";
-import { Sentence } from "./Sentence";
 import { StringableEntity } from "../../../../shared/model/StringableEntity";
+import { Sentence } from "./Sentence";
 import { Word } from "./Word";
 
 export class Text extends StringableEntity implements ITypeMarked {
-  type = 'text';
-  sentences?: Sentence[];
-  words?: Word[];
+  public type = "text";
+  public sentences?: Sentence[];
+  public words?: Word[];
 
-  constructor(init?: Partial<Text>) {
+  public constructor(init?: Partial<Text>) {
     super();
     Object.assign(this, init);
   }

@@ -8,16 +8,14 @@ import { CsDiphthongList } from "../lists/CsDiphthongList";
 import { CsVowelList } from "../lists/CsVowelList";
 import { CsSimplePhoneTokenizer } from "./CsSimplePhoneTokenizer";
 
-export class CsSyllableTokenizer
-  extends StringableTokenizer
+export class CsSyllableTokenizer extends StringableTokenizer
   implements IStringableTokenizer<Syllable> {
-
   private newSyllableBuffer: string;
   private syllablesBuffer: Token<Syllable>[];
   private vowelCounter: number;
   private consonantCounter: number;
 
-  tokenize(input: IStringable): Token<Syllable>[] {
+  public tokenize(input: IStringable): Token<Syllable>[] {
     this.clearBuffer();
 
     const phoneTokens = new CsSimplePhoneTokenizer().tokenize(input);
@@ -30,37 +28,23 @@ export class CsSyllableTokenizer
         this.pushNewSyllable();
       }
 
-      if (
-        this.isVowel(phoneTokens[i])
-      ) {
+      if (this.isVowel(phoneTokens[i])) {
         // Is vowel
         if (
-          (
-            phoneTokens[i + 1]
-            && phoneTokens[i + 2]
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-          )
-          ||
-          (
-            phoneTokens[i + 1]
-            && this.isVowel(phoneTokens[i + 1])
-          )
-          ||
-          (
-            phoneTokens[i + 1]
-            && phoneTokens[i + 2]
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-          )
-          ||
-          (
-            phoneTokens[i + 1]
-            && phoneTokens[i + 2]
-            && !phoneTokens[i + 3]
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-          )
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2])) ||
+          (phoneTokens[i + 1] && this.isVowel(phoneTokens[i + 1])) ||
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2])) ||
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            !phoneTokens[i + 3] &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2]))
         ) {
           this.pushNewSyllable();
           continue;
@@ -70,31 +54,23 @@ export class CsSyllableTokenizer
       } else {
         // Is consonant
         if (
-          (
-            phoneTokens[i + 1]
-            && phoneTokens [i + 2]
-            && this.vowelCounter
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-          )
-          ||
-          (
-            phoneTokens[i + 1]
-            && phoneTokens [i + 2]
-            && phoneTokens [i + 3]
-            && !phoneTokens [i + 4]
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-            && !this.isVowel(phoneTokens[i + 3])
-          )
-          ||
-          (
-            phoneTokens[i + 1]
-            && phoneTokens[i + 2]
-            && !phoneTokens[i + 3]
-            && !this.isVowel(phoneTokens[i + 1])
-            && this.isVowel(phoneTokens[i + 2])
-          )
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            this.vowelCounter &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2])) ||
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            phoneTokens[i + 3] &&
+            !phoneTokens[i + 4] &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2]) &&
+            !this.isVowel(phoneTokens[i + 3])) ||
+          (phoneTokens[i + 1] &&
+            phoneTokens[i + 2] &&
+            !phoneTokens[i + 3] &&
+            !this.isVowel(phoneTokens[i + 1]) &&
+            this.isVowel(phoneTokens[i + 2]))
         ) {
           this.pushNewSyllable();
           continue;

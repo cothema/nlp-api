@@ -5,11 +5,11 @@ import { DictionaryLoader } from "../../@nlp/DictionaryLoader";
 export class DictionaryImporter {
   private db: Pool;
 
-  constructor() {
+  public constructor() {
     this.db = PostgresDb.getPool();
   }
 
-  async import(): Promise<void> {
+  public async import(): Promise<void> {
     const lang = "cs";
 
     const words = await DictionaryLoader.load("cs", "words_cs");
@@ -23,11 +23,13 @@ export class DictionaryImporter {
         "INSERT INTO words (word, lang) VALUES ($1, $2) ON CONFLICT DO NOTHING",
         [word, lang],
       );
-      promise.then(() => {
-        console.log(`Word ${word} added`);
-      }).catch(e => {
-        console.error(e);
-      });
+      promise
+        .then(() => {
+          console.log(`Word ${word} added`);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
       promises.push(promise);
     }
 

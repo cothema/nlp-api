@@ -1,3 +1,3 @@
 export class CsShortVowelList {
-  static list: string[] = ["a", "e", "i", "o", "u"];
+  public static list: string[] = ["a", "e", "i", "o", "u"];
 }

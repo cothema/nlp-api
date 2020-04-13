@@ -2,10 +2,9 @@ import { CsSyllableTokenizer } from "../../../../../../@nlp/lang/cs/phonetics/to
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
 
-export class CsSyllableTokenizerEndpoint
-  extends AbstractTokenizerEndpoint
+export class CsSyllableTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  protected tokenizerFactory = () => new CsSyllableTokenizer();
-  subPath = "/tokenizer/syllable";
+  public subPath = "/tokenizer/syllable";
 
+  protected tokenizerFactory = () => new CsSyllableTokenizer();
 }

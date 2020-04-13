@@ -3,9 +3,10 @@ import { Sentence } from "../../orthography/model/Sentence";
 import { LexicologyErrorType } from "../enums/LexicologyErrorType";
 import { AbstractLexicologyCorrector } from "./AbstractLexicologyCorrector";
 
-export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Sentence> {
-
-  fixAll(): this {
+export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
+  Sentence
+> {
+  public fixAll(): this {
     this.fixLeftExtraWhitespace();
     this.fixInvalidEndPunctuation();
     this.fixFirstLetterUpper();
@@ -15,7 +16,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     return this;
   }
 
-  fixLeftExtraWhitespace(): this {
+  public fixLeftExtraWhitespace(): this {
     const matchRegExp = /^\s+/g;
 
     return this.fixByRegExp(
@@ -25,7 +26,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     );
   }
 
-  fixRightExtraWhitespace(): this {
+  public fixRightExtraWhitespace(): this {
     const matchRegExp = /\s+$/g;
 
     return this.fixByRegExp(
@@ -35,7 +36,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     );
   }
 
-  fixMultipleWhitespace(): this {
+  public fixMultipleWhitespace(): this {
     const matchRegExp = /[ ]+$/g;
 
     return this.fixByRegExp(
@@ -45,7 +46,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     );
   }
 
-  fixInvalidEndPunctuation(): this {
+  public fixInvalidEndPunctuation(): this {
     const matchRegExps = [
       { regExp: /\s*\.{2,}$/g, replace: "…" },
       { regExp: /\?{2,}$/g, replace: "?" },
@@ -58,9 +59,10 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     );
   }
 
-  fixFirstLetterUpper(): this {
-    const str: string = this.entity.toString()
-      .charAt(0).toUpperCase() + this.entity.toString().slice(1);
+  public fixFirstLetterUpper(): this {
+    const str: string =
+      this.entity.toString().charAt(0).toUpperCase() +
+      this.entity.toString().slice(1);
 
     let tokenInfo: ModifiableToken;
 
@@ -80,15 +82,11 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
     );
   }
 
-  fixMissingEndPunctuation(): this {
+  public fixMissingEndPunctuation(): this {
     let str = this.entity.toString();
     let tokenInfo: ModifiableToken;
 
-    if (
-      ![".", "?", "!", "…"].includes(
-        str.charAt(str.length - 1),
-      )
-    ) {
+    if (![".", "?", "!", "…"].includes(str.charAt(str.length - 1))) {
       str += ".";
       if (this.provideTokenInfo) {
         tokenInfo = new ModifiableToken({
@@ -106,5 +104,4 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<Se
       tokenInfo,
     );
   }
-
 }

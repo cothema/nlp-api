@@ -5,9 +5,9 @@ import { StringableEntity } from "../../../../shared/model/StringableEntity";
  * E.g. CZ: au, ou, eu
  */
 export class Diphthong extends StringableEntity implements ITypeMarked {
-  type = 'diphthong';
+  public type = "diphthong";
 
-  constructor(init?: Partial<Diphthong>) {
+  public constructor(init?: Partial<Diphthong>) {
     super();
     Object.assign(this, init);
   }

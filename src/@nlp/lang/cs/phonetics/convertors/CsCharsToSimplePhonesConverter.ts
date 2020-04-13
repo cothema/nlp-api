@@ -8,21 +8,21 @@ import { Phone } from "../../../universal/orthography/model/Phone";
  */
 export class CsCharsToSimplePhonesConverter
   implements IConverter<Char[], Phone[]> {
-  dictionary = new Dictionary<string[]>({
-    "ů": ["ú"],
-    "ě": ["j", "e"],
-    "y": ["i"],
-    "ý": ["í"],
+  public dictionary = new Dictionary<string[]>({
+    ů: ["ú"],
+    ě: ["j", "e"],
+    y: ["i"],
+    ý: ["í"],
   });
 
-  convert(chars: Char[]): Phone[] {
+  public convert(chars: Char[]): Phone[] {
     const phones: Phone[] = [];
     for (const char of chars) {
-      let newPhones = this.dictionary.translateElement(char.toString().toLowerCase());
+      const newPhones = this.dictionary.translateElement(
+        char.toString().toLowerCase(),
+      );
       for (const newPhone of newPhones) {
-        phones.push(
-          new Phone(newPhone),
-        );
+        phones.push(new Phone(newPhone));
       }
     }
     return phones;

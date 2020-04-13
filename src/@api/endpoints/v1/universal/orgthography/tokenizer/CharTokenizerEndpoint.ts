@@ -2,10 +2,9 @@ import { CharTokenizer } from "../../../../../../@nlp/lang/universal/orthography
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
 
-export class CharTokenizerEndpoint
-  extends AbstractTokenizerEndpoint
+export class CharTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  protected tokenizerFactory = () => new CharTokenizer();
-  subPath = "/tokenizer/char";
+  public subPath = "/tokenizer/char";
 
+  protected tokenizerFactory = () => new CharTokenizer();
 }

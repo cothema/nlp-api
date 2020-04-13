@@ -3,10 +3,8 @@ import { AbstractEndpoint } from "./AbstractEndpoint";
 import { CsEndpoint } from "./cs/CsEndpoint";
 import { UniEndpoint } from "./universal/UniEndpoint";
 
-export class ComplexEndpoint
-  extends AbstractEndpoint
-  implements IEndpoint {
-  subPath = "/v1";
+export class ComplexEndpoint extends AbstractEndpoint implements IEndpoint {
+  public subPath = "/v1";
 
   protected appendSubEndpoints(): IEndpoint[] {
     return [

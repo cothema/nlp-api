@@ -1,3 +1,1 @@
-export class CsVerbalTypeIdentifier {
-
-}
+export class CsVerbalTypeIdentifier {}

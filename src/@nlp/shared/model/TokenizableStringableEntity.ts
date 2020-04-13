@@ -2,12 +2,11 @@ import { IClonable } from "../interfaces/IClonable";
 import { ModifiableToken } from "./ModifiableToken";
 import { StringableEntity } from "./StringableEntity";
 
-export class TokenizableStringableEntity
-  extends StringableEntity
+export class TokenizableStringableEntity extends StringableEntity
   implements IClonable {
-  tokenInfoList: ModifiableToken<this>[];
+  public tokenInfoList: ModifiableToken<this>[];
 
-  constructor(init?: Partial<TokenizableStringableEntity>) {
+  public constructor(init?: Partial<TokenizableStringableEntity>) {
     super();
     Object.assign(this, init);
   }
@@ -16,8 +15,8 @@ export class TokenizableStringableEntity
    * Be careful, bacause non trivial datatypes will remain as pointers if
    * they will not be cloned manually!
    */
-  clone(): this {
-    let clone = new TokenizableStringableEntity(this);
+  public clone(): this {
+    const clone = new TokenizableStringableEntity(this);
     clone.tokenInfoList = [];
     for (const tokenInfoListElement of this.tokenInfoList) {
       clone.tokenInfoList.push(

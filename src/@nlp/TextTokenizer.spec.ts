@@ -9,15 +9,13 @@ describe("TextTokenizer", () => {
       "Kde jsou ty klíče od našeho domu?",
       "Tak už pojď!",
     ];
-    const expectedWordCounts = [
-      4,
-      5,
-      7,
-      3,
-    ];
+    const expectedWordCounts = [4, 5, 7, 3];
 
     for (let i = 0; exampleInputs[i]; i++) {
-      expect(TextTokenizer.getWords(new Sentence({ string: exampleInputs[i] })).length).toBe(expectedWordCounts[i]);
+      expect(
+        TextTokenizer.getWords(new Sentence({ string: exampleInputs[i] }))
+          .length,
+      ).toBe(expectedWordCounts[i]);
     }
   });
 });

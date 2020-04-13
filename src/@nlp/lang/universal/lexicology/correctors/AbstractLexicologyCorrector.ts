@@ -3,24 +3,23 @@ import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
 import { LexicologyErrorType } from "../enums/LexicologyErrorType";
 import { LexicologyError } from "../model/LexicologyError";
 
-export abstract class AbstractLexicologyCorrector<T extends IStringableEditableToken = IStringableEditableToken> {
-  errors: LexicologyError[] = [];
-  provideTokenInfo = true;
-  fixInOriginalString = true;
+export abstract class AbstractLexicologyCorrector<
+  T extends IStringableEditableToken = IStringableEditableToken
+> {
+  public errors: LexicologyError[] = [];
+  public provideTokenInfo = true;
+  public fixInOriginalString = true;
 
-  abstract fixAll(): this;
+  public constructor(protected entity: T) {}
 
-  constructor(
-    protected entity: T,
-  ) {
-  }
+  public abstract fixAll(): this;
 
   public getEntity(): T {
     return this.entity;
   }
 
   protected fixByMultipleRegExps(
-    matchRegExps: { regExp: RegExp, replace?: string }[],
+    matchRegExps: { regExp: RegExp; replace?: string }[],
     lexicologyError: LexicologyErrorType = LexicologyErrorType.UNSPECIFIED,
   ): this {
     for (const matchRegExp of matchRegExps) {
@@ -38,23 +37,20 @@ export abstract class AbstractLexicologyCorrector<T extends IStringableEditableT
     replaceWith: string = "",
     lexicologyError: LexicologyErrorType = LexicologyErrorType.UNSPECIFIED,
   ): this {
-    const str: string = this.entity.toString()
+    const str: string = this.entity
+      .toString()
       .replace(matchRegExp, replaceWith);
 
     let match;
     while ((match = matchRegExp.exec(this.entity.toString())) != null) {
-      let tokenInfo = new ModifiableToken({
+      const tokenInfo = new ModifiableToken({
         originalLength: match[0].length,
         originalIndex: match.index,
         newLength: replaceWith.length,
         newIndex: match.index,
       });
 
-      this.fixInOriginalIfAllowed(
-        str,
-        lexicologyError,
-        tokenInfo,
-      );
+      this.fixInOriginalIfAllowed(str, lexicologyError, tokenInfo);
     }
 
     return this;
@@ -68,7 +64,7 @@ export abstract class AbstractLexicologyCorrector<T extends IStringableEditableT
     if (this.entity.toString() !== newString) {
       // There were some corrections.
 
-      let lexicologyError = new LexicologyError({
+      const lexicologyError = new LexicologyError({
         type: error,
       });
 

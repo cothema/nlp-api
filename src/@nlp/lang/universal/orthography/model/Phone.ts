@@ -5,12 +5,10 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  * See: https://en.wikipedia.org/wiki/Phone_(phonetics)
  * Can be only lowercase
  */
-export class Phone
-  extends TokenizableStringableEntity
-  implements ITypeMarked {
-  type = "phone";
+export class Phone extends TokenizableStringableEntity implements ITypeMarked {
+  public type = "phone";
 
-  constructor(init?: Partial<Phone>) {
+  public constructor(init?: Partial<Phone>) {
     super();
     Object.assign(this, init);
   }

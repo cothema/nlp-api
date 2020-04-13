@@ -4,10 +4,8 @@ import { CsLetterTokenizerEndpoint } from "./orthography/tokenizer/CsLetterToken
 import { CsSimplePhoneTokenizerEndpoint } from "./phonetics/tokenizer/CsSimplePhoneTokenizerEndpoint";
 import { CsSyllableTokenizerEndpoint } from "./phonetics/tokenizer/CsSyllableTokenizerEndpoint";
 
-export class CsEndpoint
-  extends AbstractEndpoint
-  implements IEndpoint {
-  subPath = "/cs";
+export class CsEndpoint extends AbstractEndpoint implements IEndpoint {
+  public subPath = "/cs";
 
   protected appendSubEndpoints(): IEndpoint[] {
     return [

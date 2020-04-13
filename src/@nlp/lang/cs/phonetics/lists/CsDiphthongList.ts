@@ -1,3 +1,3 @@
 export class CsDiphthongList {
-  static list: string[] = ["au", "ou", "eu"];
+  public static list: string[] = ["au", "ou", "eu"];
 }
