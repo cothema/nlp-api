@@ -4,30 +4,30 @@ describe("CsSyllableTokenizer", () => {
   test("Tokenize", () => {
     const tokenizer = new CsSyllableTokenizer();
 
-    expect(tokenizer.tokenize("Lukáš")[0].toString()).toBe("lu");
-    expect(tokenizer.tokenize("Louka")[1].toString()).toBe("ka");
-    expect(tokenizer.tokenize("Ouha")[0].toString()).toBe("ou");
-    expect(tokenizer.tokenize("Ouha")[1].toString()).toBe("ha");
-    expect(tokenizer.tokenize("Chrpa")[0].toString()).toBe("chr");
-    expect(tokenizer.tokenize("Škrt")[0].toString()).toBe("škrt");
-    expect(tokenizer.tokenize("škrtat")[0].toString()).toBe("škr");
-    expect(tokenizer.tokenize("au")[0].toString()).toBe("au");
-    expect(tokenizer.tokenize("Markétka")[0].toString()).toBe("mar");
-    expect(tokenizer.tokenize("Markétka")[1].toString()).toBe("két");
-    expect(tokenizer.tokenize("Markétka")[2].toString()).toBe("ka");
-    expect(tokenizer.tokenize("škrabka")[0].toString()).toBe("škrap");
-    expect(tokenizer.tokenize("zoo")[1].toString()).toBe("o");
-    expect(tokenizer.tokenize("zoologická")[2].toString()).toBe("lo");
-    expect(tokenizer.tokenize("zoologická")[3].toString()).toBe("gic");
-    expect(tokenizer.tokenize("kráska")[0].toString()).toBe("krás");
-    expect(tokenizer.tokenize("žbrunda")[0].toString()).toBe("žbrun");
-    expect(tokenizer.tokenize("mrkat")[0].toString()).toBe("mr");
-    expect(tokenizer.tokenize("uličník")[1].toString()).toBe("lič");
-    expect(tokenizer.tokenize("žbluňk")[0].toString()).toBe("žbluňk");
-    expect(tokenizer.tokenize("kázeň")[1].toString()).toBe("zeň");
-    expect(tokenizer.tokenize("cvrček")[1].toString()).toBe("ček");
+    expect(tokenizer.tokenizeToValues("Lukáš")[0]).toBe("lu");
+    expect(tokenizer.tokenizeToValues("Louka")[1]).toBe("ka");
+    expect(tokenizer.tokenizeToValues("Ouha")[0]).toBe("ou");
+    expect(tokenizer.tokenizeToValues("Ouha")[1]).toBe("ha");
+    expect(tokenizer.tokenizeToValues("Chrpa")[0]).toBe("chr");
+    expect(tokenizer.tokenizeToValues("Škrt")[0]).toBe("škrt");
+    expect(tokenizer.tokenizeToValues("škrtat")[0]).toBe("škr");
+    expect(tokenizer.tokenizeToValues("au")[0]).toBe("au");
+    expect(tokenizer.tokenizeToValues("Markétka")[0]).toBe("mar");
+    expect(tokenizer.tokenizeToValues("Markétka")[1]).toBe("két");
+    expect(tokenizer.tokenizeToValues("Markétka")[2]).toBe("ka");
+    expect(tokenizer.tokenizeToValues("škrabka")[0]).toBe("škrap");
+    expect(tokenizer.tokenizeToValues("zoo")[1]).toBe("o");
+    expect(tokenizer.tokenizeToValues("zoologická")[2]).toBe("lo");
+    expect(tokenizer.tokenizeToValues("zoologická")[3]).toBe("gic");
+    expect(tokenizer.tokenizeToValues("kráska")[0]).toBe("krás");
+    expect(tokenizer.tokenizeToValues("žbrunda")[0]).toBe("žbrun");
+    expect(tokenizer.tokenizeToValues("mrkat")[0]).toBe("mr");
+    expect(tokenizer.tokenizeToValues("uličník")[1]).toBe("lič");
+    expect(tokenizer.tokenizeToValues("žbluňk")[0]).toBe("žbluňk");
+    expect(tokenizer.tokenizeToValues("kázeň")[1]).toBe("zeň");
+    expect(tokenizer.tokenizeToValues("cvrček")[1]).toBe("ček");
 
     // TODO:
-    // expect(tokenizer.tokenize("poučka")[0].toString()).toBe("po");
+    // expect(tokenizer.tokenize("poučka")[0]).toBe("po");
   });
 });

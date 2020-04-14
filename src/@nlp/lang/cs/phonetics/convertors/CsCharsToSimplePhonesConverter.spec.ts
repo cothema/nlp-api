@@ -13,6 +13,6 @@ describe("CsCharsToSimplePhonesConverter", () => {
           }),
         ])[0]
         .toString(),
-    ).toBe("j".toString());
+    ).toBe("j");
   });
 });

@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import { ComplexEndpoint } from "./endpoints/v1/ComplexEndpoint";
+import { IEndpoint } from "./shared/interfaces/IEndpoint";
 
 export class HttpServer {
   public app: Express;
@@ -9,6 +10,7 @@ export class HttpServer {
     listen: false,
   };
   private defaultPort = 3001;
+  private endpoints: IEndpoint[] = [];
 
   public init() {
     this.setup();
@@ -57,7 +59,7 @@ export class HttpServer {
     }
     this.initialized.endpoints = true;
 
-    new ComplexEndpoint(this.app);
+    this.endpoints.push(new ComplexEndpoint(this.app));
 
     return this;
   }

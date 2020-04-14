@@ -13,6 +13,7 @@ describe("LetterTokenizerEndpoint", () => {
       "I 💖 you!",
     );
 
+    expect(response.res.status).toEqual(200);
     expect(response.data[0].entity.string).toEqual("I");
     expect(response.data[1].entity.string).toEqual("y");
   });

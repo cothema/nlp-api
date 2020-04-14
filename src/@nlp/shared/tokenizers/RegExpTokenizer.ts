@@ -13,7 +13,12 @@ export class RegExpTokenizer<
   public tokenize(input: IStringable): Token<T>[] {
     let outputs: Token<T>[] = [];
     let match: RegExpExecArray;
-    while ((match = this.validator.regExp.exec(input.toString())) != null) {
+    do {
+      // Do-while is because of tslint error
+      match = this.validator.regExp.exec(input.toString());
+      if (!match) {
+        break;
+      }
       outputs.push(
         new Token<T>({
           index: match.index,
@@ -23,7 +28,7 @@ export class RegExpTokenizer<
           }) as T,
         }),
       );
-    }
+    } while (match);
 
     if (this.filter) {
       outputs = outputs.filter(this.filter);

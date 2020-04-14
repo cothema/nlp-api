@@ -52,8 +52,8 @@ export class TagsDetermination {
     }
 
     if (
-      parseInt(word.string) &&
-      parseInt(word.string).toString() === word.string
+      parseInt(word.string, 10) &&
+      parseInt(word.string, 10).toString() === word.string
     ) {
       word.tags.push({
         tagType: "verbal-types",

@@ -22,7 +22,7 @@ export class CsCharsToSimplePhonesConverter
         char.toString().toLowerCase(),
       );
       for (const newPhone of newPhones) {
-        phones.push(new Phone(newPhone));
+        phones.push(new Phone({ string: newPhone }));
       }
     }
     return phones;

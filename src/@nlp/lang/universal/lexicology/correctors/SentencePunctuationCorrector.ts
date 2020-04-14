@@ -7,12 +7,18 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
   Sentence
 > {
   public fixAll(): this {
-    this.fixLeftExtraWhitespace();
-    this.fixInvalidEndPunctuation();
+    // Fix extra space
+    this.fixLeftExtraWhitespace()
+      .fixRightExtraWhitespace()
+      .fixMultipleWhitespace()
+      .fixWhitespaceBeforeEndPunctuation();
+
+    // Fix punctuation
+    this.fixInvalidEndPunctuation().fixMissingEndPunctuation();
+
+    // Fix letters
     this.fixFirstLetterUpper();
-    this.fixRightExtraWhitespace();
-    this.fixMultipleWhitespace();
-    this.fixMissingEndPunctuation();
+
     return this;
   }
 
@@ -46,9 +52,19 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
+  public fixWhitespaceBeforeEndPunctuation(): this {
+    const matchRegExp = /[ ]+(?=[\.\?!…])/g;
+
+    return this.fixByRegExp(
+      matchRegExp,
+      "",
+      LexicologyErrorType.EXTRA_WHITESPACE,
+    );
+  }
+
   public fixInvalidEndPunctuation(): this {
     const matchRegExps = [
-      { regExp: /\s*\.{2,}$/g, replace: "…" },
+      { regExp: /\.{2,}$/g, replace: "…" },
       { regExp: /\?{2,}$/g, replace: "?" },
       { regExp: /!{2,}$/g, replace: "!" },
     ];
@@ -64,18 +80,18 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
       this.entity.toString().charAt(0).toUpperCase() +
       this.entity.toString().slice(1);
 
-    let tokenInfo: ModifiableToken;
+    let tokenInfo: ModifiableToken<Sentence>;
 
     if (this.provideTokenInfo) {
       tokenInfo = new ModifiableToken({
         originalLength: 1,
         originalIndex: 0,
-        newIndex: 0,
-        newLength: 1,
+        index: 0,
+        length: 1,
       });
     }
 
-    return this.fixInOriginalIfAllowed(
+    return this.fixInOriginal(
       str,
       LexicologyErrorType.FIRST_LETTER_NOT_UPPER,
       tokenInfo,
@@ -84,7 +100,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
 
   public fixMissingEndPunctuation(): this {
     let str = this.entity.toString();
-    let tokenInfo: ModifiableToken;
+    let tokenInfo: ModifiableToken<Sentence>;
 
     if (![".", "?", "!", "…"].includes(str.charAt(str.length - 1))) {
       str += ".";
@@ -92,13 +108,13 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
         tokenInfo = new ModifiableToken({
           originalLength: 0,
           originalIndex: str.length - 1,
-          newIndex: str.length - 1,
-          newLength: 1,
+          index: str.length - 1,
+          length: 1,
         });
       }
     }
 
-    return this.fixInOriginalIfAllowed(
+    return this.fixInOriginal(
       str,
       LexicologyErrorType.END_PUNCTUATION_MISSING,
       tokenInfo,

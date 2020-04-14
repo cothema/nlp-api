@@ -73,8 +73,8 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
          * Hotfix: My rule
          */
         if (
-          CsPairConsonantList.list.includes(phoneTokens[i].entity.toString()) &&
-          CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString())
+          this.isPairConsonant(phoneTokens[i]) &&
+          this.isVoicedConsonant(phoneTokens[i])
         ) {
           // [voiceless][voiced] => [voiced][voiced]
           phoneTokens[i].entity.string = dictionary.translateElement(
@@ -83,7 +83,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         }
         break;
       } else if (
-        !CsPairConsonantList.list.includes(phoneTokens[i].entity.toString()) ||
+        !this.isPairConsonant(phoneTokens[i]) ||
         ["p", "t", "ť", "ch", "f", "š"].includes(
           phoneTokens[i].entity.toString(),
         ) || // Hotfix (c,č): My rule
@@ -93,10 +93,8 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
       ) {
       } else if (
         // ["v", "z"].includes(phones[i].toString())
-        CsVoicedConsonantList.list.includes(phoneTokens[i].entity.toString()) &&
-        CsVoicelessConsonantList.list.includes(
-          phoneTokens[i + 1].entity.toString(),
-        )
+        this.isVoicedConsonant(phoneTokens[i]) &&
+        this.isVoicelessConsonant(phoneTokens[i + 1])
       ) {
         // [voiced][voiceless] => [voiceless][voiceless]
         phoneTokens[i].entity.string = dictionary.translateElement(
@@ -105,8 +103,8 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         i++; // skip next phone
       } else if (
         // ["f", "s"].includes(phones[i].toString())
-        CsVoicelessConsonantList.list.includes(phoneTokens[i].toString()) &&
-        CsVoicedConsonantList.list.includes(phoneTokens[i + 1].toString())
+        this.isVoicelessConsonant(phoneTokens[i]) &&
+        this.isVoicedConsonant(phoneTokens[i + 1])
       ) {
         // [voiceless][voiced] => [voiced][voiced]
         phoneTokens[i].entity.string = dictionary.translateElementReverse(
@@ -117,5 +115,17 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
     }
 
     return phoneTokens;
+  }
+
+  private isPairConsonant(phoneToken: Token<Phone>) {
+    return CsPairConsonantList.list.includes(phoneToken.entity.toString());
+  }
+
+  private isVoicedConsonant(phoneToken: Token<Phone>) {
+    return CsVoicedConsonantList.list.includes(phoneToken.entity.toString());
+  }
+
+  private isVoicelessConsonant(phoneToken: Token<Phone>) {
+    return CsVoicelessConsonantList.list.includes(phoneToken.entity.toString());
   }
 }

@@ -1,16 +1,15 @@
-import { IStringableEditableToken } from "../../../../shared/interfaces/IStringableEditableToken";
 import { ModifiableToken } from "../../../../shared/model/ModifiableToken";
+import { TokenizableStringableEntity } from "../../../../shared/model/TokenizableStringableEntity";
 import { LexicologyErrorType } from "../enums/LexicologyErrorType";
 import { LexicologyError } from "../model/LexicologyError";
 
 export abstract class AbstractLexicologyCorrector<
-  T extends IStringableEditableToken = IStringableEditableToken
+  T extends TokenizableStringableEntity = TokenizableStringableEntity
 > {
   public errors: LexicologyError[] = [];
   public provideTokenInfo = true;
-  public fixInOriginalString = true;
 
-  public constructor(protected entity: T) {}
+  public constructor(public entity: T) {}
 
   public abstract fixAll(): this;
 
@@ -41,46 +40,43 @@ export abstract class AbstractLexicologyCorrector<
       .toString()
       .replace(matchRegExp, replaceWith);
 
-    let match;
-    while ((match = matchRegExp.exec(this.entity.toString())) != null) {
-      const tokenInfo = new ModifiableToken({
+    let match: RegExpExecArray;
+    do {
+      match = matchRegExp.exec(this.entity.toString());
+      if (!match) {
+        break;
+      }
+
+      const tokenInfo = new ModifiableToken<T>({
         originalLength: match[0].length,
         originalIndex: match.index,
-        newLength: replaceWith.length,
-        newIndex: match.index,
+        length: replaceWith.length,
+        index: match.index,
       });
 
-      this.fixInOriginalIfAllowed(str, lexicologyError, tokenInfo);
-    }
+      this.fixInOriginal(str, lexicologyError, tokenInfo);
+    } while (match);
 
     return this;
   }
 
-  protected fixInOriginalIfAllowed(
+  protected fixInOriginal(
     newString: string,
     error: LexicologyErrorType,
-    tokenInfo?: ModifiableToken,
+    tokenInfo?: ModifiableToken<T>,
   ): this {
     if (this.entity.toString() !== newString) {
       // There were some corrections.
+      this.entity.string = newString;
 
       const lexicologyError = new LexicologyError({
         type: error,
+        fixed: true,
       });
-
       if (tokenInfo && this.provideTokenInfo) {
         lexicologyError.tokenInfo = tokenInfo;
       }
-
       this.errors.push(lexicologyError);
-
-      if (!this.fixInOriginalString) {
-        // We will return new sentence
-        // out.tokenInfo will have the same pointer as original!
-        const out = this.newEntityFactory(original);
-        out.string = newString;
-        return out;
-      }
     }
 
     // No changes or this.fixInOriginalString is true

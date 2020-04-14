@@ -2,7 +2,7 @@ import { Token } from "./Token";
 import { TokenizableStringableEntity } from "./TokenizableStringableEntity";
 
 export class ModifiableToken<
-  T extends TokenizableStringableEntity
+  T extends TokenizableStringableEntity = TokenizableStringableEntity
 > extends Token<T> {
   public originalIndex?: number;
   public originalLength?: number;

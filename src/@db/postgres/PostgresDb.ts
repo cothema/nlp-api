@@ -8,11 +8,9 @@ export class PostgresDb {
       return PostgresDb.pool;
     }
 
-    const Pool = require("pg").Pool;
-
     return (PostgresDb.pool = new Pool({
       host: process.env.NLP20_POSTGRESQL_1_HOST,
-      port: process.env.NLP20_POSTGRESQL_1_PORT,
+      port: parseInt(process.env.NLP20_POSTGRESQL_1_PORT, 10),
       user: process.env.NLP20_POSTGRESQL_1_USER,
       password: process.env.NLP20_POSTGRESQL_1_PSW,
       database: process.env.NLP20_POSTGRESQL_1_DB,

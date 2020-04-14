@@ -16,8 +16,6 @@ export class EndpointTestHelper {
       .set("Accept", "application/json")
       .send({ str: inputString });
 
-    expect(response.status).toEqual(200);
-
     return {
       data: JSON.parse(response.text) as T,
       res: response,

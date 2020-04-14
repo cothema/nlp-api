@@ -3,19 +3,24 @@ import { SentencePunctuationCorrector } from "./SentencePunctuationCorrector";
 
 describe("SentencePunctuationCorrector", () => {
   test("Fix", () => {
-    const corrector = new SentencePunctuationCorrector();
+    const correctorFactory = (sentence: string) => {
+      return new SentencePunctuationCorrector(
+        new Sentence({
+          string: sentence,
+        }),
+      );
+    };
 
-    expect(
-      corrector.fixAll(new Sentence({ string: "This is me .. " })).toString(),
-    ).toBe("This is me…");
-    expect(
-      corrector.fixAll(new Sentence({ string: " What's wrong??" })).toString(),
-    ).toBe("What's wrong?");
-    expect(
-      corrector.fixAll(new Sentence({ string: "thank you" })).toString(),
-    ).toBe("Thank you.");
-    expect(
-      corrector.fixAll(new Sentence({ string: "štěstí" })).toString(),
-    ).toBe("Štěstí.");
+    const fixAll = (sentence: string) => {
+      return correctorFactory(sentence).fixAll().entity.toString();
+    };
+
+    expect(fixAll("This is me .. ")).toBe("This is me…");
+
+    expect(fixAll(" What's wrong??")).toBe("What's wrong?");
+
+    expect(fixAll("thank you")).toBe("Thank you.");
+
+    expect(fixAll("štěstí")).toBe("Štěstí.");
   });
 });

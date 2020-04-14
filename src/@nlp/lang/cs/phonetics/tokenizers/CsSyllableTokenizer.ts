@@ -10,7 +10,7 @@ import { CsSimplePhoneTokenizer } from "./CsSimplePhoneTokenizer";
 
 export class CsSyllableTokenizer extends StringableTokenizer
   implements IStringableTokenizer<Syllable> {
-  private newSyllableBuffer: string;
+  private newSyllableBuffer: Token<Phone>[];
   private syllablesBuffer: Token<Syllable>[];
   private vowelCounter: number;
   private consonantCounter: number;
@@ -21,7 +21,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
     const phoneTokens = new CsSimplePhoneTokenizer().tokenize(input);
 
     for (let i = 0; phoneTokens[i]; i++) {
-      this.newSyllableBuffer += phoneTokens[i];
+      this.newSyllableBuffer.push(phoneTokens[i]);
 
       if (!phoneTokens[i + 1]) {
         // Solve last phone
@@ -84,7 +84,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
   }
 
   private clearBuffer() {
-    this.newSyllableBuffer = "";
+    this.newSyllableBuffer = [];
     this.syllablesBuffer = [];
     this.vowelCounter = 0;
     this.consonantCounter = 0;
@@ -99,10 +99,16 @@ export class CsSyllableTokenizer extends StringableTokenizer
   private pushNewSyllable() {
     if (this.newSyllableBuffer.length) {
       this.syllablesBuffer.push(
-        new Syllable({ string: this.newSyllableBuffer }),
+        new Token({
+          entity: new Syllable({
+            string: this.newSyllableBuffer
+              .map((x) => x.entity.toString())
+              .join(""),
+          }),
+        }),
       );
     }
-    this.newSyllableBuffer = "";
+    this.newSyllableBuffer = [];
     this.vowelCounter = 0;
     this.consonantCounter = 0;
   }

@@ -13,6 +13,7 @@ describe("CharTokenizerEndpoint", () => {
       "Loong text",
     );
 
+    expect(response.res.status).toEqual(200);
     expect(response.data[1].entity.string).toEqual("o");
     expect(response.data[6].entity.string).toEqual("t");
   });
