@@ -32,10 +32,22 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
 
     for (let i = 0; letterTokens[i]; i++) {
       const letterStr = letterTokens[i].entity.toString().toLowerCase();
+      const nextLetterStr = letterTokens[i + 1]
+        ? letterTokens[i + 1].entity.toString().toLowerCase()
+        : undefined;
 
+      let length = 1;
       const appendPhones: string[] = [];
       if (letterStr === "ě") {
         appendPhones.push("j", "e");
+      } else if (nextLetterStr && letterStr === "s" && nextLetterStr === "h") {
+        length = 2;
+        appendPhones.push("š");
+        i++; // skip next letter
+      } else if (nextLetterStr && letterStr === "t" && nextLetterStr === "h") {
+        length = 2;
+        appendPhones.push("t");
+        i++; // skip next letter
       } else {
         appendPhones.push(letterStr);
       }
@@ -44,7 +56,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         phoneTokens.push(
           new Token({
             index: letterTokens[i].index,
-            length: letterTokens[i].length,
+            length,
             entity: new Phone({ string: appendPhone }),
           }),
         );
@@ -67,6 +79,15 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
     const dictionary = new CsPairConsonantsDictionary();
 
     for (let i = 0; phoneTokens[i]; i++) {
+      switch (phoneTokens[i].entity.string) {
+        case "y":
+          phoneTokens[i].entity.string = "i";
+          continue;
+        case "ý":
+          phoneTokens[i].entity.string = "í";
+          continue;
+      }
+
       if (phoneTokens[i] && !phoneTokens[i + 1]) {
         // Last phone
         /**

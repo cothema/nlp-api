@@ -21,7 +21,13 @@ export class CsSyllableTokenizer extends StringableTokenizer
     const phoneTokens = new CsSimplePhoneTokenizer().tokenize(input);
 
     for (let i = 0; phoneTokens[i]; i++) {
-      this.newSyllableBuffer.push(phoneTokens[i]);
+      if (phoneTokens[i].entity.toString() === " ") {
+        // this.pushNewSyllable();
+        // TODO: prepositions vs new words
+        continue;
+      } else {
+        this.newSyllableBuffer.push(phoneTokens[i]);
+      }
 
       if (!phoneTokens[i + 1]) {
         // Solve last phone
@@ -54,6 +60,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
       } else {
         // Is consonant
         if (
+          (this.vowelCounter && phoneTokens[i + 2]) || // TODO: regexp: if no vowel till the end, no cut
           (phoneTokens[i + 1] &&
             phoneTokens[i + 2] &&
             this.vowelCounter &&

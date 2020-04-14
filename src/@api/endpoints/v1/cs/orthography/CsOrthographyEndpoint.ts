@@ -1,10 +1,9 @@
 import { Express } from "express";
 import { IEndpoint } from "../../../../shared/interfaces/IEndpoint";
 import { AbstractEndpoint } from "../../AbstractEndpoint";
-import { CharTokenizerEndpoint } from "./tokenizer/CharTokenizerEndpoint";
-import { LetterTokenizerEndpoint } from "./tokenizer/LetterTokenizerEndpoint";
+import { CsLetterTokenizerEndpoint } from "./tokenizer/CsLetterTokenizerEndpoint";
 
-export class UniOrthographyEndpoint extends AbstractEndpoint
+export class CsOrthographyEndpoint extends AbstractEndpoint
   implements IEndpoint {
   public constructor(
     app: Express,
@@ -15,9 +14,6 @@ export class UniOrthographyEndpoint extends AbstractEndpoint
   }
 
   protected appendSubEndpoints(): IEndpoint[] {
-    return [
-      new CharTokenizerEndpoint(this.app, this.getPath()),
-      new LetterTokenizerEndpoint(this.app, this.getPath()),
-    ];
+    return [new CsLetterTokenizerEndpoint(this.app, this.getPath())];
   }
 }
