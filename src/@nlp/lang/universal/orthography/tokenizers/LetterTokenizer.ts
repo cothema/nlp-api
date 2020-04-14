@@ -1,0 +1,62 @@
+import { IStringable } from "../../../../shared/interfaces/IStringable";
+import { IStringableTokenizer } from "../../../../shared/interfaces/IStringableTokenizer";
+import { Token } from "../../../../shared/model/Token";
+import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
+import { DigraphHelper } from "../helpers/DigraphHelper";
+import { Digraph } from "../model/Digraph";
+import { Letter } from "../model/Letter";
+import { LetterValidator } from "../validators/LetterValidator";
+import { CharTokenizer } from "./CharTokenizer";
+
+/**
+ * Includes only letters from alphabet (no spaces, special chars, punctuation etc.)
+ */
+export class LetterTokenizer extends StringableTokenizer<Letter>
+  implements IStringableTokenizer<Letter> {
+  public validator = new LetterValidator();
+  public digraphs: Digraph[] = [];
+
+  public tokenize(input: IStringable): Token<Letter | Digraph>[] {
+    const letterTokens: Token<Letter>[] = [];
+    const charTokens = new CharTokenizer().tokenize(input);
+
+    for (let i = 0, tokenIndex = 0; charTokens[i]; i++, tokenIndex++) {
+      // Check each char
+
+      if (!this.validator.validate(charTokens[i].entity)) {
+        // Ignore invalid chars (spaces, special chars, punctuation etc.)
+        continue;
+      }
+
+      const digraph = DigraphHelper.identifyDigraph(
+        this.digraphs,
+        charTokens.map((x) => x.entity),
+        i,
+      );
+
+      if (digraph) {
+        // It is digraph
+        i += digraph.toString().length - 1; // Skip digraph letters
+        letterTokens.push(
+          new Token<Letter>({
+            index: tokenIndex,
+            length: digraph.toString().length,
+            entity: digraph,
+          }),
+        );
+        tokenIndex += digraph.toString().length - 1;
+      } else {
+        // Add single letter (already validated)
+        letterTokens.push(
+          new Token<Letter>({
+            index: tokenIndex,
+            length: 1,
+            entity: new Letter({ string: charTokens[i].entity.toString() }),
+          }),
+        );
+      }
+    }
+
+    return letterTokens;
+  }
+}
