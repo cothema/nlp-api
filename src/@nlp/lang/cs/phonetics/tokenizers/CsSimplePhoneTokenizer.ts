@@ -28,25 +28,32 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
     // TODO: modifiable token
 
     const letterTokens = this.letterTokenizer.tokenize(input);
-    const phoneTokens = [];
+    const phoneTokens: Token<Phone>[] = [];
 
     for (let i = 0, charI = 0; letterTokens[i]; i++, charI++) {
       const letterStr = letterTokens[i].fragment.toString().toLowerCase();
-      const nextLetterStr = letterTokens[i + 1]
-        ? letterTokens[i + 1].fragment.toString().toLowerCase()
-        : undefined;
+      const nextLetterStr = letterTokens[i + 1]?.fragment.toString().toLowerCase();
+      const prevLetterStr = letterTokens[i - 1]?.fragment.toString().toLowerCase();
 
       if (letterStr === "ě") {
-        phoneTokens.push(
-          new Token({
-            origIndex: i,
-            origLength: 1,
-            fragment: new Phone({
-              string: "j",
+        if (prevLetterStr === "d") {
+          phoneTokens[phoneTokens.length - 1].fragment.string = "ď";
+        } else if (prevLetterStr === "t") {
+          phoneTokens[phoneTokens.length - 1].fragment.string = "ť";
+        } else if (prevLetterStr === "n") {
+          phoneTokens[phoneTokens.length - 1].fragment.string = "ň";
+        } else {
+          phoneTokens.push(
+            new Token({
+              origIndex: i,
+              origLength: 1,
+              fragment: new Phone({
+                string: "j",
+              }),
+              orig: letterTokens,
             }),
-            orig: letterTokens,
-          }),
-        );
+          );
+        }
         phoneTokens.push(
           new Token({
             origIndex: i,

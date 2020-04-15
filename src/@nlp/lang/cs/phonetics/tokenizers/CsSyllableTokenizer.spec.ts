@@ -34,6 +34,7 @@ describe("CsSyllableTokenizer", () => {
     expect(tokenizer.tokenizeToOriginalValues("methyl")[1]).toBe("thyl");
     expect(tokenizer.tokenizeToOriginalValues("chobot")[1]).toBe("bot");
     expect(tokenizer.tokenizeToValues("methylprednisolon")[2]).toBe("pred");
+    expect(tokenizer.tokenizeToValues("Zbyněk")[1]).toBe("ňek");
 
     // expect(tokenizer.tokenizeToValues("žbluňkls")[2]).toBe("pred");
     // expect(tokenizer.tokenizeToValues("v něm")[0]).toBe("vňem");
