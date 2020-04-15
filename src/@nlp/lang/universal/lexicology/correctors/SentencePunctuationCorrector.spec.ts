@@ -12,7 +12,7 @@ describe("SentencePunctuationCorrector", () => {
     };
 
     const fixAll = (sentence: string) => {
-      return correctorFactory(sentence).fixAll().entity.toString();
+      return correctorFactory(sentence).fixAll().getEntity().toString();
     };
 
     expect(fixAll("This is me .. ")).toBe("This is me…");

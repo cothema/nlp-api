@@ -14,6 +14,6 @@ describe("ComplexEndpoint", () => {
     );
 
     expect(response.res.status).toEqual(200);
-    expect(response.data[0].entity.string).toEqual("slo");
+    expect(response.data.data[0].fragment.string).toEqual("slo");
   });
 });

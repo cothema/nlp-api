@@ -22,16 +22,16 @@ export class ModifiableToken<
    */
   public modify(index: number, newStr: string): this {
     if (!this.originalEntity) {
-      this.originalEntity = this.entity.clone();
-      this.originalIndex = this.index;
-      this.originalLength = this.length;
+      this.originalEntity = this.fragment.clone();
+      this.originalIndex = this.origIndex;
+      this.originalLength = this.origLength;
     }
 
-    this.index = index;
-    this.length = newStr.length;
+    this.origIndex = index;
+    this.origLength = newStr.length;
 
-    this.entity.string = this.strSplice(
-      this.entity.toString(),
+    this.fragment.string = this.strSplice(
+      this.fragment.toString(),
       index,
       1,
       newStr,
@@ -42,12 +42,12 @@ export class ModifiableToken<
   }
 
   private shiftExistingTokens(index: number, newStrLength: number) {
-    const existingTokens = this.entity.tokenInfoList;
+    const existingTokens = this.fragment.tokenInfoList;
     for (const existingToken of existingTokens) {
-      if (existingToken.index === index) {
-        existingToken.length += newStrLength - 1;
-      } else if (existingToken.index > index) {
-        existingToken.index += newStrLength - 1;
+      if (existingToken.origIndex === index) {
+        existingToken.origLength += newStrLength - 1;
+      } else if (existingToken.origIndex > index) {
+        existingToken.origIndex += newStrLength - 1;
       }
     }
   }

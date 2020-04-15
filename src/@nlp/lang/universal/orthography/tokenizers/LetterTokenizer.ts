@@ -23,14 +23,14 @@ export class LetterTokenizer extends StringableTokenizer<Letter>
     for (let i = 0, tokenIndex = 0; charTokens[i]; i++, tokenIndex++) {
       // Check each char
 
-      if (!this.validator.validate(charTokens[i].entity)) {
+      if (!this.validator.validate(charTokens[i].fragment)) {
         // Ignore invalid chars (spaces, special chars, punctuation etc.)
         continue;
       }
 
       const digraph = DigraphHelper.identifyDigraph(
         this.digraphs,
-        charTokens.map((x) => x.entity),
+        charTokens.map((x) => x.fragment),
         i,
       );
 
@@ -39,9 +39,9 @@ export class LetterTokenizer extends StringableTokenizer<Letter>
         i += digraph.toString().length - 1; // Skip digraph letters
         letterTokens.push(
           new Token<Letter>({
-            index: tokenIndex,
-            length: digraph.toString().length,
-            entity: digraph,
+            origIndex: tokenIndex,
+            origLength: digraph.toString().length,
+            fragment: digraph,
           }),
         );
         tokenIndex += digraph.toString().length - 1;
@@ -49,9 +49,9 @@ export class LetterTokenizer extends StringableTokenizer<Letter>
         // Add single letter (already validated)
         letterTokens.push(
           new Token<Letter>({
-            index: tokenIndex,
-            length: 1,
-            entity: new Letter({ string: charTokens[i].entity.toString() }),
+            origIndex: tokenIndex,
+            origLength: 1,
+            fragment: new Letter({ string: charTokens[i].fragment.toString() }),
           }),
         );
       }

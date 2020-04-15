@@ -21,9 +21,9 @@ export class RegExpTokenizer<
       }
       outputs.push(
         new Token<T>({
-          index: match.index,
-          length: match[0].length,
-          entity: this.entityFactory({
+          origIndex: match.index,
+          origLength: match[0].length,
+          fragment: this.entityFactory({
             string: match[0],
           }) as T,
         }),

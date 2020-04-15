@@ -7,14 +7,16 @@ export class EndpointTestHelper {
     endpointPath: string,
     inputString: string,
   ): Promise<{
-    data: T;
+    data: {
+      data?: T;
+    };
     res: Response;
   }> {
     const response = await supertest(app)
       .post(endpointPath)
       .type("application/json")
       .set("Accept", "application/json")
-      .send({ str: inputString });
+      .send({ string: inputString });
 
     return {
       data: JSON.parse(response.text) as T,

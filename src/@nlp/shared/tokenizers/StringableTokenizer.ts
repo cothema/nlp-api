@@ -17,10 +17,19 @@ export abstract class StringableTokenizer<
   public abstract tokenize(input: IStringable): Token<T>[];
 
   public tokenizeToEntities(input: IStringable): T[] {
-    return this.tokenize(input).map((x) => x.entity);
+    return this.tokenize(input).map((x) => x.fragment);
+  }
+
+  public tokenizeToOriginalValues(input: IStringable): string[] {
+    return this.tokenize(input).map((x) =>
+      x.orig
+        .slice(x.origIndex, x.origIndex + x.origLength)
+        .map((orig) => orig.toString())
+        .join(""),
+    );
   }
 
   public tokenizeToValues(input: IStringable): string[] {
-    return this.tokenize(input).map((x) => x.entity.toString());
+    return this.tokenize(input).map((x) => x.fragment.toString());
   }
 }

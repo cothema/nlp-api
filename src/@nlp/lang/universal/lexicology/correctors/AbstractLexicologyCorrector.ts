@@ -50,8 +50,8 @@ export abstract class AbstractLexicologyCorrector<
       const tokenInfo = new ModifiableToken<T>({
         originalLength: match[0].length,
         originalIndex: match.index,
-        length: replaceWith.length,
-        index: match.index,
+        origLength: replaceWith.length,
+        origIndex: match.index,
       });
 
       this.fixInOriginal(str, lexicologyError, tokenInfo);

@@ -14,7 +14,7 @@ describe("CharTokenizerEndpoint", () => {
     );
 
     expect(response.res.status).toEqual(200);
-    expect(response.data[1].entity.string).toEqual("o");
-    expect(response.data[6].entity.string).toEqual("t");
+    expect(response.data.data[1].fragment.string).toEqual("o");
+    expect(response.data.data[6].fragment.string).toEqual("t");
   });
 });

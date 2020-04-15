@@ -21,9 +21,9 @@ export class TokenizableStringableEntity extends StringableEntity
     for (const tokenInfoListElement of this.tokenInfoList) {
       clone.tokenInfoList.push(
         new ModifiableToken({
-          index: tokenInfoListElement.index,
-          length: tokenInfoListElement.length,
-          entity: clone,
+          origIndex: tokenInfoListElement.origIndex,
+          origLength: tokenInfoListElement.origLength,
+          fragment: clone,
         }),
       );
     }

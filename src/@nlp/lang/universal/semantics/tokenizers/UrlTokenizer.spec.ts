@@ -23,7 +23,7 @@ describe("UrlTokenizer", () => {
         "My email is: https://example.com/ or https://example.cz/",
       )[1],
     ).toBe("https://example.cz/");
-    expect(tokenizer.tokenize("Email: example.com")[0].index).toBe(7);
-    expect(tokenizer.tokenize("Email: example.com")[0].length).toBe(11);
+    expect(tokenizer.tokenize("Email: example.com")[0].origIndex).toBe(7);
+    expect(tokenizer.tokenize("Email: example.com")[0].origLength).toBe(11);
   });
 });

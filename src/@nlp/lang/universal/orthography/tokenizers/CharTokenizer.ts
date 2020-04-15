@@ -13,9 +13,9 @@ export class CharTokenizer extends RegExpTokenizer<Char>
       // char = length = 1 (including utf-8 special chars)
       out.push(
         new Token({
-          index: i,
-          length: 1,
-          entity: new Char({ string: chars[i] }),
+          origIndex: i,
+          origLength: 1,
+          fragment: new Char({ string: chars[i] }),
         }),
       );
     }

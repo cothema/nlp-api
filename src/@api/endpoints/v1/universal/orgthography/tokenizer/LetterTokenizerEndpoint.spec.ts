@@ -14,7 +14,7 @@ describe("LetterTokenizerEndpoint", () => {
     );
 
     expect(response.res.status).toEqual(200);
-    expect(response.data[0].entity.string).toEqual("I");
-    expect(response.data[1].entity.string).toEqual("y");
+    expect(response.data.data[0].fragment.string).toEqual("I");
+    expect(response.data.data[1].fragment.string).toEqual("y");
   });
 });

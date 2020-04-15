@@ -23,7 +23,9 @@ describe("EmailAddressTokenizer", () => {
         "My email is: email@example.com or email2@example.cz",
       )[1],
     ).toBe("email2@example.cz");
-    expect(tokenizer.tokenize("Email: email@example.com")[0].index).toBe(7);
-    expect(tokenizer.tokenize("Email: email@example.com")[0].length).toBe(17);
+    expect(tokenizer.tokenize("Email: email@example.com")[0].origIndex).toBe(7);
+    expect(tokenizer.tokenize("Email: email@example.com")[0].origLength).toBe(
+      17,
+    );
   });
 });

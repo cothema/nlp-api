@@ -86,8 +86,8 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
       tokenInfo = new ModifiableToken({
         originalLength: 1,
         originalIndex: 0,
-        index: 0,
-        length: 1,
+        origIndex: 0,
+        origLength: 1,
       });
     }
 
@@ -108,8 +108,8 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
         tokenInfo = new ModifiableToken({
           originalLength: 0,
           originalIndex: str.length - 1,
-          index: str.length - 1,
-          length: 1,
+          origIndex: str.length - 1,
+          origLength: 1,
         });
       }
     }
