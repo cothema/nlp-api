@@ -43,6 +43,8 @@ describe("CsSimplePhoneTokenizer", () => {
     expect(tokenizer.tokenizeToValues("shrapnel")[0]).toBe("š");
 
     expect(tokenizer.tokenizeToOriginalValues("methyl")[2]).toBe("th");
+    expect(tokenizer.tokenizeToValues(" ").length).toBe(0);
+    expect(tokenizer.tokenize("v lese")[1].origIndex).toBe(2);
 
     // TODO:
     // expect(tokenizer.tokenize("poučka")[2]).toBe("u");

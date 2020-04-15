@@ -35,7 +35,17 @@ describe("CsSyllableTokenizer", () => {
     expect(tokenizer.tokenizeToOriginalValues("chobot")[1]).toBe("bot");
     expect(tokenizer.tokenizeToValues("methylprednisolon")[2]).toBe("pred");
     expect(tokenizer.tokenizeToValues("Zbyněk")[1]).toBe("ňek");
+    expect(tokenizer.tokenizeToValues("oves")[1]).toBe("ves");
 
+    expect(tokenizer.tokenizeToValues("v lese")[0]).toBe("vle");
+    expect(tokenizer.tokenizeToOriginalValues("v lese")[0]).toBe("v le");
+    expect(tokenizer.tokenizeToOriginalValues("v lese")[1]).toBe("se");
+    expect(tokenizer.tokenizeToOriginalValues("na poli")[0]).toBe("na");
+    expect(tokenizer.tokenizeToOriginalValues("na poli")[1]).toBe("po");
+
+    // TODO:
+    // expect(tokenizer.tokenizeToValues("ověřit")[1]).toBe("vje");
+    // expect(tokenizer.tokenizeToValues("výstavba")[1]).toBe("stav");
     // expect(tokenizer.tokenizeToValues("žbluňkls")[2]).toBe("pred");
     // expect(tokenizer.tokenizeToValues("v něm")[0]).toBe("vňem");
     // expect(tokenizer.tokenizeToValues("trpaslíček")[1]).toBe("pas");
@@ -43,8 +53,6 @@ describe("CsSyllableTokenizer", () => {
     // expect(tokenizer.tokenizeToValues("dvě")[0]).toBe("dvje");
     // expect(tokenizer.tokenizeToValues("dvě slova").length).toBe(3);
     // expect(tokenizer.tokenizeToValues("dvě slova")[1]).toBe("slo");
-
-    // TODO:
     // expect(tokenizer.tokenize("poučka")[0]).toBe("po");
   });
 });

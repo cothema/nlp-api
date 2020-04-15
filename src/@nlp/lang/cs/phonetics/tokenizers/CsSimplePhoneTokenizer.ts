@@ -30,7 +30,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
     const letterTokens = this.letterTokenizer.tokenize(input);
     const phoneTokens: Token<Phone>[] = [];
 
-    for (let i = 0, charI = 0; letterTokens[i]; i++, charI++) {
+    for (let i = 0; letterTokens[i]; i++) {
       const letterStr = letterTokens[i].fragment.toString().toLowerCase();
       const nextLetterStr = letterTokens[i + 1]?.fragment.toString().toLowerCase();
       const prevLetterStr = letterTokens[i - 1]?.fragment.toString().toLowerCase();
@@ -45,7 +45,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         } else {
           phoneTokens.push(
             new Token({
-              origIndex: i,
+              origIndex: letterTokens[i].origIndex,
               origLength: 1,
               fragment: new Phone({
                 string: "j",
@@ -56,7 +56,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         }
         phoneTokens.push(
           new Token({
-            origIndex: i,
+            origIndex: letterTokens[i].origIndex,
             origLength: 1,
             fragment: new Phone({
               string: "e",
@@ -68,7 +68,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         const length = 2;
         phoneTokens.push(
           new Token({
-            origIndex: i,
+            origIndex: letterTokens[i].origIndex,
             origLength: length,
             fragment: new Phone({
               string: "š",
@@ -76,13 +76,12 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
             orig: letterTokens,
           }),
         );
-        charI += length - 1;
         i += length - 1; // skip next letter
       } else if (nextLetterStr && letterStr === "t" && nextLetterStr === "h") {
         const length = 2;
         phoneTokens.push(
           new Token({
-            origIndex: i,
+            origIndex: letterTokens[i].origIndex,
             origLength: length,
             fragment: new Phone({
               string: "t",
@@ -90,12 +89,13 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
             orig: letterTokens,
           }),
         );
-        charI += length - 1;
         i += length - 1; // skip next letter
+      } else if (letterStr === " ") {
+        // do nothing
       } else {
         phoneTokens.push(
           new Token({
-            origIndex: charI,
+            origIndex: letterTokens[i].origIndex,
             origLength: Array.from(letterStr).length,
             fragment: new Phone({
               string: letterStr,
@@ -103,7 +103,6 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
             orig: letterTokens,
           }),
         );
-        charI += Array.from(letterStr).length - 1;
       }
     }
 

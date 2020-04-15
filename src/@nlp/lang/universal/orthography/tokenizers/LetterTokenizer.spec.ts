@@ -9,5 +9,6 @@ describe("LetterTokenizer", () => {
     expect(tokenizer.tokenizeToValues("Chronology")[1]).toBe("h");
     expect(tokenizer.tokenizeToValues("That's it!")[4]).toBe("s");
     expect(tokenizer.tokenizeToValues("I 💖 you!")[2]).toBe("o");
+    expect(tokenizer.tokenize("I 💖 you!")[1].origIndex).toBe(4);
   });
 });

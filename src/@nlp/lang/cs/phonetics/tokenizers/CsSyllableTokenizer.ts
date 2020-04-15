@@ -23,13 +23,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
     const phoneTokens = new CsSimplePhoneTokenizer().tokenize(input);
 
     for (let i = 0; phoneTokens[i]; i++) {
-      if (phoneTokens[i].fragment.toString() === " ") {
-        // this.pushNewSyllable();
-        // TODO: prepositions vs new words
-        continue;
-      } else {
-        this.newSyllableBuffer.push(phoneTokens[i]);
-      }
+      this.newSyllableBuffer.push(phoneTokens[i]);
 
       if (!phoneTokens[i + 1]) {
         // Solve last phone
@@ -105,6 +99,18 @@ export class CsSyllableTokenizer extends StringableTokenizer
       .includes(phoneToken.fragment.toString());
   }
 
+  /**
+   * Check origin length as diff between end and start (it solves spaces and
+   * extra chars between).
+   */
+  private solveOrigLength(
+    entityArray: Token[],
+  ): number {
+    const firstEntity = entityArray[0];
+    const lastEntity = entityArray[entityArray.length - 1];
+    return lastEntity.origIndex + lastEntity.origLength - firstEntity.origIndex;
+  }
+
   private pushNewSyllable() {
     if (this.newSyllableBuffer.length) {
       this.syllablesBuffer.push(
@@ -115,9 +121,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
               .join(""),
           }),
           origIndex: this.newSyllableBuffer[0].origIndex,
-          origLength: this.newSyllableBuffer
-            .map((x) => x.origLength)
-            .reduce((a, b) => a + b),
+          origLength: this.solveOrigLength(this.newSyllableBuffer),
           orig: this.inputStrAsArray,
         }),
       );
