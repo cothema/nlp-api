@@ -2,7 +2,7 @@ import { Char } from "../model/Char";
 import { Digraph } from "../model/Digraph";
 
 export class DigraphHelper {
-  public static identifyDigraph(
+  static identifyDigraph(
     digraphs: Digraph[],
     chars: Char[],
     i: number,
@@ -24,7 +24,7 @@ export class DigraphHelper {
     return undefined;
   }
 
-  public static compareStringableWithDigraph(
+  static compareStringableWithDigraph(
     chars: Char[],
     i: number,
     digraph: Digraph,

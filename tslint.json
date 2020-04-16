@@ -8,12 +8,13 @@
   "jsRules": {
   },
   "rules": {
-    "max-line-length": null,
+    "max-line-length": [
+      true,
+      140
+    ],
     "member-access": [
       true,
-      "check-accessor",
-      "check-constructor",
-      "check-parameter-property"
+      "no-public"
     ],
     "no-console": false,
     "no-empty": false,

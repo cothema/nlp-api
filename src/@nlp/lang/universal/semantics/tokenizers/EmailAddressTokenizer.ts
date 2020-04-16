@@ -5,6 +5,6 @@ import { EmailAddressValidator } from "../validators/EmailAddressValidator";
 
 export class EmailAddressTokenizer extends RegExpTokenizer<EmailAddress>
   implements IStringableTokenizer<EmailAddress> {
-  public validator = new EmailAddressValidator();
-  public entityFactory = (a) => new EmailAddress(a);
+  validator = new EmailAddressValidator();
+  entityFactory = (a) => new EmailAddress(a);
 }

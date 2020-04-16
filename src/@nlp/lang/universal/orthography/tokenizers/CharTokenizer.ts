@@ -6,7 +6,7 @@ import { Char } from "../model/Char";
 
 export class CharTokenizer extends RegExpTokenizer<Char>
   implements IStringableTokenizer<Char> {
-  public tokenize(input: IStringable): Token<Char>[] {
+  tokenize(input: IStringable): Token<Char>[] {
     const out = [];
     const chars = Array.from(input.toString());
     for (let i = 0; chars[i]; i++) {

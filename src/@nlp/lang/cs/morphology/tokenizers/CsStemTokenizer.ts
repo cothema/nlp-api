@@ -5,7 +5,7 @@ import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTok
 import { WordStem } from "../../../universal/orthography/model/WordStem";
 
 export class CsStemTokenizer extends StringableTokenizer<WordStem> {
-  public tokenize(input: IStringable): Token<WordStem>[] {
+  tokenize(input: IStringable): Token<WordStem>[] {
     const out: Token<WordStem>[] = [];
 
     const stemmer = new StemmerCs();

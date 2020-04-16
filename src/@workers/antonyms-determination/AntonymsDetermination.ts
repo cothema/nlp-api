@@ -4,11 +4,11 @@ import { PostgresDb } from "../../@db/postgres/PostgresDb";
 export class AntonymsDetermination {
   private db: Pool;
 
-  public constructor() {
+  constructor() {
     this.db = PostgresDb.getPool();
   }
 
-  public async browseAndDetermine() {
+  async browseAndDetermine() {
     const lang = "cs";
 
     try {

@@ -3,9 +3,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 
 export class PhoneNumber extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "phone-number";
+  type = "phone-number";
 
-  public constructor(init?: Partial<PhoneNumber>) {
+  constructor(init?: Partial<PhoneNumber>) {
     super();
     Object.assign(this, init);
   }

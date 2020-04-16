@@ -6,9 +6,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  */
 export class WordStem extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "word-stem";
+  type = "word-stem";
 
-  public constructor(init?: Partial<WordStem>) {
+  constructor(init?: Partial<WordStem>) {
     super();
     Object.assign(this, init);
   }

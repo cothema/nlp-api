@@ -1,5 +1,5 @@
 export class LetterList {
-  public static list: string[] = [
+  static list: string[] = [
     "a",
     "b",
     "c",

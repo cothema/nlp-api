@@ -8,14 +8,14 @@ import { Phone } from "../../../universal/orthography/model/Phone";
  */
 export class CsCharsToSimplePhonesConverter
   implements IConverter<Char[], Phone[]> {
-  public dictionary = new Dictionary<string[]>({
+  dictionary = new Dictionary<string[]>({
     ů: ["ú"],
     ě: ["j", "e"],
     y: ["i"],
     ý: ["í"],
   });
 
-  public convert(chars: Char[]): Phone[] {
+  convert(chars: Char[]): Phone[] {
     const phones: Phone[] = [];
     for (const char of chars) {
       const newPhones = this.dictionary.translateElement(

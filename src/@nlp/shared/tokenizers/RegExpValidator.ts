@@ -2,9 +2,9 @@ import { IRegExpValidator } from "../interfaces/IRegExpValidator";
 import { IStringable } from "../interfaces/IStringable";
 
 export class RegExpValidator implements IRegExpValidator {
-  public regExp: RegExp;
+  regExp: RegExp;
 
-  public validate(candidate: IStringable): boolean {
+  validate(candidate: IStringable): boolean {
     let out = false;
     let regExp;
 

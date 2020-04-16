@@ -5,7 +5,7 @@ import { CsLetterTokenizerEndpoint } from "./tokenizer/CsLetterTokenizerEndpoint
 
 export class CsOrthographyEndpoint extends AbstractEndpoint
   implements IEndpoint {
-  public constructor(
+  constructor(
     app: Express,
     pathPrefix: string = "",
     subPath: string = "/orthography",

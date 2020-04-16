@@ -4,7 +4,7 @@ import { AbstractEndpoint } from "../AbstractEndpoint";
 import { UniOrthographyEndpoint } from "./orgthography/UniOrthographyEndpoint";
 
 export class UniEndpoint extends AbstractEndpoint implements IEndpoint {
-  public constructor(
+  constructor(
     app: Express,
     pathPrefix: string = "",
     subPath: string = "/universal",

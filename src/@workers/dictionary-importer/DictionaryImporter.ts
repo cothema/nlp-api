@@ -5,11 +5,11 @@ import { DictionaryLoader } from "../../@nlp/DictionaryLoader";
 export class DictionaryImporter {
   private db: Pool;
 
-  public constructor() {
+  constructor() {
     this.db = PostgresDb.getPool();
   }
 
-  public async import(): Promise<void> {
+  async import(): Promise<void> {
     const lang = "cs";
 
     const words = await DictionaryLoader.load("cs", "words_cs");

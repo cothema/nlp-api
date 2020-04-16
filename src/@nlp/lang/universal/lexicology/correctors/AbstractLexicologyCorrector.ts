@@ -6,14 +6,14 @@ import { LexicologyError } from "../model/LexicologyError";
 export abstract class AbstractLexicologyCorrector<
   T extends TokenizableStringableEntity = TokenizableStringableEntity
 > {
-  public errors: LexicologyError[] = [];
-  public provideTokenInfo = true;
+  errors: LexicologyError[] = [];
+  provideTokenInfo = true;
 
-  public constructor(public entity: T) {}
+  constructor(public entity: T) {}
 
-  public abstract fixAll(): this;
+  abstract fixAll(): this;
 
-  public getEntity(): T {
+  getEntity(): T {
     return this.entity;
   }
 
@@ -41,12 +41,7 @@ export abstract class AbstractLexicologyCorrector<
       .replace(matchRegExp, replaceWith);
 
     let match: RegExpExecArray;
-    do {
-      match = matchRegExp.exec(this.entity.toString());
-      if (!match) {
-        break;
-      }
-
+    while ((match = matchRegExp.exec(this.entity.toString()))) {
       const tokenInfo = new ModifiableToken<T>({
         originalLength: match[0].length,
         originalIndex: match.index,
@@ -55,7 +50,7 @@ export abstract class AbstractLexicologyCorrector<
       });
 
       this.fixInOriginal(str, lexicologyError, tokenInfo);
-    } while (match);
+    }
 
     return this;
   }

@@ -5,6 +5,6 @@ import { PhoneNumberValidator } from "../validators/PhoneNumberValidator";
 
 export class PhoneNumberTokenizer extends RegExpTokenizer<PhoneNumber>
   implements IStringableTokenizer<PhoneNumber> {
-  public validator = new PhoneNumberValidator();
-  public entityFactory = (a) => new PhoneNumber(a);
+  validator = new PhoneNumberValidator();
+  entityFactory = (a) => new PhoneNumber(a);
 }

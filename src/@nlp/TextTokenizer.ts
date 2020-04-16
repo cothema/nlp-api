@@ -4,9 +4,9 @@ import { Word } from "./lang/universal/orthography/model/Word";
 import { SentenceModality } from "./lang/universal/semantics/enums/SentenceModality";
 
 export class TextTokenizer {
-  public static readonly interpunction = [".", ",", "?", "!", ":"];
+  static readonly interpunction = [".", ",", "?", "!", ":"];
 
-  public static getWords(input: Text | Sentence) {
+  static getWords(input: Text | Sentence) {
     const str = TextTokenizer.removeInterpunction(input.toString());
     return str
       .split(" ")
@@ -14,7 +14,7 @@ export class TextTokenizer {
       .map((el) => new Word(el));
   }
 
-  public static removeInterpunction(input: string) {
+  static removeInterpunction(input: string) {
     for (const interpunctionElement of TextTokenizer.interpunction) {
       input = input.replace(interpunctionElement, "");
     }
@@ -22,7 +22,7 @@ export class TextTokenizer {
     return input;
   }
 
-  public static getSentences(text: Text) {
+  static getSentences(text: Text) {
     const parts = text.string.split(/(\.|\?|\!)/g);
 
     const out = [];
@@ -42,7 +42,7 @@ export class TextTokenizer {
       });
   }
 
-  public static getSentenceType(sentence: Sentence): SentenceModality | null {
+  static getSentenceType(sentence: Sentence): SentenceModality | null {
     const end = sentence.string.substr(sentence.string.length - 1);
     switch (end) {
       case ".":

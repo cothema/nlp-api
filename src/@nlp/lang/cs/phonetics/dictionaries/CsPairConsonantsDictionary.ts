@@ -1,7 +1,7 @@
 import { Dictionary } from "../../../../shared/tools/Dictionary";
 
 export class CsPairConsonantsDictionary extends Dictionary {
-  public constructor() {
+  constructor() {
     super({
       b: "p",
       d: "t",

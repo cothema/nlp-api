@@ -3,9 +3,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 
 export class Diphthong extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "diphthong";
+  type = "diphthong";
 
-  public constructor(init?: Partial<Diphthong>) {
+  constructor(init?: Partial<Diphthong>) {
     super();
     Object.assign(this, init);
   }

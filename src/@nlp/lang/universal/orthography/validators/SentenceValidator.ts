@@ -6,5 +6,5 @@ export class SentenceValidator extends RegExpValidator {
    * Github.com: https://github.com/NaturalNode/natural
    * Original license: MIT
    */
-  public regExp = /(?<=\s+|^)[\"\'\‘\“\'\"\[\(\{\⟨](.*?[.?!])(\s[.?!])*[\"\'\’\”\'\"\]\)\}\⟩](?=\s+|$)|(?<=\s+|^)\S(.*?[.?!])(\s[.?!])*(?=\s+|$)/g;
+  regExp = /(?<=\s+|^)[\"\'\‘\“\'\"\[\(\{\⟨](.*?[.?!])(\s[.?!])*[\"\'\’\”\'\"\]\)\}\⟩](?=\s+|$)|(?<=\s+|^)\S(.*?[.?!])(\s[.?!])*(?=\s+|$)/g;
 }

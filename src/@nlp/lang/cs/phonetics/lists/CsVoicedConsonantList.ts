@@ -1,5 +1,5 @@
 export class CsVoicedConsonantList {
-  public static list: string[] = [
+  static list: string[] = [
     "b",
     "d",
     "ď",

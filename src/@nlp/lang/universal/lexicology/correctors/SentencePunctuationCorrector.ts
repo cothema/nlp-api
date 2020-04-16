@@ -6,7 +6,7 @@ import { AbstractLexicologyCorrector } from "./AbstractLexicologyCorrector";
 export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
   Sentence
 > {
-  public fixAll(): this {
+  fixAll(): this {
     // Fix extra space
     this.fixLeftExtraWhitespace()
       .fixRightExtraWhitespace()
@@ -22,7 +22,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     return this;
   }
 
-  public fixLeftExtraWhitespace(): this {
+  fixLeftExtraWhitespace(): this {
     const matchRegExp = /^\s+/g;
 
     return this.fixByRegExp(
@@ -32,7 +32,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixRightExtraWhitespace(): this {
+  fixRightExtraWhitespace(): this {
     const matchRegExp = /\s+$/g;
 
     return this.fixByRegExp(
@@ -42,7 +42,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixMultipleWhitespace(): this {
+  fixMultipleWhitespace(): this {
     const matchRegExp = /[ ]+$/g;
 
     return this.fixByRegExp(
@@ -52,7 +52,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixWhitespaceBeforeEndPunctuation(): this {
+  fixWhitespaceBeforeEndPunctuation(): this {
     const matchRegExp = /[ ]+(?=[\.\?!…])/g;
 
     return this.fixByRegExp(
@@ -62,7 +62,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixInvalidEndPunctuation(): this {
+  fixInvalidEndPunctuation(): this {
     const matchRegExps = [
       { regExp: /\.{2,}$/g, replace: "…" },
       { regExp: /\?{2,}$/g, replace: "?" },
@@ -75,7 +75,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixFirstLetterUpper(): this {
+  fixFirstLetterUpper(): this {
     const str: string =
       this.entity.toString().charAt(0).toUpperCase() +
       this.entity.toString().slice(1);
@@ -98,7 +98,7 @@ export class SentencePunctuationCorrector extends AbstractLexicologyCorrector<
     );
   }
 
-  public fixMissingEndPunctuation(): this {
+  fixMissingEndPunctuation(): this {
     let str = this.entity.toString();
     let tokenInfo: ModifiableToken<Sentence>;
 

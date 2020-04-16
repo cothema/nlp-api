@@ -3,10 +3,10 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 
 export class Syllable extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "syllable";
-  public accent?: boolean;
+  type = "syllable";
+  accent?: boolean;
 
-  public constructor(init?: Partial<Syllable>) {
+  constructor(init?: Partial<Syllable>) {
     super();
     Object.assign(this, init);
   }

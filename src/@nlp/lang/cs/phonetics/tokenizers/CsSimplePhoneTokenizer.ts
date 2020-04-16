@@ -16,14 +16,14 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
   implements IStringableTokenizer<Phone> {
   private letterTokenizer = new CsLetterTokenizer();
 
-  public constructor() {
+  constructor() {
     super();
     this.letterTokenizer.digraphs = this.letterTokenizer.digraphs.concat(
       CsDiphthongList.list.map((x) => new Digraph({ string: x })),
     );
   }
 
-  public tokenize(input: IStringable): Token<Phone, Letter>[] {
+  tokenize(input: IStringable): Token<Phone, Letter>[] {
     // TODO: split word to parts (prefix, root...) first
     // TODO: modifiable token
 

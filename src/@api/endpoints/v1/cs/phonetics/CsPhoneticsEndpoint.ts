@@ -5,7 +5,7 @@ import { CsSimplePhoneTokenizerEndpoint } from "./tokenizer/CsSimplePhoneTokeniz
 import { CsSyllableTokenizerEndpoint } from "./tokenizer/CsSyllableTokenizerEndpoint";
 
 export class CsPhoneticsEndpoint extends AbstractEndpoint implements IEndpoint {
-  public constructor(
+  constructor(
     app: Express,
     pathPrefix: string = "",
     subPath: string = "/phonetics",

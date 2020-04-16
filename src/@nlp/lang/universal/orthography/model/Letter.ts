@@ -6,9 +6,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  * consists of two chars).
  */
 export class Letter extends TokenizableStringableEntity implements ITypeMarked {
-  public type = "letter";
+  type = "letter";
 
-  public constructor(init?: Partial<Letter>) {
+  constructor(init?: Partial<Letter>) {
     super();
     Object.assign(this, init);
   }

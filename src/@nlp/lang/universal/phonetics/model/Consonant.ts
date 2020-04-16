@@ -3,9 +3,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 
 export class Consonant extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "consonant";
+  type = "consonant";
 
-  public constructor(init?: Partial<Consonant>) {
+  constructor(init?: Partial<Consonant>) {
     super();
     Object.assign(this, init);
   }

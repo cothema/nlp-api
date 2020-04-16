@@ -5,11 +5,11 @@ import { SentenceModality } from "../../semantics/enums/SentenceModality";
 
 export class Sentence extends TokenizableStringableEntity
   implements ITypeMarked, IClonable {
-  public type = "sentence";
-  public string: string;
-  public sentenceType: SentenceModality;
+  type = "sentence";
+  string: string;
+  sentenceType: SentenceModality;
 
-  public constructor(init?: Partial<Sentence>) {
+  constructor(init?: Partial<Sentence>) {
     super();
     Object.assign(this, init);
   }

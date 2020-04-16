@@ -4,11 +4,11 @@ import { TokenizableStringableEntity } from "./TokenizableStringableEntity";
 export class ModifiableToken<
   T extends TokenizableStringableEntity = TokenizableStringableEntity
 > extends Token<T> {
-  public originalIndex?: number;
-  public originalLength?: number;
-  public originalEntity?: T;
+  originalIndex?: number;
+  originalLength?: number;
+  originalEntity?: T;
 
-  public constructor(init?: Partial<ModifiableToken<T>>) {
+  constructor(init?: Partial<ModifiableToken<T>>) {
     super();
     Object.assign(this, init);
   }
@@ -20,7 +20,7 @@ export class ModifiableToken<
    * @param index
    * @param newEntities
    */
-  public modify(index: number, newStr: string): this {
+  modify(index: number, newStr: string): this {
     if (!this.originalEntity) {
       this.originalEntity = this.fragment.clone();
       this.originalIndex = this.origIndex;

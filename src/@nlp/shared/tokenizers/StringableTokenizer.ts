@@ -7,20 +7,20 @@ import { TokenizableStringableEntity } from "../model/TokenizableStringableEntit
 export abstract class StringableTokenizer<
   T extends TokenizableStringableEntity = TokenizableStringableEntity
 > implements IStringableTokenizer<T> {
-  public validator: IValidator;
-  public filter: (e: Token<T>) => boolean;
+  validator: IValidator;
+  filter: (e: Token<T>) => boolean;
 
-  public entityFactory: (
+  entityFactory: (
     a: Partial<TokenizableStringableEntity>,
   ) => TokenizableStringableEntity = (a) => new TokenizableStringableEntity(a);
 
-  public abstract tokenize(input: IStringable): Token<T>[];
+  abstract tokenize(input: IStringable): Token<T>[];
 
-  public tokenizeToEntities(input: IStringable): T[] {
+  tokenizeToEntities(input: IStringable): T[] {
     return this.tokenize(input).map((x) => x.fragment);
   }
 
-  public tokenizeToOriginalValues(input: IStringable): string[] {
+  tokenizeToOriginalValues(input: IStringable): string[] {
     return this.tokenize(input).map((x) =>
       x.orig
         .slice(x.origIndex, x.origIndex + x.origLength)
@@ -29,7 +29,7 @@ export abstract class StringableTokenizer<
     );
   }
 
-  public tokenizeToValues(input: IStringable): string[] {
+  tokenizeToValues(input: IStringable): string[] {
     return this.tokenize(input).map((x) => x.fragment.toString());
   }
 }

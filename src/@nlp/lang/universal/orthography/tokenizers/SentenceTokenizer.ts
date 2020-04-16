@@ -5,8 +5,6 @@ import { SentenceValidator } from "../validators/SentenceValidator";
 
 export class SentenceTokenizer extends RegExpTokenizer<Sentence>
   implements IStringableTokenizer<Sentence> {
-
-  public validator = new SentenceValidator();
-  public entityFactory = (a) => new Sentence(a);
-
+  validator = new SentenceValidator();
+  entityFactory = (a) => new Sentence(a);
 }

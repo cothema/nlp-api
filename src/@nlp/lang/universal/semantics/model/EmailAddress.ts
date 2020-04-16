@@ -3,9 +3,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
 
 export class EmailAddress extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "email-address";
+  type = "email-address";
 
-  public constructor(init?: Partial<EmailAddress>) {
+  constructor(init?: Partial<EmailAddress>) {
     super();
     Object.assign(this, init);
   }

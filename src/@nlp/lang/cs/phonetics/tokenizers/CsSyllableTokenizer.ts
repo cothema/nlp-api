@@ -16,7 +16,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
   private consonantCounter: number;
   private inputStrAsArray: string[];
 
-  public tokenize(input: IStringable): Token<Syllable>[] {
+  tokenize(input: IStringable): Token<Syllable>[] {
     this.clearBuffer();
     this.inputStrAsArray = Array.from(input.toString());
 

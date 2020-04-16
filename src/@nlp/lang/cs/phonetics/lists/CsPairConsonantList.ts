@@ -1,5 +1,5 @@
 export class CsPairConsonantList {
-  public static list: string[] = [
+  static list: string[] = [
     "b",
     "d",
     "ď",

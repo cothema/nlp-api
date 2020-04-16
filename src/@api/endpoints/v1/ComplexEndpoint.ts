@@ -5,11 +5,7 @@ import { CsEndpoint } from "./cs/CsEndpoint";
 import { UniEndpoint } from "./universal/UniEndpoint";
 
 export class ComplexEndpoint extends AbstractEndpoint implements IEndpoint {
-  public constructor(
-    app: Express,
-    pathPrefix: string = "",
-    subPath: string = "/v1",
-  ) {
+  constructor(app: Express, pathPrefix: string = "", subPath: string = "/v1") {
     super(app, pathPrefix, subPath);
   }
 

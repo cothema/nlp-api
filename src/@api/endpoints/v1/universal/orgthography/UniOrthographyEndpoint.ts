@@ -6,7 +6,7 @@ import { LetterTokenizerEndpoint } from "./tokenizer/LetterTokenizerEndpoint";
 
 export class UniOrthographyEndpoint extends AbstractEndpoint
   implements IEndpoint {
-  public constructor(
+  constructor(
     app: Express,
     pathPrefix: string = "",
     subPath: string = "/orthography",

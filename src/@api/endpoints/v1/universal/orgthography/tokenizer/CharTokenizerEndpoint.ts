@@ -5,7 +5,7 @@ import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/Abst
 
 export class CharTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
-  public constructor(
+  constructor(
     app: Express,
     pathPrefix: string = "",
     subPath: string = "/tokenizer/char",

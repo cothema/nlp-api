@@ -6,9 +6,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  * Can be only lowercase
  */
 export class Phone extends TokenizableStringableEntity implements ITypeMarked {
-  public type = "phone";
+  type = "phone";
 
-  public constructor(init?: Partial<Phone>) {
+  constructor(init?: Partial<Phone>) {
     super();
     Object.assign(this, init);
   }

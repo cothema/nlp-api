@@ -8,13 +8,13 @@ import { StringableTokenizer } from "./StringableTokenizer";
 export class RegExpTokenizer<
   T extends TokenizableStringableEntity = TokenizableStringableEntity
 > extends StringableTokenizer<T> implements IStringableTokenizer<T> {
-  public validator: IRegExpValidator;
+  validator: IRegExpValidator;
 
-  public tokenize(input: IStringable): Token<T>[] {
+  tokenize(input: IStringable): Token<T>[] {
     let outputs: Token<T>[] = [];
     let match: RegExpExecArray;
 
-    while (match = this.validator.regExp.exec(input.toString())) {
+    while ((match = this.validator.regExp.exec(input.toString()))) {
       outputs.push(
         new Token<T>({
           origIndex: match.index,
@@ -24,7 +24,7 @@ export class RegExpTokenizer<
           }) as T,
         }),
       );
-    };
+    }
 
     if (this.filter) {
       outputs = outputs.filter(this.filter);

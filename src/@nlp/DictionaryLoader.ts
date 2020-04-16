@@ -5,7 +5,7 @@ export class DictionaryLoader {
     content: string[];
   }[] = [];
 
-  public static async load(
+  static async load(
     lang: string,
     dictionaryName: string,
     inLowerCase = false,

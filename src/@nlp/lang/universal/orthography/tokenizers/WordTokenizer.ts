@@ -4,5 +4,5 @@ import { Word } from "../model/Word";
 
 export class WordTokenizer extends SplitRegExpTokenizer<Word>
   implements IStringableTokenizer<Word> {
-  public splitRegExp = /[\s\?!"'<>,\.…]+/g;
+  splitRegExp = /[\s\?!"'<>,\.…]+/g;
 }

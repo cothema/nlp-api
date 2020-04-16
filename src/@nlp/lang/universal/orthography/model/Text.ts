@@ -4,11 +4,11 @@ import { Sentence } from "./Sentence";
 import { Word } from "./Word";
 
 export class Text extends StringableEntity implements ITypeMarked {
-  public type = "text";
-  public sentences?: Sentence[];
-  public words?: Word[];
+  type = "text";
+  sentences?: Sentence[];
+  words?: Word[];
 
-  public constructor(init?: Partial<Text>) {
+  constructor(init?: Partial<Text>) {
     super();
     Object.assign(this, init);
   }

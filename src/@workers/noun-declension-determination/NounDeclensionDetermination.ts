@@ -14,11 +14,11 @@ interface DeclensionPattern {
 export class NounDeclensionDetermination {
   private db: Pool;
 
-  public constructor() {
+  constructor() {
     this.db = PostgresDb.getPool();
   }
 
-  public static getCzechPatterns(): DeclensionPattern[] {
+  static getCzechPatterns(): DeclensionPattern[] {
     const patterns: DeclensionPattern[] = [];
 
     // Rod střední
@@ -569,7 +569,7 @@ export class NounDeclensionDetermination {
     return patternUniqueEndings;
   }
 
-  public async browseAndDetermine() {
+  async browseAndDetermine() {
     const lang = "cs";
 
     const patterns = await NounDeclensionDetermination.getCzechPatterns();

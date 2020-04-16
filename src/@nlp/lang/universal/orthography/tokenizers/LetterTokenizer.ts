@@ -13,10 +13,10 @@ import { CharTokenizer } from "./CharTokenizer";
  */
 export class LetterTokenizer extends StringableTokenizer<Letter>
   implements IStringableTokenizer<Letter> {
-  public validator = new LetterValidator();
-  public digraphs: Digraph[] = [];
+  validator = new LetterValidator();
+  digraphs: Digraph[] = [];
 
-  public tokenize(input: IStringable): Token<Letter | Digraph>[] {
+  tokenize(input: IStringable): Token<Letter | Digraph>[] {
     const letterTokens: Token<Letter>[] = [];
     const charTokens = new CharTokenizer().tokenize(input);
 

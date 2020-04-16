@@ -3,7 +3,7 @@ import { Pool } from "pg";
 export class PostgresDb {
   private static pool?: Pool;
 
-  public static getPool() {
+  static getPool() {
     if (PostgresDb.pool) {
       return PostgresDb.pool;
     }

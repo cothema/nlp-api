@@ -1,7 +1,7 @@
 import { Sentence } from "../../universal/orthography/model/Sentence";
 
 export class SyntaxParser {
-  public static solve(sentence: Sentence) {
+  static solve(sentence: Sentence) {
     // for (let i = 0; sentence.words[i]; i++) {
     //   if (
     //     sentence.words[i].tags.find(

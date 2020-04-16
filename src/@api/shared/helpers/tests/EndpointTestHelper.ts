@@ -2,7 +2,7 @@ import { Express } from "express";
 import supertest, { Response } from "supertest";
 
 export class EndpointTestHelper {
-  public static async postString<T>(
+  static async postString<T>(
     app: Express,
     endpointPath: string,
     inputString: string,

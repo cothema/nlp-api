@@ -2,7 +2,7 @@ import { DictionaryLoader } from "../../DictionaryLoader";
 import { Word } from "../universal/orthography/model/Word";
 
 export class TagsDetermination {
-  public static async determine(word: Word) {
+  static async determine(word: Word) {
     const lang = "cs";
 
     word.tags = [];
@@ -11,7 +11,7 @@ export class TagsDetermination {
     await TagsDetermination.determineOther(word, lang);
   }
 
-  public static async matchWordInDictionary(
+  static async matchWordInDictionary(
     language: string,
     dictionary: string,
     word: string,

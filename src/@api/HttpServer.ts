@@ -3,7 +3,7 @@ import { ComplexEndpoint } from "./endpoints/v1/ComplexEndpoint";
 import { IEndpoint } from "./shared/interfaces/IEndpoint";
 
 export class HttpServer {
-  public app: Express;
+  app: Express;
   private initialized = {
     setup: false,
     endpoints: false,
@@ -12,13 +12,13 @@ export class HttpServer {
   private defaultPort = 3001;
   private endpoints: IEndpoint[] = [];
 
-  public init() {
+  init() {
     this.setup();
     this.setEndpoints();
     this.listen();
   }
 
-  public setup(): this {
+  setup(): this {
     if (this.initialized.setup) {
       return this;
     }
@@ -53,7 +53,7 @@ export class HttpServer {
     return this;
   }
 
-  public setEndpoints(): this {
+  setEndpoints(): this {
     if (this.initialized.endpoints) {
       return this;
     }
@@ -64,7 +64,7 @@ export class HttpServer {
     return this;
   }
 
-  public listen(): this {
+  listen(): this {
     if (this.initialized.listen) {
       return this;
     }

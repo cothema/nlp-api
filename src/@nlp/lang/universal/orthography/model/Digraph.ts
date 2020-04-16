@@ -7,9 +7,9 @@ import { TokenizableStringableEntity } from "../../../../shared/model/Tokenizabl
  */
 export class Digraph extends TokenizableStringableEntity
   implements ITypeMarked {
-  public type = "digraph";
+  type = "digraph";
 
-  public constructor(init?: Partial<Digraph>) {
+  constructor(init?: Partial<Digraph>) {
     super();
     Object.assign(this, init);
   }
