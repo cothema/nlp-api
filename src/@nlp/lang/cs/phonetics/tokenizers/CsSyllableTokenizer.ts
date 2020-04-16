@@ -103,9 +103,7 @@ export class CsSyllableTokenizer extends StringableTokenizer
    * Check origin length as diff between end and start (it solves spaces and
    * extra chars between).
    */
-  private solveOrigLength(
-    entityArray: Token[],
-  ): number {
+  private solveOrigLength(entityArray: Token[]): number {
     const firstEntity = entityArray[0];
     const lastEntity = entityArray[entityArray.length - 1];
     return lastEntity.origIndex + lastEntity.origLength - firstEntity.origIndex;

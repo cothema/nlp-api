@@ -32,8 +32,12 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
 
     for (let i = 0; letterTokens[i]; i++) {
       const letterStr = letterTokens[i].fragment.toString().toLowerCase();
-      const nextLetterStr = letterTokens[i + 1]?.fragment.toString().toLowerCase();
-      const prevLetterStr = letterTokens[i - 1]?.fragment.toString().toLowerCase();
+      const nextLetterStr = letterTokens[i + 1]?.fragment
+        .toString()
+        .toLowerCase();
+      const prevLetterStr = letterTokens[i - 1]?.fragment
+        .toString()
+        .toLowerCase();
 
       if (letterStr === "ě") {
         if (prevLetterStr === "d") {

@@ -5,12 +5,21 @@ export class RegExpValidator implements IRegExpValidator {
   public regExp: RegExp;
 
   public validate(candidate: IStringable): boolean {
-    const regExp = this.regExp.exec(candidate.toString());
+    let out = false;
+    let regExp;
 
-    return (
-      regExp &&
-      regExp.index === 0 &&
-      regExp[0].length === candidate.toString().length
-    );
+    for (let i = 0; (regExp = this.regExp.exec(candidate.toString())); i++) {
+      if (i > 0) {
+        out = false;
+        continue;
+      }
+
+      out =
+        regExp &&
+        regExp.index === 0 &&
+        regExp[0].length === candidate.toString().length;
+    }
+
+    return out;
   }
 }
