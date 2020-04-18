@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { LetterTokenizer } from "../../../../../../@nlp/lang/universal/orthography/tokenizers/LetterTokenizer";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
-import { AbstractTokenizerEndpoint } from "../../../../../shared/tokenizers/AbstractTokenizerEndpoint";
+import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";
 
 export class LetterTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {

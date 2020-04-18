@@ -6,7 +6,7 @@
       <synchronize>true</synchronize>
       <rewrite-bounds>false</rewrite-bounds>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-46-137-177-160.eu-west-1.compute.amazonaws.com:5432/dacbv8agi0auh0</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-217-204-34.eu-west-1.compute.amazonaws.com:5432/d6kivfbdpsa58t</jdbc-url>
     </data-source>
   </component>
 </project>
