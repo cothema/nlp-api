@@ -28,6 +28,7 @@ export abstract class AbstractClassifierEndpoint extends AbstractEndpoint
             data: solution,
           });
         } catch (e) {
+          console.error(e);
           res.statusCode = 500;
           return res.send({
             error: "Internal server error during the process!",
