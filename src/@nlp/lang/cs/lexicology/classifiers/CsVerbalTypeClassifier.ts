@@ -1,14 +1,12 @@
-import { Pool } from "pg";
-import { PostgresDb } from "../../../../../@db/postgres/PostgresDb";
+import { CsWordsRepository } from "../../../../../@db/repository/lang/cs/CsWordsRepository";
 import { IClassifier } from "../../../../shared/interfaces/IClassifier";
 import { LexicologyVerbalType } from "../../../universal/lexicology/enums/LexicologyVerbalType";
 import { Word } from "../../../universal/orthography/model/Word";
 
 export class CsVerbalTypeClassifier implements IClassifier<Word> {
-  private db: Pool;
+  private csWordsRepository: CsWordsRepository = new CsWordsRepository();
 
   constructor() {
-    this.db = PostgresDb.getPool();
   }
 
   async classifyFromString(word: string) {
@@ -18,19 +16,13 @@ export class CsVerbalTypeClassifier implements IClassifier<Word> {
   }
 
   async classify(word: Word) {
-    let dbMatchingWords = await this.db.query(`
-      SELECT words.id as w_id, cwns.id as noun_id
-      FROM words
-             LEFT JOIN cs_words_noun_specification cwns on words.id = cwns.word_id
-      WHERE word = $1
-        AND lang = 'cs'
-    `, [word.string]);
+    let dbMatchingWords = await this.csWordsRepository.findWordWithSpecification(word.string);
 
     if (!word.verbalType) {
       word.verbalType = [];
     }
 
-    for (const dbMatchingWord of dbMatchingWords.rows) {
+    for (const dbMatchingWord of dbMatchingWords) {
       if (dbMatchingWord["noun_id"]) {
         word.verbalType.push(
           {

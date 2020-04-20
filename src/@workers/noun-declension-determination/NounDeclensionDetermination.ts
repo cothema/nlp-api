@@ -605,13 +605,13 @@ export class NounDeclensionDetermination {
         const result = await this.db.query(
           `SELECT w0.stem AS stem, w0.stem || $1 AS match
              FROM (
-                    SELECT left(word, $5) AS stem
-                    FROM words
-                    WHERE word LIKE $2 -- pick the most selective ending to get started
-                      AND lang = $6
+                    SELECT left(w.word, $5) AS stem
+                    FROM word AS w
+                    WHERE w.word LIKE $2 -- pick the most selective ending to get started
+                      AND w.lang = $6
                   ) w0
                     CROSS JOIN unnest($3::text[]) x(dec) -- all other in an array
-                    JOIN words w1 ON w1.word = w0.stem || x.dec AND lang = $6
+                    JOIN word w1 ON w1.word = w0.stem || x.dec AND lang = $6
              WHERE lang = $6
              GROUP BY w0.stem
              HAVING count(*) = $4;`,
@@ -630,7 +630,7 @@ export class NounDeclensionDetermination {
           for (const patternUniqueEnding of patternUniqueEndings) {
             const insertResult = await this.db.query(
               `
-              INSERT INTO cs_words_noun_specification
+              INSERT INTO cs_word_noun_specification
               (word_id,
                gender,
                declension_sg_1,
@@ -651,15 +651,15 @@ export class NounDeclensionDetermination {
                verified_by_human,
                life,
                pattern_word_id)
-              WITH w_word AS (SELECT words.id AS id
-                              FROM words
-                              WHERE word = $1
-                                AND lang = $2
+              WITH w_word AS (SELECT w.id AS id
+                              FROM word AS w
+                              WHERE w.word = $1
+                                AND w.lang = $2
               ),
-                   w_pattern AS (SELECT words.id AS id
-                                 FROM words
-                                 WHERE word = $21
-                                   AND lang = $2
+                   w_pattern AS (SELECT wp.id AS id
+                                 FROM word AS wp
+                                 WHERE wp.word = $21
+                                   AND wp.lang = $2
                    )
               SELECT w_word.id,
                      $3,
