@@ -20,7 +20,7 @@ export class DictionaryImporter {
       word = word.trim();
 
       const promise = this.db.query(
-        "INSERT INTO word (word, lang) VALUES ($1, $2) ON CONFLICT DO NOTHING",
+        "INSERT INTO word (text, lang) VALUES ($1, $2) ON CONFLICT DO NOTHING",
         [word, lang],
       );
       promise

@@ -15,7 +15,7 @@ export class CsWordsRepository {
         w.id as w_id, cwns.id as noun_id
       FROM word AS w
              LEFT JOIN cs_word_noun_specification cwns on w.id = cwns.word_id
-      WHERE w.word = $1
+      WHERE w.text = $1
         AND lang = 'cs'
     `, [word]);
 

@@ -605,13 +605,13 @@ export class NounDeclensionDetermination {
         const result = await this.db.query(
           `SELECT w0.stem AS stem, w0.stem || $1 AS match
              FROM (
-                    SELECT left(w.word, $5) AS stem
+                    SELECT left(w.text, $5) AS stem
                     FROM word AS w
-                    WHERE w.word LIKE $2 -- pick the most selective ending to get started
+                    WHERE w.text LIKE $2 -- pick the most selective ending to get started
                       AND w.lang = $6
                   ) w0
                     CROSS JOIN unnest($3::text[]) x(dec) -- all other in an array
-                    JOIN word w1 ON w1.word = w0.stem || x.dec AND lang = $6
+                    JOIN word w1 ON w1.text = w0.stem || x.dec AND lang = $6
              WHERE lang = $6
              GROUP BY w0.stem
              HAVING count(*) = $4;`,
@@ -653,12 +653,12 @@ export class NounDeclensionDetermination {
                pattern_word_id)
               WITH w_word AS (SELECT w.id AS id
                               FROM word AS w
-                              WHERE w.word = $1
+                              WHERE w.text = $1
                                 AND w.lang = $2
               ),
                    w_pattern AS (SELECT wp.id AS id
                                  FROM word AS wp
-                                 WHERE wp.word = $21
+                                 WHERE wp.text = $21
                                    AND wp.lang = $2
                    )
               SELECT w_word.id,
