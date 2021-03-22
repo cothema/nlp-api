@@ -12,7 +12,7 @@ export class TokenizableStringableEntity extends StringableEntity
   }
 
   /**
-   * Be careful, bacause non trivial datatypes will remain as pointers if
+   * Be careful, because non trivial datatypes will remain as pointers if
    * they will not be cloned manually!
    */
   clone(): this {
