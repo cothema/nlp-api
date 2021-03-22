@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: nlp20_api
+    environment:
+      - PORT=3001
+      - CURRENT_UID=root
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    ports:
+      - ${PORT}:3001
+    restart: always
+    # To develop as current user (e.g. 1000:1000 ... $(id -u):$(id -g))
+    user: ${CURRENT_UID}
+    volumes:
+      - .:/app:consistent

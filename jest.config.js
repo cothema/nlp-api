@@ -9,7 +9,7 @@ module.exports = {
   verbose: true,
   globals: {
     "ts-jest": {
-      tsConfig: "tsconfig.test.json",
+      tsconfig: "tsconfig.test.json",
     },
   },
   setupFiles: ["./jest.setup-file.ts"],
