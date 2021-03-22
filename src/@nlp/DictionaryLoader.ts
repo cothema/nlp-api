@@ -53,8 +53,8 @@ export class DictionaryLoader {
   }
 
   private static secureDirName(dirName: string): string {
-    dirName = dirName.replace("../", "");
-    dirName = dirName.replace("..\\", "");
+    dirName = dirName.replace(/\.\.\//g, "");
+    dirName = dirName.replace(/\.\.\\/g, "");
     return dirName;
   }
 }
