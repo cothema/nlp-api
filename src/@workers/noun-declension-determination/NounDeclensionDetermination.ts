@@ -630,7 +630,7 @@ export class NounDeclensionDetermination {
           for (const patternUniqueEnding of patternUniqueEndings) {
             const insertResult = await this.db.query(
               `
-              INSERT INTO cs_word_noun_specification
+              INSERT INTO cs_word_noun_specifications
               (word_id,
                gender,
                declension_sg_1,
