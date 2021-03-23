@@ -54,5 +54,12 @@ describe("CsSyllableTokenizer", () => {
     // expect(tokenizer.tokenizeToValues("dvě slova").length).toBe(3);
     // expect(tokenizer.tokenizeToValues("dvě slova")[1]).toBe("slo");
     // expect(tokenizer.tokenize("poučka")[0]).toBe("po");
+    // expect(tokenizer.tokenize("transdermální")[0]).toBe("trans");
+    // expect(tokenizer.tokenize("transdermální")[1]).toBe("der");
+    // expect(tokenizer.tokenize("transtuzumab")[0]).toBe("trans");
+    // expect(tokenizer.tokenize("transtuzumab")[1]).toBe("tu");
+    // expect(tokenizer.tokenize("král")[0]).toBe("král");
+    // expect(tokenizer.tokenize("prcičky")[1]).toBe("cič");
+    // expect(tokenizer.tokenize("vltava")[1]).toBe("ta");
   });
 });

@@ -1,4 +1,4 @@
-export class Token<T = any, O = any> {
+export class Token<T = any, Orig = any> {
   /**
    * Index of fragment in origin
    */
@@ -19,9 +19,9 @@ export class Token<T = any, O = any> {
   /**
    * Origin entity array (e.g. chars of long text / sentence)
    */
-  orig?: O[];
+  orig?: Orig[];
 
-  constructor(init?: Partial<Token<T, O>>) {
+  constructor(init?: Partial<Token<T, Orig>>) {
     Object.assign(this, init);
   }
 

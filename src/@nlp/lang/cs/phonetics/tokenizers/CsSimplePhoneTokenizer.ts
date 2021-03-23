@@ -4,13 +4,15 @@ import { Token } from "../../../../shared/model/Token";
 import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
 import { Digraph } from "../../../universal/orthography/model/Digraph";
 import { Letter } from "../../../universal/orthography/model/Letter";
+import { Meta } from "../../../universal/orthography/model/Meta";
 import { Phone } from "../../../universal/orthography/model/Phone";
+import { Voice } from "../../../universal/orthography/model/Voice";
 import { CsLetterTokenizer } from "../../orthography/tokenizers/CsLetterTokenizer";
 import { CsPairConsonantsDictionary } from "../dictionaries/CsPairConsonantsDictionary";
 import { CsDiphthongList } from "../lists/CsDiphthongList";
 import { CsPairConsonantList } from "../lists/CsPairConsonantList";
-import { CsVoicedConsonantList } from "../lists/CsVoicedConsonantList";
-import { CsVoicelessConsonantList } from "../lists/CsVoicelessConsonantList";
+import { CsPhoneRules } from "../rules/CsPhoneRules";
+import { CsPhoneTools } from "../rules/CsPhoneTools";
 
 export class CsSimplePhoneTokenizer extends StringableTokenizer
   implements IStringableTokenizer<Phone> {
@@ -110,17 +112,28 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
       }
     }
 
-    return this.solveVoice(phoneTokens);
+    return this.solveVoice(phoneTokens).entity.phones;
   }
 
   /**
    * CZ: Spodoba znělosti
-   * See: https://prirucka.ujc.cas.cz/?id=909
-   * See: https://www.diktatorek.cz/Scholasticus/Cesky-jazyk/Pravopis/Pravopis-skupin-souhlasek/Pravopis-souhlasek-uvnitr-slov-help.html
+   *
+   * @see https://prirucka.ujc.cas.cz/?id=909
+   * @see https://www.diktatorek.cz/Scholasticus/Cesky-jazyk/Pravopis/Pravopis-skupin-souhlasek/Pravopis-souhlasek-uvnitr-slov-help.html
    */
   private solveVoice(
-    phoneTokens: Token<Phone, Letter>[],
-  ): Token<Phone, Letter>[] {
+    phoneTokensIn: Token<Phone, Letter>[],
+  ): Meta<Voice> {
+    let meta = new Meta<Voice>();
+    meta.entity = new Voice();
+
+    meta.entity.phones = [];
+    for (let i = 0; phoneTokensIn[i]; i++) {
+      meta.entity.phones.push(phoneTokensIn[i]);
+    }
+
+    let phoneTokens = meta.entity.phones;
+
     // TODO: voiceless prepositions
 
     const dictionary = new CsPairConsonantsDictionary();
@@ -141,8 +154,8 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
          * Hotfix: My rule
          */
         if (
-          this.isPairConsonant(phoneTokens[i]) &&
-          this.isVoicedConsonant(phoneTokens[i])
+          CsPhoneTools.isPairConsonant(phoneTokens[i]) &&
+          CsPhoneTools.isVoicedConsonant(phoneTokens[i])
         ) {
           // [voiceless][voiced] => [voiced][voiced]
           phoneTokens[i].fragment.string = dictionary.translateElement(
@@ -151,7 +164,7 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         }
         break;
       } else if (
-        !this.isPairConsonant(phoneTokens[i]) ||
+        !CsPhoneTools.isPairConsonant(phoneTokens[i]) ||
         ["p", "t", "ť", "ch", "f", "š"].includes(
           phoneTokens[i].fragment.toString(),
         ) || // Hotfix (c,č): My rule
@@ -161,8 +174,8 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
       ) {
       } else if (
         // ["v", "z"].includes(phones[i].toString())
-        this.isVoicedConsonant(phoneTokens[i]) &&
-        this.isVoicelessConsonant(phoneTokens[i + 1])
+        CsPhoneTools.isVoicedConsonant(phoneTokens[i]) &&
+        CsPhoneTools.isVoicelessConsonant(phoneTokens[i + 1])
       ) {
         // [voiced][voiceless] => [voiceless][voiceless]
         phoneTokens[i].fragment.string = dictionary.translateElement(
@@ -171,31 +184,26 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
         i++; // skip next phone
       } else if (
         // ["f", "s"].includes(phones[i].toString())
-        this.isVoicelessConsonant(phoneTokens[i]) &&
-        this.isVoicedConsonant(phoneTokens[i + 1])
+        CsPhoneTools.isVoicelessConsonant(phoneTokens[i]) &&
+        CsPhoneTools.isVoicedConsonant(phoneTokens[i + 1])
       ) {
         // [voiceless][voiced] => [voiced][voiced]
+        // e.g. pro-sb-a
         phoneTokens[i].fragment.string = dictionary.translateElementReverse(
           phoneTokens[i].fragment.toString(),
         );
         i++; // skip next phone
       }
+
+      let ruleOut = CsPhoneRules.applyRuleById(meta, 1, i);
+      if (ruleOut.cluster > 0) {
+        i += ruleOut.cluster - 1;
+      }
     }
 
-    return phoneTokens;
+    meta.entity.phones = phoneTokens;
+
+    return meta;
   }
 
-  private isPairConsonant(phoneToken: Token<Phone>) {
-    return CsPairConsonantList.list.includes(phoneToken.fragment.toString());
-  }
-
-  private isVoicedConsonant(phoneToken: Token<Phone>) {
-    return CsVoicedConsonantList.list.includes(phoneToken.fragment.toString());
-  }
-
-  private isVoicelessConsonant(phoneToken: Token<Phone>) {
-    return CsVoicelessConsonantList.list.includes(
-      phoneToken.fragment.toString(),
-    );
-  }
 }

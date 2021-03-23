@@ -46,6 +46,23 @@ describe("CsSimplePhoneTokenizer", () => {
     expect(tokenizer.tokenizeToValues(" ").length).toBe(0);
     expect(tokenizer.tokenize("v lese")[1].origIndex).toBe(2);
 
+    /**
+     * Spodoba znělosti - párové souhlásky (Rule 1)
+     * @see https://prirucka.ujc.cas.cz/?id=908
+     */
+    // Konec slova před pauzou
+    expect(tokenizer.tokenizeToValues("koš")[2]).toBe("š");
+    expect(tokenizer.tokenizeToValues("lež")[2]).toBe("š");
+    expect(tokenizer.tokenizeToValues("hvozd")[3]).toBe("s");
+    expect(tokenizer.tokenizeToValues("hvozd")[4]).toBe("t");
+    expect(tokenizer.tokenizeToValues("plod")[3]).toBe("t");
+    expect(tokenizer.tokenize("hvozd")[4]).toBe("t");
+
+    // Uvnitř slova a na rozhraní
+
+
+    // expect(tokenizer.tokenizeToValues("svíčička")[0]).toBe("s");
+
     // TODO:
     // expect(tokenizer.tokenize("poučka")[2]).toBe("u");
   });
