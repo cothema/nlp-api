@@ -44,9 +44,10 @@ describe("CsSyllableTokenizer", () => {
     expect(tokenizer.tokenizeToOriginalValues("na poli")[1]).toBe("po");
 
     // TODO:
+    // expect(tokenizer.tokenizeToValues("akční")[1]).toBe("čňí");
     // expect(tokenizer.tokenizeToValues("ověřit")[1]).toBe("vje");
     // expect(tokenizer.tokenizeToValues("výstavba")[1]).toBe("stav");
-    // expect(tokenizer.tokenizeToValues("žbluňkls")[2]).toBe("pred");
+    // expect(tokenizer.tokenizeToValues("žbluňkls")[1]).toBe("kls");
     // expect(tokenizer.tokenizeToValues("v něm")[0]).toBe("vňem");
     // expect(tokenizer.tokenizeToValues("trpaslíček")[1]).toBe("pas");
     // expect(tokenizer.tokenizeToValues("trpaslíček").length).toBe(4);

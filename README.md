@@ -1,4 +1,4 @@
-# NLP Tool
+# Cothema NLP Tool API
 
 Simple javascript natual language processing tool.
 

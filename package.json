@@ -1,5 +1,5 @@
 {
-  "name": "nlp20",
+  "name": "cothema-nlp-api",
   "version": "0.0.1",
   "description": "Simple NLP tool",
   "main": "index.js",
