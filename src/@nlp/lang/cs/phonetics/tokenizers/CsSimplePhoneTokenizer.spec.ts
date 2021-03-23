@@ -46,20 +46,82 @@ describe("CsSimplePhoneTokenizer", () => {
     expect(tokenizer.tokenizeToValues(" ").length).toBe(0);
     expect(tokenizer.tokenize("v lese")[1].origIndex).toBe(2);
 
+    expect(tokenizer.tokenizeToValue("jarní")).toBe("jarňí");
+    expect(tokenizer.tokenizeToMeta("jarní").rulesApplied.find(x => x.id === 1)).toBeUndefined();
+    expect(tokenizer.tokenizeToMeta("jarní").rulesApplied.find(x => x.id === 2)).toBeTruthy();
+    // expect(tokenizer.tokenizeToValue("náš")).toBe("náž");
+
     /**
      * Spodoba znělosti - párové souhlásky (Rule 1)
      * @see https://prirucka.ujc.cas.cz/?id=908
      */
     // Konec slova před pauzou
-    expect(tokenizer.tokenizeToValues("koš")[2]).toBe("š");
-    expect(tokenizer.tokenizeToValues("lež")[2]).toBe("š");
-    expect(tokenizer.tokenizeToValues("hvozd")[3]).toBe("s");
-    expect(tokenizer.tokenizeToValues("hvozd")[4]).toBe("t");
-    expect(tokenizer.tokenizeToValues("plod")[3]).toBe("t");
-    expect(tokenizer.tokenize("hvozd")[4]).toBe("t");
+    [
+      ["koš", "koš"],
+      ["lež", "leš"],
+      ["hvozd", "hvost"],
+      ["plod", "plot"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+      // expect(tokenizer.tokenizeToMeta(x[0]).rulesApplied.find(x => x.id === 1)).toBeTruthy();
+    });
 
     // Uvnitř slova a na rozhraní
+    [
+      ["vzdor", "vzdor"],
+      ["sbor", "zbor"],
+      // ["ledaskdo", "ledazgdo"],
+      // ["pod dubem", "pod dubem"],
+      // ["zákaz zbraní", "zákaz zbraňí"],
+      // ["náš byt", "náž bit"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+    });
 
+    [
+      ["vzdor", "vzdor"],
+      ["sbor", "zbor"],
+      // ["ledaskdo", "ledazgdo"],
+      // ["pod dubem", "pod dubem"],
+      // ["zákaz zbraní", "zákaz zbraňí"],
+      // ["náš byt", "náž bit"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+    });
+
+    [
+      ["stonek", "stonek"],
+      ["tužka", "tuška"],
+      ["nadto", "natto"],
+      // ["vztah", "fstah"],
+      // ["devět koček", "devjet koček"],
+      // ["pod stolem", "pot stolem"],
+      // ["zákaz vstupu", "zákas fstupu"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+    });
+
+    /**
+     * Spodoba znělosti - jedinečné souhlásky
+     * @see https://prirucka.ujc.cas.cz/?id=908
+     */
+    [
+      ["lom", "lom"],
+      ["pojď", "pojť"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+    });
+
+    [
+      ["sjednat", "sjednat"],
+      ["zjednat", "zjednat"],
+      // ["směna", "smňena"],
+      // ["změna", "zmňena"],
+    ].forEach((x) => {
+      expect(tokenizer.tokenizeToValue(x[0])).toBe(x[1]);
+    });
+
+    // End of examples from prirucka.ujc.cas.cz
 
     // expect(tokenizer.tokenizeToValues("svíčička")[0]).toBe("s");
 

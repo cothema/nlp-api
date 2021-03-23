@@ -1,6 +1,7 @@
 import { IRule } from "../../../../shared/interfaces/IRule";
 import { Meta } from "../../../universal/orthography/model/Meta";
 import { Voice } from "../../../universal/orthography/model/Voice";
+import { CsAddDiacriticsCaronDictionary } from "../dictionaries/CsAddDiacriticsCaronDictionary";
 import { CsPairConsonantsDictionary } from "../dictionaries/CsPairConsonantsDictionary";
 import { CsPhoneTools } from "./CsPhoneTools";
 
@@ -32,6 +33,8 @@ export class CsPhoneRules {
            * [pair]([pair])([pair])[end] => [voiceless][voiceless];
            * e.g. le-ž (š), hvo-zd (st)
            */
+          cluster++;
+
           phoneTokens[startAt].fragment.string = dictionary.translateElement(
             phoneTokens[startAt].fragment.toString(),
           );
@@ -54,14 +57,32 @@ export class CsPhoneRules {
         return { cluster: cluster, meta: meta };
       },
     },
+    {
+      id: 2,
+      title: "Změkčení před i/í",
+      quotes: [],
+      apply: (meta: Meta<Voice>, startAt = 0) => {
+        // TODO: find quoetes
+
+        let dictionaryCaron = new CsAddDiacriticsCaronDictionary();
+
+        let phoneTokens = meta.entity.phones;
+        let cluster = 0;
+
+        if (
+          ["d", "t", "n"].includes(phoneTokens[startAt].fragment.string) &&
+          (phoneTokens[startAt + 1] !== undefined && ["i", "í"].includes(phoneTokens[startAt + 1].fragment.string))
+        ) {
+          cluster = 2;
+
+          phoneTokens[startAt].fragment.string = dictionaryCaron.translateElement(
+            phoneTokens[startAt].fragment.toString(),
+          );
+        }
+
+        return { cluster: cluster, meta: meta };
+      },
+    },
   ];
 
-  static applyRuleById(meta: Meta<Voice>, id: number, startAt: number = 0): { cluster: number, meta: Meta<Voice> } {
-    let rule = CsPhoneRules.rules.find(x => x.id === id);
-
-    let out = rule.apply(meta, startAt);
-
-    out.meta.rulesApplied.push(rule);
-    return { cluster: out.cluster, meta: out.meta };
-  }
 }

@@ -4,9 +4,7 @@ import { IValidator } from "../interfaces/IValidator";
 import { Token } from "../model/Token";
 import { TokenizableStringableEntity } from "../model/TokenizableStringableEntity";
 
-export abstract class StringableTokenizer<
-  T extends TokenizableStringableEntity = TokenizableStringableEntity
-> implements IStringableTokenizer<T> {
+export abstract class StringableTokenizer<T extends TokenizableStringableEntity = TokenizableStringableEntity> implements IStringableTokenizer<T> {
   validator: IValidator;
   filter: (e: Token<T>) => boolean;
 
@@ -31,5 +29,9 @@ export abstract class StringableTokenizer<
 
   tokenizeToValues(input: IStringable): string[] {
     return this.tokenize(input).map((x) => x.fragment.toString());
+  }
+
+  tokenizeToValue(input: IStringable): string {
+    return this.tokenizeToValues(input).join("");
   }
 }

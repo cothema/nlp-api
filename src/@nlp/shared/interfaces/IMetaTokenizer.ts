@@ -1,13 +1,6 @@
-import { Token } from "../model/Token";
-import { TokenizableStringableEntity } from "../model/TokenizableStringableEntity";
+import { Meta } from "../../lang/universal/orthography/model/Meta";
 import { IStringable } from "./IStringable";
 
-export interface IMetaTokenizer<
-  Entity extends TokenizableStringableEntity
-> {
-  tokenize(input: IStringable): Token<Entity>[];
-
-  tokenizeToEntities(input: IStringable): Entity[];
-
-  tokenizeToValues(input: IStringable): string[];
+export interface IMetaTokenizer<Entity> {
+  tokenizeToMeta(input: IStringable): Meta<Entity>;
 }
