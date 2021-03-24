@@ -11,8 +11,7 @@ export class LetterTokenizerEndpoint extends AbstractTokenizerEndpoint
     subPath: string = "/tokenizer/letter",
   ) {
     super(app, pathPrefix, subPath);
-    this.onTokenize();
   }
 
-  protected tokenizerFactory = () => new LetterTokenizer();
+  protected actionFactory = () => new LetterTokenizer();
 }

@@ -13,5 +13,5 @@ export class CsLetterTokenizerEndpoint extends AbstractTokenizerEndpoint
     super(app, pathPrefix, subPath);
   }
 
-  protected tokenizerFactory = () => new CsLetterTokenizer();
+  protected actionFactory = () => new CsLetterTokenizer();
 }

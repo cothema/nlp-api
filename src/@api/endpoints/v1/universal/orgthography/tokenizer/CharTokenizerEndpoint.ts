@@ -1,7 +1,7 @@
 import { Express } from "express";
 import { CharTokenizer } from "../../../../../../@nlp/lang/universal/orthography/tokenizers/CharTokenizer";
-import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";
+import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 
 export class CharTokenizerEndpoint extends AbstractTokenizerEndpoint
   implements IEndpoint {
@@ -11,8 +11,7 @@ export class CharTokenizerEndpoint extends AbstractTokenizerEndpoint
     subPath: string = "/tokenizer/char",
   ) {
     super(app, pathPrefix, subPath);
-    this.onTokenize();
   }
 
-  protected tokenizerFactory = () => new CharTokenizer();
+  protected actionFactory = () => new CharTokenizer();
 }

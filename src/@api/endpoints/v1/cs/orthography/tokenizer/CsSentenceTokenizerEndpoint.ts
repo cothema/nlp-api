@@ -13,5 +13,5 @@ export class CsSentenceTokenizerEndpoint extends AbstractTokenizerEndpoint
     super(app, pathPrefix, subPath);
   }
 
-  protected tokenizerFactory = () => new SentenceTokenizer();
+  protected actionFactory = () => new SentenceTokenizer();
 }

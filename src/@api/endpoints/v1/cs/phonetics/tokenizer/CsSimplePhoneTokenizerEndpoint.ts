@@ -11,8 +11,7 @@ export class CsSimplePhoneTokenizerEndpoint extends AbstractTokenizerEndpoint
     subPath: string = "/tokenizer/simple-phone",
   ) {
     super(app, pathPrefix, subPath);
-    this.onTokenize();
   }
 
-  protected tokenizerFactory = () => new CsSimplePhoneTokenizer();
+  protected actionFactory = () => new CsSimplePhoneTokenizer();
 }

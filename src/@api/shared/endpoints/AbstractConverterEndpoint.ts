@@ -1,12 +1,12 @@
 import { Express } from "express";
-import { IClassifier } from "../../../@nlp/shared/interfaces/IClassifier";
+import { IConverter } from "../../../@nlp/shared/interfaces/IConverter";
 import { IEndpoint } from "../interfaces/IEndpoint";
 import { AbstractActionEndpoint } from "./AbstractActionEndpoint";
 
-export abstract class AbstractClassifierEndpoint extends AbstractActionEndpoint
+export abstract class AbstractConverterEndpoint<In, Out> extends AbstractActionEndpoint
   implements IEndpoint {
-  protected actionName = "classify";
-  protected abstract actionFactory: () => IClassifier<any>;
+  protected abstract actionFactory: () => IConverter<In, Out>;
+  protected actionName = "convert";
 
   protected constructor(
     app: Express,
@@ -18,9 +18,7 @@ export abstract class AbstractClassifierEndpoint extends AbstractActionEndpoint
   }
 
   protected async handleRequest(req) {
-    const solution = await this.actionFactory().classify(
-      req.body,
-    );
+    const solution = await this.actionFactory().convert(req.body.string.toString());
 
     return {
       data: solution,

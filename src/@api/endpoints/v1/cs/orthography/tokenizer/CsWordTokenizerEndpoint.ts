@@ -13,5 +13,5 @@ export class CsWordTokenizerEndpoint extends AbstractTokenizerEndpoint
     super(app, pathPrefix, subPath);
   }
 
-  protected tokenizerFactory = () => new WordTokenizer();
+  protected actionFactory = () => new WordTokenizer();
 }

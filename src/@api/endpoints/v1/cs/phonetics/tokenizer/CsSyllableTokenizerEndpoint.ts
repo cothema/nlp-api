@@ -11,8 +11,7 @@ export class CsSyllableTokenizerEndpoint extends AbstractTokenizerEndpoint
     subPath: string = "/tokenizer/syllable",
   ) {
     super(app, pathPrefix, subPath);
-    this.onTokenize();
   }
 
-  protected tokenizerFactory = () => new CsSyllableTokenizer();
+  protected actionFactory = () => new CsSyllableTokenizer();
 }

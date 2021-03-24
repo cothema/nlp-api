@@ -5,7 +5,7 @@ import { Phone } from "../../../universal/orthography/model/Phone";
 import { PhoneIpa } from "../../../universal/orthography/model/PhoneIpa";
 
 /**
- * Convertor for phones to IPA transcription
+ * Convert phones to IPA transcription
  */
 export class CsSimplePhonesToIpaConverter
   implements IConverter<Char[], Phone[]> {

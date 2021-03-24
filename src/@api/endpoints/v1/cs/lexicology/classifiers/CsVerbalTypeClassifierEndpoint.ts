@@ -13,5 +13,5 @@ export class CsVerbalTypeClassifierEndpoint extends AbstractClassifierEndpoint
     super(app, pathPrefix, subPath);
   }
 
-  protected classifierFactory = () => new CsVerbalTypeClassifier();
+  protected actionFactory = () => new CsVerbalTypeClassifier();
 }
