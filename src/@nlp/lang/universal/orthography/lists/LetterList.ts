@@ -31,6 +31,7 @@ export class LetterList {
     "í",
     "ó",
     "ú",
+    "ů",
     "ý",
     "ž",
     "š",

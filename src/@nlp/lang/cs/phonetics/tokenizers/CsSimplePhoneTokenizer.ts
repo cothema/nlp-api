@@ -56,11 +56,20 @@ export class CsSimplePhoneTokenizer extends StringableTokenizer
 
     for (let i = 0; phoneTokens[i]; i++) {
       switch (phoneTokens[i].fragment.string) {
+        case "w":
+          phoneTokens[i].fragment.string = "v";
+          continue;
+        case "x":
+          phoneTokens[i].fragment.string = "ks";
+          continue;
         case "y":
           phoneTokens[i].fragment.string = "i";
           continue;
         case "ý":
           phoneTokens[i].fragment.string = "í";
+          continue;
+        case "ů":
+          phoneTokens[i].fragment.string = "ú";
           continue;
       }
 

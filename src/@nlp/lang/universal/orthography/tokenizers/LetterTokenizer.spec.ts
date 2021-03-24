@@ -10,5 +10,6 @@ describe("LetterTokenizer", () => {
     expect(tokenizer.tokenizeToValues("That's it!")[4]).toBe("s");
     expect(tokenizer.tokenizeToValues("I 💖 you!")[2]).toBe("o");
     expect(tokenizer.tokenize("I 💖 you!")[1].origIndex).toBe(4);
+    expect(tokenizer.tokenizeToValues("původ")[1]).toBe("ů");
   });
 });

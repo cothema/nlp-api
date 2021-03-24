@@ -51,6 +51,11 @@ describe("CsSimplePhoneTokenizer", () => {
     expect(tokenizer.tokenizeToMeta("jarní").rulesApplied.find(x => x.id === 2)).toBeTruthy();
     // expect(tokenizer.tokenizeToValue("náš")).toBe("náž");
 
+    expect(tokenizer.tokenizeToValue("kýbl")).toBe("kíbl");
+    expect(tokenizer.tokenizeToValue("wix")).toBe("viks");
+    expect(tokenizer.tokenizeToValue("týl")).toBe("tíl");
+    expect(tokenizer.tokenizeToValue("původ")).toBe("púvot");
+
     /**
      * Spodoba znělosti - párové souhlásky (Rule 1)
      * @see https://prirucka.ujc.cas.cz/?id=908
