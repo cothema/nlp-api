@@ -1,4 +1,4 @@
-import { CsSyllableTokenizer } from "cothema-nlp-tools";
+import { CsSyllableTokenizer } from "@cothema/nlp-lang-cs";
 import { Express } from "express";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";

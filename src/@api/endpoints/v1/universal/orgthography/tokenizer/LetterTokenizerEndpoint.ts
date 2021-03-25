@@ -1,4 +1,4 @@
-import { LetterTokenizer } from "cothema-nlp-tools";
+import { LetterTokenizer } from "@cothema/nlp-lang";
 import { Express } from "express";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";

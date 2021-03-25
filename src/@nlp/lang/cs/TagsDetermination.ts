@@ -1,4 +1,4 @@
-import { Word } from "cothema-nlp-tools";
+import { Word } from "@cothema/nlp-model";
 import { DictionaryLoader } from "../../DictionaryLoader";
 
 export class TagsDetermination {

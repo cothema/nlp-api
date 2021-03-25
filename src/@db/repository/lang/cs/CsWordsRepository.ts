@@ -1,4 +1,4 @@
-import { ICsWordsRepository } from "cothema-nlp-tools";
+import { ICsWordsRepository } from "@cothema/nlp-lang-cs";
 import { Pool } from "pg";
 import { PostgresDb } from "../../../postgres/PostgresDb";
 

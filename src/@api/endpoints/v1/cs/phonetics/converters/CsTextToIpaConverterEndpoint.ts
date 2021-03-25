@@ -1,4 +1,5 @@
-import { CsTextToIpaConverter, IStringable, PhoneIpa } from "cothema-nlp-tools";
+import { CsTextToIpaConverter } from "@cothema/nlp-lang-cs";
+import { IStringable, PhoneIpa } from "@cothema/nlp-model";
 import { Express } from "express";
 import { AbstractConverterEndpoint } from "../../../../../shared/endpoints/AbstractConverterEndpoint";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";

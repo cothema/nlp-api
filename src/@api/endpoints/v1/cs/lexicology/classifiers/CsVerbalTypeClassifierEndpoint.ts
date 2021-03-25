@@ -1,4 +1,4 @@
-import { CsVerbalTypeClassifier } from "cothema-nlp-tools";
+import { CsVerbalTypeClassifier } from "@cothema/nlp-lang-cs";
 import { Express } from "express";
 import { CsWordsRepository } from "../../../../../../@db/repository/lang/cs/CsWordsRepository";
 import { AbstractClassifierEndpoint } from "../../../../../shared/endpoints/AbstractClassifierEndpoint";
