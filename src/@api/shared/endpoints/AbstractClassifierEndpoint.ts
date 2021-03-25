@@ -1,5 +1,5 @@
+import { IClassifier } from "cothema-nlp-tools";
 import { Express } from "express";
-import { IClassifier } from "../../../@nlp/shared/interfaces/IClassifier";
 import { IEndpoint } from "../interfaces/IEndpoint";
 import { AbstractActionEndpoint } from "./AbstractActionEndpoint";
 

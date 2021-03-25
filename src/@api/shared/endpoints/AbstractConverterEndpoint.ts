@@ -1,5 +1,5 @@
+import { IConverter } from "cothema-nlp-tools";
 import { Express } from "express";
-import { IConverter } from "../../../@nlp/shared/interfaces/IConverter";
 import { IEndpoint } from "../interfaces/IEndpoint";
 import { AbstractActionEndpoint } from "./AbstractActionEndpoint";
 

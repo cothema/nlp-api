@@ -1,7 +1,8 @@
+import { ICsWordsRepository } from "cothema-nlp-tools";
 import { Pool } from "pg";
 import { PostgresDb } from "../../../postgres/PostgresDb";
 
-export class CsWordsRepository {
+export class CsWordsRepository implements ICsWordsRepository {
 
   private db: Pool;
 

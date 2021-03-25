@@ -1,6 +1,5 @@
+import { IStringableTokenizer, TokenizableStringableEntity } from "cothema-nlp-tools";
 import { Express } from "express";
-import { IStringableTokenizer } from "../../../@nlp/shared/interfaces/IStringableTokenizer";
-import { TokenizableStringableEntity } from "../../../@nlp/shared/model/TokenizableStringableEntity";
 import { IEndpoint } from "../interfaces/IEndpoint";
 import { AbstractActionEndpoint } from "./AbstractActionEndpoint";
 

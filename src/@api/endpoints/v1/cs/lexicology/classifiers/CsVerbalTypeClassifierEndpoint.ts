@@ -1,5 +1,6 @@
+import { CsVerbalTypeClassifier } from "cothema-nlp-tools";
 import { Express } from "express";
-import { CsVerbalTypeClassifier } from "../../../../../../@nlp/lang/cs/lexicology/classifiers/CsVerbalTypeClassifier";
+import { CsWordsRepository } from "../../../../../../@db/repository/lang/cs/CsWordsRepository";
 import { AbstractClassifierEndpoint } from "../../../../../shared/endpoints/AbstractClassifierEndpoint";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 
@@ -13,5 +14,5 @@ export class CsVerbalTypeClassifierEndpoint extends AbstractClassifierEndpoint
     super(app, pathPrefix, subPath);
   }
 
-  protected actionFactory = () => new CsVerbalTypeClassifier();
+  protected actionFactory = () => new CsVerbalTypeClassifier(new CsWordsRepository());
 }

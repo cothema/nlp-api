@@ -1,5 +1,5 @@
+import { CsSimplePhoneTokenizer } from "cothema-nlp-tools";
 import { Express } from "express";
-import { CsSimplePhoneTokenizer } from "../../../../../../@nlp/lang/cs/phonetics/tokenizers/CsSimplePhoneTokenizer";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";
 

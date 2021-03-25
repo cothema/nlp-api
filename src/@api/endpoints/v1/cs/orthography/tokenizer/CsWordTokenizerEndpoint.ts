@@ -1,5 +1,5 @@
+import { WordTokenizer } from "cothema-nlp-tools";
 import { Express } from "express";
-import { WordTokenizer } from "../../../../../../@nlp/lang/universal/orthography/tokenizers/WordTokenizer";
 import { AbstractTokenizerEndpoint } from "../../../../../shared/endpoints/AbstractTokenizerEndpoint";
 import { IEndpoint } from "../../../../../shared/interfaces/IEndpoint";
 

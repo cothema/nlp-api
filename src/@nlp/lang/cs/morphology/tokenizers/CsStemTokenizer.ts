@@ -1,8 +1,5 @@
 import { StemmerCs } from "@nlpjs/lang-cs";
-import { IStringable } from "../../../../shared/interfaces/IStringable";
-import { Token } from "../../../../shared/model/Token";
-import { StringableTokenizer } from "../../../../shared/tokenizers/StringableTokenizer";
-import { WordStem } from "../../../universal/orthography/model/WordStem";
+import { IStringable, StringableTokenizer, Token, WordStem } from "cothema-nlp-tools";
 
 export class CsStemTokenizer extends StringableTokenizer<WordStem> {
   tokenize(input: IStringable): Token<WordStem>[] {

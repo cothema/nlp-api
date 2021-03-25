@@ -1,5 +1,5 @@
+import { Word } from "cothema-nlp-tools";
 import { DictionaryLoader } from "../../DictionaryLoader";
-import { Word } from "../universal/orthography/model/Word";
 
 export class TagsDetermination {
   static async determine(word: Word) {

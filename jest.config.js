@@ -5,6 +5,7 @@ module.exports = {
   collectCoverage: false,
   collectCoverageFrom: ["src/@nlp/**/*.{ts,tsx}", "!**/node_modules/**"],
   coverageReporters: ["lcovonly", "text"],
+  roots: ["<rootDir>/src/"],
   testEnvironment: "node",
   verbose: true,
   globals: {
